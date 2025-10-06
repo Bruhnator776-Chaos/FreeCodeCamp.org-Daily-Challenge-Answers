@@ -1,0 +1,21 @@
+"""
+Given a string, determine whether the number of vowels in the first half of the string is equal to the number of vowels in the second half.
+- The string can contain any characters.
+- The letters a, e, i, o, and u, in either uppercase or lowercase, are considered vowels.
+- If there's an odd number of characters in the string, ignore the center character.
+"""
+
+# CODE #
+def is_balanced(s):
+    from math import ceil, floor # Import the <Ceiling> and <Floor> functions in order to split and Odd-Length string correctly
+    if len(s)%2 == 0: split_string = [s[:round(len(s)/2)], s[round(len(s)/2):]] # Splitting an Even-Length string
+    else: split_string = [s[:floor(len(s)/2)], s[(ceil(len(s)/2)):]] # Splitting an Odd-Length string
+    
+    for i in range(2): # For both halves of the string
+        vowels = 0 # Initiate the vowel count as the integer 0
+        for character in split_string[i]: # For each character of the half-string
+            if character in "aeiouAEIOU": vowels+=1 # If the characters is a value, add one to the vowel count
+        split_string[i] = vowels # Set the half-string to the number of values, since there's no use for the half-string at this point
+
+    if split_string[0] == split_string[1]: return True # Checking to see if the vowel count is the same, and returning a True boolean if so
+    else: return False # If the vowel count is not the same, return False boolean
