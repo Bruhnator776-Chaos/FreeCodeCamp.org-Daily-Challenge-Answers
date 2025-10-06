@@ -1,0 +1,17 @@
+"""
+Given a non-negative integer, return its binary representation as a string.
+
+A binary number uses only the digits 0 and 1 to represent any number.
+To convert a decimal number to binary, repeatedly divide the number by 2 and record the remainder.
+Repeat until the number is zero. Read the remainders last recorded to first.
+"""
+
+# CODE #
+def to_binary(decimal):
+    binary = []
+    i=0
+    while decimal > 0:
+        binary.append(decimal % 2)
+        decimal //= 2
+    
+    return "".join([str(digit) for digit in binary])[::-1]
