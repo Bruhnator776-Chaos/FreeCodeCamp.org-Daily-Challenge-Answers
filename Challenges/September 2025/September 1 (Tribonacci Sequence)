@@ -11,4 +11,9 @@ Given an array containing the first three numbers of a Tribonacci sequence, and 
 """
 
 # CODE #
-
+def tribonacci_sequence(start_sequence, length):
+    if length < len(start_sequence):
+        if length == 0: return []
+        else: return start_sequence[:length]
+    while len(start_sequence) < length: start_sequence.append(sum(start_sequence[-3:]))
+    return start_sequence
