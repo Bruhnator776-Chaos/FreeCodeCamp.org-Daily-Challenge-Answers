@@ -8,10 +8,10 @@ Repeat until the number is zero. Read the remainders last recorded to first.
 
 # CODE #
 def to_binary(decimal):
-    binary = []
-    i=0
-    while decimal > 0:
-        binary.append(decimal % 2)
-        decimal //= 2
+    binary = [] # Set an empty list to store each digit in the binary string
+    i=0 # Set a counter variable
+    while decimal > 0: # Until there are no more values to expand into binary digits
+        binary.append(decimal % 2) # Divide argument by power of 2 and add value to binary string
+        decimal //= 2 # Correctly set the argument to reflect the change in line 14
     
-    return "".join([str(digit) for digit in binary])[::-1]
+    return "".join([str(digit) for digit in binary])[::-1] # Format the binary string in list to be the correct order in string format
