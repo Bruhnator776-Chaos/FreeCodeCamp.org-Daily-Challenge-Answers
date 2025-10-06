@@ -12,8 +12,8 @@ Given an array containing the first three numbers of a Tribonacci sequence, and 
 
 # CODE #
 def tribonacci_sequence(start_sequence, length):
-    if length < len(start_sequence):
-        if length == 0: return []
-        else: return start_sequence[:length]
-    while len(start_sequence) < length: start_sequence.append(sum(start_sequence[-3:]))
+    if length < len(start_sequence): # If the length argument is less than the length of the given sequence
+        if length == 0: return [] # If the length argument is 0, go ahead and return an empty list
+        else: return start_sequence[:length] # Otherwise, return the given sequence requested in the length argument
+    while len(start_sequence) < length: start_sequence.append(sum(start_sequence[-3:])) # While the local variable holding the given sequence is less than the requested length, append the calculated value to continue the tribonacci sequence
     return start_sequence
