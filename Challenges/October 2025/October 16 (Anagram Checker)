@@ -1,0 +1,14 @@
+"""
+Given two strings, determine if they are anagrams of each other (contain the same characters in any order).
+
+- Ignore casing and white space.
+"""
+
+# CODE #
+def are_anagrams(str1, str2):
+    new_strings = ["", ""] # Create an list of 2 empty strings to hold the strings after whitespace is removed
+    for string in [str1, str2]: # For each of the strings
+        for character in string: # For each character in the current string
+            if character != " ": new_strings[[str1, str2].index(string)] += character.lower() # If the character isn't whitespace, add it to the corresponding empty string defined in line 2
+    if sorted(new_strings[0]) == sorted(new_strings[1]): return True # If the sorted strings are the same, return boolean True
+    else: return False # If line 6 doesn't pass, return boolean False
