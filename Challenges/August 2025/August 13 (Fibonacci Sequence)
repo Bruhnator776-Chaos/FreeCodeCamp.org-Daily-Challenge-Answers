@@ -1,0 +1,15 @@
+"""
+The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones.
+When starting with 0 and 1, the first 10 numbers in the sequence are 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.
+
+Given an array containing the first two numbers of a Fibonacci sequence, and an integer representing the length of the sequence, return an array containing the sequence of the given length.
+
+- Your function should handle sequences of any length greater than or equal to zero.
+- If the length is zero, return an empty array.
+- Note that the starting numbers are part of the sequence.
+"""
+
+# CODE #def fibonacci_sequence(start_sequence, length):
+    if length == 0: return [] # If the length is 0, go ahead and return a blank list
+    while len(start_sequence) < length: start_sequence.append(sum(start_sequence[-2:])) # Until the length of the sequence is the requested length, add the sum of the last two numbers to the end of the list
+    return start_sequence[:length] # Return the requested length of values from the sequence
