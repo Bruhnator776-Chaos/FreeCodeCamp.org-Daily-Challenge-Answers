@@ -1,0 +1,12 @@
+"""
+Given a string, remove all spaces from the string, insert two spaces between every character, convert all alphabetical letters to uppercase, and return the result.
+
+- Non-alphabetical characters should remain unchanged (except for spaces).
+"""
+
+# CODE #
+def space_jam(s):
+    string = "" # Create a blank string
+    for character in s:
+        if character != " ": string += character # If the character isn't a space, add it to the string
+    return "  ".join([character for character in string]).upper() # Return the string with two spaces between each character, and all characters capitalized
