@@ -1,0 +1,15 @@
+"""
+Given a string, return a jumbled version of that string where each word is transformed using the following constraints:
+
+- The first and last letters of the words remain in place
+- All letters between the first and last letter are sorted alphabetically.
+- The input strings will contain no punctuation, and will be entirely lowercase.
+"""
+
+# CODE #
+def jbelmu(text):
+    new_text = [] # Create an empty list to store the jbdeelmu words
+    for word in text.split(" "): # Go through each individual word
+        if len(word) > 1: new_text.append(word[0]+"".join(sorted(word[1:-1]))+word[-1]) # If the word has a length greater than 1, jbelmu it, then add it to the jbdeelmu words list
+        else: new_text.append(word) # If it has a length less than or equal to one, simply add it to the jbdeelmu words list
+    return " ".join(new_text) # Return a string based on the jbdeelmu words list
