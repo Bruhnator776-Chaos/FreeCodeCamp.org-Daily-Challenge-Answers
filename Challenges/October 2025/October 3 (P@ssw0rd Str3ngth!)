@@ -1,0 +1,50 @@
+"""
+Given a password string, return "weak", "medium", or "strong" based on the strength of the password.
+
+A password is evaluated according to the following rules:
+- It is at least 8 characters long.
+- It contains both uppercase and lowercase letters.
+- It contains at least one number.
+- It contains at least one special character from this set: !, @, #, $, %, ^, &, or *.
+
+Return "weak" if the password meets fewer than two of the rules.
+Return "medium" if the password meets 2 or 3 of the rules.
+Return "strong" if the password meets all 4 rules.
+"""
+
+# CODE #
+def check_strength(password):
+    strength = 0
+
+    # Test Length
+    if len(password) >= 8: strength += 1
+
+    # Test Uppercase & Lowercase
+    from math import floor
+    for character in "abcdefghijklmnopqrstuvwxyz": # Check Lowercase
+        if character in password:
+            strength += 0.5
+            break # Prevent constant addition
+    for character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": # Check Uppercase
+        if character in password:
+            strength += 0.5
+            break # Prevent constant addition
+    strength = floor(strength) # If only one passed, neither passed
+
+    # Check for Number
+    for digit in "0123456789":
+        if digit in password:
+            strength += 1
+            break # Prevent constant addition
+    
+    # Check for Special Character
+    for special_char in "!@#$%^&*":
+        if special_char in password:
+            strength += 1
+            break # Prevent constant addition
+    
+    # Return Strength
+    if strength < 2: return "weak"
+    elif strength <= 3: return "medium"
+    elif strength == 4: return "strong"
+    else: return "ERROR"
