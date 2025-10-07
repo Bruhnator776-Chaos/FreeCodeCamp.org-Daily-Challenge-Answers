@@ -1,0 +1,19 @@
+"""
+For the second day of Space Week, you are given a string where each character represents the luminosity reading of a star.
+Determine if the readings have detected an exoplanet using the transit method.
+The transit method is when a planet passes in front of a star, reducing its observed luminosity.
+
+- Luminosity readings only comprise of characters 0-9 and A-Z where each reading corresponds to the following numerical values:
+- Characters 0-9 correspond to luminosity levels 0-9.
+- Characters A-Z correspond to luminosity levels 10-35.
+
+A star is considered to have an exoplanet if any single reading is less than or equal to 80% of the average of all readings.
+"""
+
+# CODE #
+def has_exoplanet(readings):
+    readings = ["0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(reading) for reading in readings] # Format all the readings to pure number format
+    is_exoplanet = lambda reading: reading <= 0.80*(sum(readings)/len(readings)) # Create a simple function that checks if an argument is less than or equal to 80% of the average value of the readings
+    for reading in readings: # For each of the readings
+        if is_exoplanet(reading): return True # If the reading passes the lambda in line 16, return True, therefore indicating the existance of an exoplanet
+    return False # This will only occur if line 18 never passes the "return True"
