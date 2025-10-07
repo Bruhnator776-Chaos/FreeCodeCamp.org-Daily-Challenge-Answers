@@ -1,0 +1,23 @@
+"""
+For day three of Space Week, you are given an array of numbers representing distances (in kilometers) between yourself, satellites, and your home planet in a communication route. Determine how long it will take a message sent through the route to reach its destination planet using the following constraints:
+
+- The first value in the array is the distance from your location to the first satellite.
+- Each subsequent value, except for the last, is the distance to the next satellite.
+- The last value in the array is the distance from the previous satellite to your home planet.
+- The message travels at 300,000 km/s.
+- Each satellite the message passes through adds a 0.5 second transmission delay.
+- Return a number rounded to 4 decimal places, with trailing zeros removed.
+"""
+
+# CODE #
+def send_message(route): return round(sum([distance/300000 for distance in route])+0.5*(len(route)-1),4)
+"""
+In the interest of readability, I'll comment line 13 here, rather than a long # comment at the end of the line.
+We do 6 things:
+ 1) Create a list that holds each distance route divided by 300,000, getting the seconds it takes to travel between each location
+ 2) Sum up the list with the sum() function, creating the total amount of time it takes to travel between each location
+ 3) Collect the number of stops in the route, and subtracting 1, essentially collecting the number of satellites the message runs through
+ 4) Multiplying the number of satellites by 0.5 to get the total amount of transmission delay across the lifetime of the message
+ 5) Add together the total amount of time it takes to travel between the locations and the total transmission delay
+ 6) Round the result to 4 decimal points
+"""
