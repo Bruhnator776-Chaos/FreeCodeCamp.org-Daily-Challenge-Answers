@@ -1,0 +1,24 @@
+"""
+For today's challenge, you are given the surface temperature of a star in Kelvin (K) and need to determine its stellar classification based on the following ranges:
+
+- "O": 30,000 K or higher
+- "B": 10,000 K - 29,999 K
+- "A": 7,500 K - 9,999 K
+- "F": 6,000 K - 7,499 K
+- "G": 5,200 K - 5,999 K
+- "K": 3,700 K - 5,199 K
+- "M": 0 K - 3,699 K
+
+Return the classification of the given star.
+"""
+
+# CODE #
+def classification(temp):
+    if temp >= 30000: return "O" # If the temperature is 30000 or higher, return classification "O"
+    elif temp >= 10000: return "B" # If the temperature is 10000 or higher and lower than the above classification, return classification "B"
+    elif temp >= 7500: return "A" # If the temperature is 7500 or higher and lower than the above classification, return classification "A"
+    elif temp >= 6000: return "F" # If the temperature is 6000 or higher and lower than the above classification, return classification "F"
+    elif temp >= 5200: return "G" # If the temperature is 5200 or higher and lower than the above classification, return classification "G"
+    elif temp >= 3700: return "K" # If the temperature is 3700 or higher and lower than the above classification, return classification "K"
+    elif temp >= 0: return "M" # If the temperature is 0 or higher and lower than the above classification, return classification "M"
+    else: return "ERROR" # If the temperature is lower than 0 Kelvin, there's an issue.
