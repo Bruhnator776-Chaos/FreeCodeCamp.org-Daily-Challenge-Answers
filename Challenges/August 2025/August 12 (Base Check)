@@ -1,0 +1,15 @@
+"""
+Given a string representing a number, and an integer base from 2 to 36, determine whether the number is valid in that base.
+
+- The string may contain integers, and uppercase or lowercase characters.
+- The check should be case-insensitive.
+- The base can be any number 2-36.
+- A number is valid if every character is a valid digit in the given base.
+"""
+
+# CODE #
+def is_valid_number(n, base):
+    valid_digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:base] # Get a string that holds all the valid digits for the base given
+    for digit in n: # For each digit in the number argument
+        if not digit.upper() in valid_digits: return False # If the digit isn't valid, return False
+    return True # Line 15 will only run if line 14's return function is not run
