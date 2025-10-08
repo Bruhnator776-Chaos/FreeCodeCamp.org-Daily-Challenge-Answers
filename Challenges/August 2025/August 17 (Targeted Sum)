@@ -1,0 +1,16 @@
+"""
+Given an array of numbers and an integer target, find two unique numbers in the array that add up to the target value.
+Return an array with the indices of those two numbers, or "Target not found" if no two numbers sum up to the target.
+
+- The returned array should have the indices in ascending order.
+"""
+
+# CODE #
+def find_target(arr, target):
+    indices = [] # Created an empty list to hold the indices once found
+    for i in range(len(arr)): # For each number in the array...
+        for i2 in range(len(arr)): # Loop through each number in the array...
+            if i == i2: continue # Skip if the numbers are the same
+            if arr[i]+arr[i2] == target: indices = sorted([i, i2]) # Check if they add up to the target argument, and if so, replace the value held by indixes with a sorted version of the two requested indices
+    if indices != []: return indices # If the indices list is not empty, return it
+    else: return "Target not found" # If the indices were not found, return string "Target not found"
