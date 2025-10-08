@@ -1,0 +1,12 @@
+"""
+Given an integer from zero to 20, return the factorial of that number.
+The factorial of a number is the product of all the numbers between 1 and the given number.
+
+- The factorial of zero is 1.
+"""
+
+# CODE #
+def factorial(n):
+    total = 1 # Create a variable to multiply to
+    for i in range(n): total *= i+1 # For each number from 0 until the given number, multiply the total variable by the current iterated number plus 1
+    return total # Return the final value
