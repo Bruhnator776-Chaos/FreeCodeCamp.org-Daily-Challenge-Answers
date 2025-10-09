@@ -1,0 +1,20 @@
+"""
+
+"""
+
+# CODE #
+def moon_phase(date_string):
+    year_days = {"January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "July": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31}
+    def get_days(year, month, day):
+        if month > 2: leap_year_days = (year//4) + 1
+        else: leap_year_days = year//4
+        month_days = []
+        for i in range(month): month_days.append(year_days.get(list(year_days.keys())[i]))
+        return (year*365) + sum(month_days) + day + leap_year_days
+    reference_days = get_days(2000, 1, 6)
+    year, month, day = [int(part) for part in date_string.split("-")]
+    days_since_new = get_days(year, month, day)-reference_days
+    if (days_since_new%28)+1 <= 7: return "New"
+    elif (days_since_new%28)+1 <= 14: return "Waxing"
+    elif (days_since_new%28)+1 <= 21: return "Full"
+    elif (days_since_new%28)+1 <= 28: return "Waning"
