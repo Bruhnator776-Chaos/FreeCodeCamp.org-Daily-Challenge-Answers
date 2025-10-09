@@ -1,19 +1,40 @@
+For day six of Space Week, you will be given a date in the format "YYYY-MM-DD" and need to determine the phase of the moon for that day using the following rules:
+
+Use a simplified lunar cycle of 28 days, divided into four equal phases:
+- "New": days 1 - 7
+- "Waxing": days 8 - 14
+- "Full": days 15 - 21
+- "Waning": days 22 - 28
+After day 28, the cycle repeats with day 1, a new moon.
+
+- Use "2000-01-06" as a reference new moon (day 1 of the cycle) to determine the phase of the given day.
+- You will not be given any dates before the reference date.
+- Return the correct phase as a string.
 """
 
 """
 
 # CODE #
 def moon_phase(date_string):
-    year_days = {"January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "July": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31}
+    
     def get_days(year, month, day):
+        """ Given a year, month, and day, determine how many days have passed since 0000-01-01 """
+        year_days = {"January": 31, "Febuary": 28, "March": 31, "April": 30, "May": 31, "June": 30, "July": 31, "August": 31, "September": 30, "October": 31, "November": 30, "December": 31}
+
         if month > 2: leap_year_days = (year//4) + 1
         else: leap_year_days = year//4
+
         month_days = []
         for i in range(month): month_days.append(year_days.get(list(year_days.keys())[i]))
+
         return (year*365) + sum(month_days) + day + leap_year_days
-    reference_days = get_days(2000, 1, 6)
-    year, month, day = [int(part) for part in date_string.split("-")]
-    days_since_new = get_days(year, month, day)-reference_days
+    
+    reference_days = get_days(2000, 1, 6) # Get the number of days that 2000-01-06 contains
+    
+    year, month, day = [int(part) for part in date_string.split("-")] # Get the year, month, and day in integer form from the date_string argument
+    days_since_new = get_days(year, month, day)-reference_days # Collect the number of days between the reference date and the argument-given date
+
+    # Return the phase of the moon
     if (days_since_new%28)+1 <= 7: return "New"
     elif (days_since_new%28)+1 <= 14: return "Waxing"
     elif (days_since_new%28)+1 <= 21: return "Full"
