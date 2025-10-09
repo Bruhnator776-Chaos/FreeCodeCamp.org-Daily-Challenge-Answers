@@ -1,0 +1,27 @@
+"""
+Given a string, return its camel case version using the following rules:
+- Words in the string argument are separated by one or more characters from the following set, treating any as a word break:
+  - space ( )
+  - dash (-)
+  - underscore (_)
+- The first word should be all lowercase.
+- Each subsequent word should start with an uppercase letter, with the rest of it lowercase.
+- All spaces and separators should be removed.
+"""
+
+# CODE #
+def to_camel_case(s):
+    word_break = " _-" # Create a string with each character considered as a word_break
+
+    words = [] # Create an empty list to hold each word
+
+    # Create a list of words from the given string
+    word = ""
+    for character in s:
+        if not character in word_break: word += character
+        else:
+            if word != "": words.append(word)
+            word = ""
+    words.append(word)
+
+    return "".join([word.title() for word in words])[0].lower() + "".join([word.title() for word in words])[1:] # Return the camelCase version of the string
