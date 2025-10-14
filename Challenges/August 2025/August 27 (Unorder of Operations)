@@ -1,0 +1,19 @@
+"""
+Given an array of integers and an array of string operators, apply the operations to the numbers sequentially from left-to-right.
+Repeat the operations as needed until all numbers are used.
+Return the final result.
+- Valid operators are +, -, *, /, and %.
+"""
+
+# CODE #
+def evaluate(numbers, operators):
+    while len(numbers) > len(operators): operators.extend(operators) # Extend the operators list by itself a number of times so that it has a length equal to or greater than the length of the list of numbers
+
+    final = numbers[0] # Set the starting number before operations, this will also hold the final result
+    for i in range(len(numbers[1:])): # For each of the numbers past the first one, with the index as i
+        if operators[i] == "+": final += numbers[1:][i] # If the operator under index of i is "+", add the current iterrated number to the "final" variable
+        elif operators[i] == "-": final -= numbers[1:][i] # If the operator under index of i is "-", subtract the current iterrated number from the "final" variable
+        elif operators[i] == "*": final *= numbers[1:][i] # If the operator under index of i is "*", multiply the current iterrated number to the "final" variable
+        elif operators[i] == "/": final /= numbers[1:][i] # If the operator under index of i is "/", divide the current iterrated number from the "final" variable
+        elif operators[i] == "%": final %= numbers[1:][i] # If the operator under index of i is "%", divide the current iterrated number from the "final" variable, then set the "final" variable to the remainder
+    return final # Return the final result
