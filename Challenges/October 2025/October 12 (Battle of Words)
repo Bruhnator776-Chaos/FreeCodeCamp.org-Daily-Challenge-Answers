@@ -1,0 +1,39 @@
+"""
+Given two sentences representing your team and an opposing team, where each word from your team battles the corresponding word from the opposing team, determine which team wins using the following rules:
+- The given sentences will always contain the same number of words.
+- Words are separated by a single space and will only contain letters.
+- The value of each word is the sum of its letters.
+- Letters a to z correspond to the values 1 through 26. For example, a is 1, and z is 26.
+- A capital letter doubles the value of the letter. For example, A is 2, and Z is 52.
+- Words battle in order: the first word of your team battles the first word of the opposing team, and so on.
+- A word wins if its value is greater than the opposing word's value.
+- The team with more winning words is the winner.
+
+Return "We win" if your team is the winner, "We lose" if your team loses, and "Draw" if both teams have the same number of wins.
+"""
+
+# CODE #
+def battle(our_team, opponent):
+
+    def calculate(sentence):
+        """ Given a sentence, determine the power of each word and return the powers as a list """
+        powers = []
+        for word in sentence.split(" "):
+            power = 0
+            for character in word:
+                idx = " abcdefghijklmnopqrstuvwxyz".index(character.lower())
+                if character.isupper(): power+=idx*2
+                else: power += idx
+            powers.append(power)
+        return powers
+    
+    Ours_vs_Opponent_Wins = [0,0] # Create a variable to track the wins of each team
+    i = 0 # Define a counter variable
+    for power in calculate(our_team): # For each power in the powers of "our_team"
+        if power > calculate(opponent)[i]: Ours_vs_Opponent_Wins[0]+=1 # If the power of the current word in each sentence leans in favor of "our_team", add one win to "our_team"
+        elif power < calculate(opponent)[i]: Ours_vs_Opponent_Wins[1]+=1 # If the power of the current word in each sentence leans in favor of "opponent", add one win to "opponent"
+        i+=1 # Increment Counter
+
+    if Ours_vs_Opponent_Wins[0] > Ours_vs_Opponent_Wins[1]: return "We win" # If "our_team" has more wins, return "We win"
+    elif Ours_vs_Opponent_Wins[0] < Ours_vs_Opponent_Wins[1]: return "We lose" # If "opponent" has more wins, return "We lose"
+    elif Ours_vs_Opponent_Wins[0] == Ours_vs_Opponent_Wins[1]: return "Draw" # If neither team has more wins, return "Draw"
