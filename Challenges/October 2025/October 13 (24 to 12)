@@ -1,0 +1,12 @@
+"""
+Given a string representing a time of the day in the 24-hour format of "HHMM", return the time in its equivalent 12-hour format of "H:MM AM" or "H:MM PM".
+
+- The given input will always be a four-digit string in 24-hour time format, from "0000" to "2359".
+"""
+
+# CODE #
+def to_12(time):
+    if int(time[:2]) < 12: # If the hour of the given 24-hour time is under 12...
+        if int(time[:2]) == 0: return f"12:{time[2:]} AM" # If the hour would be 0, make it twelve and return the corrected time
+        else: return f"{int(time[:2])}:{time[2:]} AM" # Return the corrected time
+    else: return f"{int(time[:2])-12}:{time[2:]} PM" # If the hour of the given 24-hour time is at or above 12, return the corrected time
