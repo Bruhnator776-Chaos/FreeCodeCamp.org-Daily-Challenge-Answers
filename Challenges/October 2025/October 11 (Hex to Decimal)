@@ -1,0 +1,16 @@
+"""
+Given a string representing a hexadecimal number (base 16), return its decimal (base 10) value as an integer.
+
+Hexadecimal is a number system that uses 16 digits:
+- 0-9 represent values 0 through 9.
+- A-F represent values 10 through 15.
+"""
+
+# CODE #
+def hex_to_decimal(hexadec):
+    decimal = 0 # Create an empty variable to hold each each total value from the conversion of each digit from the hexidecimal string
+    i = 0 # Define a simple counter variable
+    for digit in hexadec[::-1]: # For each digit in reverse order of the string
+        decimal += (16**i)*("0123456789ABCDEF".index(digit)) # Convert the hex-digit to dec-digit and add to the decimal value
+        i+=1 # Increment counter
+    return decimal # Return the final decimal value
