@@ -1,0 +1,11 @@
+"""
+Given two strings, determine how many times the second string appears in the first.
+- The pattern string can overlap in the first string.
+"""
+
+# CODE #
+def count(text, parameter):
+    count = 0 # Create a count for each parameter that fits in the text
+    for i in range(len(text)): # For each index within the text
+        if parameter == text[i:i+len(parameter)]: count+=1 # If the parameter if found at the current index, add one to the count
+    return count # Return the count
