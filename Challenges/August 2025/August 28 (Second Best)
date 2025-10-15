@@ -1,0 +1,17 @@
+"""
+Given an array of integers representing the price of different laptops, and an integer representing your budget, return:
+- The second most expensive laptop if it is within your budget, or...
+- The most expensive laptop that is within your budget, or...
+- 0 if no laptops are within your budget.
+
+- Duplicate prices should be ignored.
+"""
+
+# CODE #
+def get_laptop_cost(laptops, budget):
+    if sorted(set(laptops))[-2] < budget: return sorted(set(laptops))[-2] # If the second most expensive laptop is within the given budget, return that laptop
+    else:
+        highest_affordable = 0 # Set the most affordable laptop to 0, noting that it will stay zero if no laptops are within the budget
+        for laptop in sorted(set(laptops)): # For each laptop price, in ascending order
+            if laptop > highest_affordable and laptop < budget: highest_affordable = laptop # If the laptop price is within budget and higher than the currently highest_affordable laptop, set the highest_affordable laptop price to the currently itterated price
+        return highest_affordable # Return the highest_affordable laptop
