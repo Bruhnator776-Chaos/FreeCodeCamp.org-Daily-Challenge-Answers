@@ -1,0 +1,18 @@
+"""
+Given a string of HTML code, remove the tags and return the plain text content.
+
+- The input string will contain only valid HTML.
+- HTML tags may be nested.
+- Remove the tags and any attributes.
+"""
+
+# CODE #
+def strip_tags(html):
+    """ NOTE: This code does not account for the fact that the plain text may contain a "<" or ">" """
+    plain_text = "" # Create a blank string to hold each part of the non-tag HTML code.
+    while html.count("<") != 0: # While the html string still contains a tag...
+        html = html[html.index(">")+1:] #  # Set the HTML argument to everything past the tag
+        if html != '': # If the HTML line still exists...
+            plain_text += html[:html.index("<")] # Add the non-tag plain text to the plain text variable
+            html = html[html.index("<"):] # Set the html string to everything from the next tag on.
+    return plain_text # Return the plain text
