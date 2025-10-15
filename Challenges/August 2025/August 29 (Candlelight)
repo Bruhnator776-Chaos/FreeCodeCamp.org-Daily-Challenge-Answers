@@ -1,0 +1,19 @@
+"""
+Given an integer representing the number of candles you start with,
+and an integer representing how many burned candles it takes to create a new one,
+return the number of candles you will have used after creating and burning as many as you can.
+"""
+
+# CODE #
+def burn_candles(candles, leftovers_needed):
+    leftovers = candles # Burn the first candles
+    burns = candles # Record the number of burnt candles
+    while leftovers >= leftovers_needed: # While the number of leftovers are able to make at least one candle
+        # Make Candles
+        candles = leftovers // leftovers_needed
+        leftovers %= leftovers_needed
+        
+        # Burn Candles
+        leftovers += candles
+        burns += candles
+    return burns # Return the number of burnt candles
