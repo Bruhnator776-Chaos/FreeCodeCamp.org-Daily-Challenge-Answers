@@ -1,0 +1,18 @@
+"""
+Given the price of your meal and a custom tip percent, return an array with three tip values; 15%, 20%, and the custom amount.
+
+- Prices will be given in the format: "$N.NN".
+- Custom tip percents will be given in this format: "25%".
+- Return amounts in the same "$N.NN" format, rounded to two decimal places.
+"""
+
+# CODE #
+def calculate_tips(meal_price, custom_tip):
+    meal_price = float(meal_price[1:]) # Set the meal price to a float value instead of a string
+    custom_tip = float(custom_tip[:-1]) # Set the custom tip to a float value instead of a string
+    tips = [] # Create an empty list to hold each tip amount
+    for tip in [15, 20, custom_tip]: # For each tip, for 15%, 20%, and the custom tip value...
+        tip = str(round(meal_price*(tip/100),2)) # Calculate the tip price
+        if len(tip.split(".")[1]) < 2: tip+="0" # If the tip price leaves only 1 digit after the decimal point, add a 0
+        tips.append(f"${tip}") # Append the tip to the tips list
+    return tips # Return the tip values
