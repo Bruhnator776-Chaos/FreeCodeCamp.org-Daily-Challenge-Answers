@@ -1,0 +1,23 @@
+"""
+Given a CSS rgb(r, g, b) color string, return its hexadecimal equivalent.
+- Make any letters lowercase.
+- Return a # followed by six characters.
+  - Don't use any shorthand values.
+"""
+
+# CODE #
+def rgb_to_hex(rgb):
+    values = [] # Create an empty list to hold each value
+
+    # Format rgb string into 3 distinct values
+    for chunk in rgb.split(","):
+        if chunk.count("(") > 0: chunk = chunk.split("(")[1]
+        if chunk.count(")") > 0: chunk = chunk.split(")")[0]
+        values.append(int(chunk))
+    
+    i=0 # Create counter variable
+    for value in values: # For each value...
+        values[i] = "".join(["0123456789abcdef"[value//16], "0123456789abcdef"[value%16]]) # Set the value to the hexadecimal string
+        i+=1 # Increment the counter variable
+    
+    return "#"+"".join(values) # Return the hexadecimal value, fully formatted
