@@ -1,0 +1,31 @@
+"""
+Given a string, determine if it is a valid email address using the following constraints:
+- It must contain exactly one @ symbol.
+- The local part (before the @):
+  - Can only contain letters (a-z, A-Z), digits (0-9), dots (.), underscores (_), or hyphens (-).
+  - Cannot start or end with a dot.
+- The domain part (after the @):
+  - Must contain at least one dot.
+  - Must end with a dot followed by at least two letters.
+- Neither the local or domain part can have two dots in a row.
+"""
+
+# CODE #
+def validate(email):
+    if email.count("@") == 0: return False # If the email is missing an "@", return False
+
+    for character in email.split("@")[0]: # For each character in the local part of the email...
+        if character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-": return False # If the character is not letters, digits, dots, underscores, or hyphens, return False
+    
+    if email[0] == "." or email.split("@")[0][-1] == ".": return False # If the local half of the email starts or ends with a dot, return False
+
+    if email.split("@")[1].count(".") == 0: return False # If the domain half of the email doesn't contain a ".", return False
+
+    if email.count("..") >= 1: return False # If the email has any 2 "." in a row, return False
+
+    letters = [] # Create an empty list to store the letters found at the end of the email
+    for character in email[::-1].split(".")[0]: # For each the end of the domain half of the email, from the last "." and onward...
+        if character.isalpha(): letters.append(character) # If the current iterrated character is a letter, add it to the letters list
+    if len(letters) < 2: return False # If the list of letters has less than 2 letters in it, return False
+
+    return True # If nothing above passed, it will have reached this line, otherwise, it will have returned False already, ending the function early
