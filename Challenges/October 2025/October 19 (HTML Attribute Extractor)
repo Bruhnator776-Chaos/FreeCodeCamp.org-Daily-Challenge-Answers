@@ -1,0 +1,19 @@
+"""
+Given a string of a valid HTML element, return the attributes of the element using the following criteria:
+- You will only be given one element.
+- Attributes will be in the format: attribute="value".
+- Return an array of strings with each attribute property and value, separated by a comma, in this format: ["attribute1, value1", "attribute2, value2"].
+- Return attributes in the order they are given.
+- If no attributes are found, return an empty array.
+"""
+
+# CODE #
+def extract_attributes(element):
+    attributes = [] # Create an empty list to hold the attributes
+    for i in range(element.count("=")): # For each attribute and value pair...
+        attribute = element.split(' ')[1].split('=')[0] # Retrieve the first attribute found
+        value = element.split('"')[1].split('"')[0] # Retrieve the first value found
+        attributes.append(f"{attribute}, {value}") # Append a formatted version of the attribute and value
+        
+        element = "\"".join("\"".join(element.split('"')[1:]).split('"')[1:]) # Change the element argument to everything past the first attribute-value pair
+    return attributes # Return the list of attributes
