@@ -1,0 +1,14 @@
+"""
+Given a string of credit card numbers, return a masked version of it using the following constraints:
+- The string will contain four sets of four digits (0-9), with all sets being separated by a single space, or a single hyphen (-).
+- Replace all numbers, except the last four, with an asterisk (*).
+- Leave the remaining characters unchanged.
+"""
+
+# CODE #
+def mask(card):
+    i=0 # Set counter variable
+    for character in card: # For each character in the card string
+        if character.isdigit() and i <= 14: card = card[:i] + "*" + card[i+1:] # If the character is a digit and the current iteration is less than the 14th character, set the character to "*"
+        i+=1 # Add 1 to the counter variable
+    return card # Return the masked card
