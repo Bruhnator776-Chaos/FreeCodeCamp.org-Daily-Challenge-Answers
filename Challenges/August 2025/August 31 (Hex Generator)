@@ -1,0 +1,27 @@
+"""
+Given a named CSS color string, generate a random hexadecimal (hex) color code that is dominant in the given color.
+
+- The function should handle "red", "green", or "blue" as an input argument.
+- If the input is not one of those, the function should return "Invalid color".
+- The function should return a random six-character hex color code where the input color value is greater than any of the others.
+"""
+
+# CODE #
+def generate_hex(color):
+    if not color in ['red', 'green', 'blue']: return "Invalid color" # If the given color is invalid, return a string explaining so
+    
+    from random import randint # Import the randint function in order to generate random numbers
+    hexVal = {'red': randint(0,255), 'green': randint(0,255), 'blue': randint(0,255)} # Generate numerical values for the red, green, and blue to be used in the Hex-string
+    
+    # Create a list that holds each not used color
+    not_colors = ['red', 'green', 'blue']
+    not_colors.remove(color)
+
+    while hexVal.get(color) <= hexVal.get(not_colors[0]) or hexVal.get(color) <= hexVal.get(not_colors[1]): # While the color stored in the argument of the function is not the primary value within the hexVal dictionary...
+        hexVal = {'red': randint(0,255), 'green': randint(0,255), 'blue': randint(0,255)} # Re-Generate numerical values for the red, green, and blue to be used in the Hex-string
+    
+    i=0 # Create counter variable
+    for key, value in hexVal.items(): # For each value...
+        hexVal[key] = "".join(["0123456789ABCDEF"[value//16], "0123456789ABCDEF"[value%16]]) # Set the value to the hexadecimal string
+        i+=1 # Increment the counter variable
+    return "".join(hexVal.values()) # Return the formatted HexValues as one string
