@@ -1,0 +1,6 @@
+"""
+Given an array, return the second largest distinct number.
+"""
+
+# CODE #
+def second_largest(arr): return sorted(set(arr))[-2] # Return the 2nd to last number in a sorted set of the array
