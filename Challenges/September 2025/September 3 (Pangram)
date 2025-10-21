@@ -1,0 +1,15 @@
+"""
+Given a word or sentence and a string of lowercase letters, determine if the word or sentence uses all the letters from the given set at least once and no other letters.
+
+- Ignore non-alphabetical characters in the word or sentence.
+- Ignore letter casing in the word or sentence.
+"""
+
+# CODE #
+def is_pangram(sentence, letters):
+    sentence2 = [] # Create an empty list to hold each alphabetical character in the sentence
+    for character in sentence: # For each character in the sentence...
+        if character.isalpha(): sentence2.append(character) # If the character is a letter, add it to the sentence list
+        
+    if sorted(set([character.lower() for character in "".join(sentence2)])) == sorted(set([character.lower() for character in letters])): return True # If the lowercase letters of the sentence in sorted order are the same as the lowercase letters of the letters in sorted order, return True
+    return False # Return False, since the above line didn't end the function
