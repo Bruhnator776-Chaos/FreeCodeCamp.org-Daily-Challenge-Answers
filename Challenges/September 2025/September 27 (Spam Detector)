@@ -1,0 +1,30 @@
+"""
+Given a phone number in the format "+A (BBB) CCC-DDDD", where each letter represents a digit as follows:
+- A represents the country code and can be any number of digits.
+- BBB represents the area code and will always be three digits.
+- CCC and DDDD represent the local number and will always be three and four digits long, respectively.
+
+Determine if it's a spam number based on the following criteria:
+- The country code is greater than 2 digits long or doesn't begin with a zero (0).
+- The area code is greater than 900 or less than 200.
+- The sum of first three digits of the local number appears within last four digits of the local number.
+- The number has the same digit four or more times in a row (ignoring the formatting characters).
+"""
+
+# CODE #
+def is_spam(number):
+
+    # Collect each code
+    country_code = number.split(" ")[0][1:]
+    area_code = number.split("(")[1].split(")")[0]
+    local_number = number.split(" ")[-1].split("-")
+    
+    isSpam = False # Define isSpam as False
+
+    if len(country_code) > 2 or country_code[0] != "0": isSpam = True # If the country code is greater than 2 digits long, or doesn't begin with a 0, mark the number as spam
+    if int(area_code) > 900 or int(area_code) < 200: isSpam = True # If the area code is >900 or <200, mark the number as spam
+    if str(sum([int(digit) for digit in str(local_number[0])])) in local_number[1]: isSpam = True # If the sum of the first 3 digits are located within the last 4 digits, mark the number as spam
+    for digit in "".join([country_code, area_code, "".join(local_number)]): # For each digit in the full number without formatting...
+        if "".join([country_code, area_code, "".join(local_number)]).count(digit*4) >= 1: isSpam = True # If the digit is repeated 4 times in a row, mark the number as spam
+
+    return isSpam # Return whether or not the number is a Spam number
