@@ -1,0 +1,24 @@
+"""
+Given a string, return a new version of the string where each vowel is duplicated one more time than the previous vowel you encountered.
+For instance, the first vowel in the sentence should remain unchanged.
+The second vowel should appear twice in a row.
+The third vowel should appear three times in a row, and so on.
+
+- The letters a, e, i, o, and u, in either uppercase or lowercase, are considered vowels.
+- The original vowel should keeps its case.
+- Repeated vowels should be lowercase.
+- All non-vowel characters should keep their original case.
+"""
+
+# CODE #
+def repeat_vowels(s):
+    idx=0 # Initiate a variable for the index
+    count=0 # Initiate a variable for the number of vowels
+    for character in s: # For each character in the given string...
+        if character.upper() in "AEIOU": # If the character is a vowel...
+            for i in range(count): # For <count> times,
+                s = s[:idx+1]+character.lower()+s[idx+1:] # Add the current character as a lowercase of after the current understood index
+                idx+=1 # Add one to the index
+            count+=1 # Add one to the count
+        idx+=1 # Add one to the index
+    return s # Return the string with modifications
