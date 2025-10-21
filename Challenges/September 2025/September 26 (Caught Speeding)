@@ -1,0 +1,22 @@
+"""
+Given an array of numbers representing the speed at which vehicles were observed traveling, and a number representing the speed limit, return an array with two items, the number of vehicles that were speeding, followed by the average amount beyond the speed limit of those vehicles.
+
+- If there were no vehicles speeding, return [0, 0].
+"""
+
+# CODE #
+def speeding(speeds, limit):
+
+    # Create a list holding each speeding vehicle's speed
+    speeding = []
+    for speed in speeds:
+        if speed > limit: speeding.append(speed)
+    
+    if speeding == []: return [0, 0]
+
+    # Create a list holding the speed over the limit the vehicles were going
+    amount_over = []
+    for speed in speeding:
+        amount_over.append(speed-limit)
+    
+    return [len(speeding), sum(amount_over)/len(amount_over)]
