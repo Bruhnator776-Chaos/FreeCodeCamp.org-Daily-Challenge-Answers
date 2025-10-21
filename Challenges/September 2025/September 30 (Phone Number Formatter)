@@ -1,0 +1,7 @@
+"""
+Given a string of ten digits, return the string as a phone number in this format:
+- "+D (DDD) DDD-DDDD".
+"""
+
+# CODE #
+def format_number(number): return f"+{number[0]} ({number[1:4]}) {number[4:7]}-{number[7:]}" # Return the given phone number as a formatted number
