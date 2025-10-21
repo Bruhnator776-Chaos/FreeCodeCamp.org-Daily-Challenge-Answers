@@ -1,0 +1,12 @@
+"""
+Given the first line of a comma-separated values (CSV) file, return an array containing the headings.
+
+- The first line of a CSV file contains headings separated by commas.
+- Remove any leading or trailing whitespace from each heading.
+"""
+
+# CODE #
+def get_headings(csv):
+    array = [] # Create an empty array
+    for thing in csv.split(","): array.append(thing.strip()) # Fill the array
+    return array # Return the array
