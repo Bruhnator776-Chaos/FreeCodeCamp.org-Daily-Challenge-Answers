@@ -1,0 +1,19 @@
+"""
+Given a string, return "digits" if the string has more digits than letters, "letters" if it has more letters than digits, and "tie" if it has the same amount of digits and letters.
+
+- Digits consist of 0-9.
+- Letters consist of a-z in upper or lower case.
+- Ignore any other characters.
+"""
+
+# CODE #
+def digits_or_letters(s):
+    digits, letters = (0,0) # Create empty variables to hold the number of digits and letters in the string
+
+    for character in s: # For each character in the string...
+        if character.isdigit(): digits += 1 # If the character is a digit, add to the digits count
+        if character.isalpha(): letters += 1 # If the character is a letter, add to the letters count
+    
+    if digits > letters: return "digits" # If there is a higher digits count than letters count, return "digits"
+    elif letters > digits: return "letters" # If there is a higher letters count than digits count, return "letters"
+    else: return "tie" # If neither of the above statements run, return "tie"
