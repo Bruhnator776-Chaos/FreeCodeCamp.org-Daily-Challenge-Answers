@@ -12,7 +12,7 @@ def is_valid_ipv4(ipv4):
     if ipv4.count(".") != 3: return False # If the given ipv4 address is not 4 values seperated by dots, return False
     values = ipv4.split(".") # Split the 4 values
 
-    for value in integers: # For each value...
+    for value in values: # For each value...
         if not value.isdigit(): return False # If the value is not a digit, return False
         if 0 > int(value) or 255 < int(value): return False # If the value is not in the 0-255 range, return False
         if int(value[0])==0 and len(value) > 1: return False # If the value starts with a 0 but has more than one digit, return False
