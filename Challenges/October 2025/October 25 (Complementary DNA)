@@ -1,0 +1,16 @@
+"""
+Given a string representing a DNA sequence, return its complementary strand using the following rules:
+- DNA consists of the letters "A", "C", "G", and "T".
+- The letters "A" and "T" complement each other.
+- The letters "C" and "G" complement each other.
+"""
+
+# CODE #
+def complementary_dna(strand):
+    strand2 = "" # Create an empty string to hold the complementary DNA strand
+    for character in strand: # For each character in the strand
+        if character == "A": strand2+="T" # If the character is A, add a T to the 2nd strand
+        if character == "T": strand2+="A" # If the character is T, add a A to the 2nd strand
+        if character == "C": strand2+="G" # If the character is C, add a G to the 2nd strand
+        if character == "G": strand2+="C" # If the character is G, add a C to the 2nd strand
+    return strand2 # Return the second strand
