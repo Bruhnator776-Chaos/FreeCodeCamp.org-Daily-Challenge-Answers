@@ -1,0 +1,10 @@
+"""
+Given a positive integer, return a string with all of the integers from 1 up to, and including, the given number, in numerical order.
+"""
+
+# CODE #
+def sequence(n):
+    string = "" # Create an empty string
+    for i in range(n+1): # For each number from 0-n inclusive...
+        if i != 0: string += str(i) # If the number is not a 0, add it to the empty string
+    return string # Return the final string
