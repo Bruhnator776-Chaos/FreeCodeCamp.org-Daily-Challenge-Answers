@@ -1,0 +1,29 @@
+"""
+Given a 2D array representing a map of the ocean floor that includes a hidden treasure, and an array with the coordinates ([row, column]) for the next dive of your treasure search, return "Empty", "Found", or "Recovered" using the following rules:
+- The given 2D array will contain exactly one unrecovered treasure, which will occupy multiple cells.
+- Each cell in the 2D array will contain one of the following values:
+  - "-": No treasure.
+  - "O": A part of the treasure that has not been found.
+  - "X": A part of the treasure that has already been found.
+- If the dive location has no treasure, return "Empty".
+- If the dive location finds treasure, but at least one other part of the treasure remains unfound, return "Found".
+- If the dive location finds the last unfound part of the treasure, return "Recovered".
+"""
+
+# CODE #
+def dive(matrix, coords):
+    if matrix[coords[0]][coords[1]] == "-": return "Empty" # If there is no treasure at the given coordinate, return "Empty"
+
+    # Calculate the number of unfound and found treasures and store the numbers in their respective variables
+    unfound, found = (0, 0)
+    for row in matrix:
+        for value in row:
+            if value == "O": unfound += 1
+            elif value == "X": found += 1
+
+    if matrix[coords[0]][coords[1]] == "O": # If dive retrieves a new piece of treasure...
+        if unfound-1 != 0: return "Found" # If there are more than just that one piece of unfound treasure, return "Found," indicating that there are other treasures to find
+        else: return "Recovered" # Otherwise, return "Recovered," stating that all pieces of the treasure have been found
+    elif matrix[coords[0]][coords[1]] == "X": # If dive retrieves a previously found piece of treasure...
+        if unfound != 0: return "Found" # If there were no pieces of unfound treasure, return "Found," indicating that there are other treasures to find
+        else: return "Recovered" # Otherwise, return "Recovered," stating that all pieces of the treasure have been found
