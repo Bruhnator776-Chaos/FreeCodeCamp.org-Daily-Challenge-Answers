@@ -1,0 +1,26 @@
+"""
+On October 28, 1994, Netscape Navigator was released, helping millions explore the early web.
+
+Given an array of browser commands you executed on Netscape Navigator, return the current page you are on after executing all the commands using the following rules:
+- You always start on the "Home" page, which will not be included in the commands array.
+- Valid commands are:
+  - "Visit Page": Where "Page" is the name of the page you are visiting. When you visit a new page, make sure to discard any forward history you have.
+  - "Back": Takes you to the previous page in your history or stays on the current page if there isn't one.
+  - "Forward": Takes you forward in the history to the page you came from or stays on the current page if there isn't one.
+"""
+
+# CODE #
+def navigate(commands):
+    pages = ["Home"] # Create a list to hold history
+    current_page = 0 # Create a variable to hold the index of the current page
+    for command in commands: # For each command...
+        if command.count("Visit") > 0: # If there is a visit command...
+            current_page = len(pages) # Set the current page to the length of pages
+            pages.append(" ".join(command.split(" ")[1:])) # Add the new page to the list
+        elif command == "Forward": current_page += 1 # If the command is to go forward a page, add one to the current page index
+        elif command == "Back": current_page -= 1 # If the command is to go back a page, subtract one from the current page index
+        
+        if current_page < 0: current_page = 0 # If the current page is less than 0, set the current page index to 0
+        elif current_page >= len(pages): current_page = len(pages)-1 # If the current page index is more than the total number of pages, set the current page index to the total number of pages
+    
+    return pages[current_page] # Return the current page
