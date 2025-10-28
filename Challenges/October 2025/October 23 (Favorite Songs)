@@ -1,0 +1,20 @@
+"""
+Remember iPods? The first model came out 24 years ago today, on Oct. 23, 2001.
+
+Given an array of song objects representing your iPod playlist, return an array with the titles of the two most played songs, with the most played song first.
+
+- Each object will have a "title" property (string), and a "plays" property (integer).
+"""
+
+# CODE #
+def favorite_songs(playlist):
+    most_played, second_most_played = [[],[]] # Create two variables to hold the most_played and second_most_played songs
+    for song in playlist: # For each song in the playlist...
+        if most_played == []: most_played = song # If the most_played song has yet to be chosen, set the most_played_song to the current itterated song
+        elif song.get("plays") > most_played.get("plays"): # If the current song's number of playes is more than the most_played number of plays...
+            if second_most_played == []: second_most_played = most_played # If the second_most_played song has yet to be chosen, set the second_most_played song to the current most_played song
+            elif most_played.get("plays") > second_most_played.get("plays"): second_most_played = most_played # If the most_played number of plays is more than the second_most_played number of plays, set the second_most_played song to the current most_played song
+            most_played = song # Set the most_played song to the current itterated song
+        elif second_most_played == []: second_most_played = song # If the second_most_played song has yet to be chosen, set the second_most_played song to the current itterated song
+        elif song.get("plays") > second_most_played.get("plays"): second_most_played = song # If the current song's number of plays is more than the second_most_played number of plays, set the second_most_played song to the current itterated song
+    return [most_played.get("title"), second_most_played.get("title")] # Return the title of the most_played and second_most_played songs in an array
