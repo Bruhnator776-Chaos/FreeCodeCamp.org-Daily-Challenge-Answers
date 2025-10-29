@@ -1,0 +1,10 @@
+"""
+Given a string, determine if all the characters in the string are unique.
+- Uppercase and lowercase letters should be considered different characters.
+"""
+
+# CODE #
+def all_unique(s):
+    for character in s: # For each character in the string
+        if s.count(character) != 1: return False # If the number of times the character appears is not 1, return False
+    return True # If the above line of code never runs, return True
