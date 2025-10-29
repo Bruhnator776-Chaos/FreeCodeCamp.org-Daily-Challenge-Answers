@@ -1,0 +1,23 @@
+"""
+Given a paragraph, return an array of the three most frequently occurring words.
+
+- Words in the paragraph will be separated by spaces.
+- Ignore case in the given paragraph.
+- Ignore punctuation in the given paragraph. Punctuation consists of commas (,), periods (.), and exclamation points (!).
+- The returned array should have all lowercase words.
+- The returned array should be in descending order with the most frequently occurring word first.
+"""
+
+# CODE #
+def get_words(paragraph):
+    i2 = 0 # Create an adjustment variable
+    for i in range(len(paragraph)): # For each index in the paragraph...
+        if paragraph[i-i2] in ",.!": # If the current index adjusted by the adjustment variable,
+            paragraph = paragraph[:i-i2] + paragraph[i-i2+1:] # Remove the specified index
+            i2+=1 # Add to the adjustment variable
+    paragraph = [word.lower() for word in paragraph.split(" ")] # Create a list of lowercase words from the paragraph
+    counts = {} # Create an empty dictionary to hold the words and their respective counts in the paragraph
+    for word in paragraph: counts.update({word:(" "+" ".join(paragraph)+" ").count(" "+word+" ")}) # For each word in the paragraph list, get the count of times it's in the paragraph
+    
+    key = lambda x: counts.get(x) # Create a sorting key for line 12
+    return sorted(list(counts.keys()), key=key, reverse=True)[:3] # return the largest 3 counts in descending order
