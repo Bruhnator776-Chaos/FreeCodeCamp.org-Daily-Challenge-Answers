@@ -1,0 +1,14 @@
+"""
+Given an array of integers from 1 to n, inclusive, return an array of all the missing integers between 1 and n (where n is the largest number in the given array).
+
+- The given array may be unsorted and may contain duplicates.
+- The returned array should be in ascending order.
+- If no integers are missing, return an empty array.
+"""
+
+# CODE #
+def find_missing_numbers(arr):
+    missing = [] # Create an empty array to hold the missing numbers
+    for n in range(sorted(arr)[-1]): # For each number from 0 to the largest number, inclusive...
+        if n not in arr: missing.append(n) # If the current itterated number is not in the given array, add it to the missing numbers array
+    return missing[1:] # Return the list of missing numbers, ignoring 0
