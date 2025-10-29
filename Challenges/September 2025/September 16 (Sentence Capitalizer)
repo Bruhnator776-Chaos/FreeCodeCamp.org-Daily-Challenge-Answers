@@ -1,0 +1,23 @@
+"""
+Given a paragraph, return a new paragraph where the first letter of each sentence is capitalized.
+
+- All other characters should be preserved.
+- Sentences can end with a period (.), one or more question marks (?), or one or more exclamation points (!).
+"""
+
+# CODE #
+def capitalize(paragraph):
+    def cap(sentences):
+        """ Taking a list of sentences, capitilize each first letter """
+        for sentence in sentences:
+            if sentence == "": continue
+            for character in sentence:
+                if character.isalpha():
+                    sentences[sentences.index(sentence)] = sentence[:sentence.index(character)] + character.upper() + sentence[sentence.index(character)+1:]
+                    break
+        return sentences
+    
+     # Split the paragraph, capitialize it, then join it back together, for each sentence-ending character, then return once done
+    paragraph = ".".join(cap(paragraph.split(".")))
+    paragraph = "?".join(cap(paragraph.split("?")))
+    return "!".join(cap(paragraph.split("!")))
