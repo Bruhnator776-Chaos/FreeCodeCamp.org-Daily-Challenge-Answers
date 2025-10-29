@@ -1,0 +1,15 @@
+"""
+Given a string containing one or more words, return an acronym of the words using the following constraints:
+- The acronym should consist of the first letter of each word capitalized, unless otherwise noted.
+- The acronym should ignore the first letter of these words unless they are the first word of the given string: a, for, an, and, by, and of.
+- The acronym letters should be returned in the order they are given.
+- The acronym should not contain any spaces.
+"""
+
+# CODE #
+def build_acronym(s):
+    acronym = [] # Create an empty list to hold the letters of the acronym
+    for word in s.split(" "): # For each word in a list of the words from the string...
+        if word.lower() in ["a", "for", "an", "and", "by", "of"] and s.split(" ").index(word) == 0: acronym.append(word[0].upper()) # If the word is a ignored word, but is the first word, add the first letter to the acronym
+        if word.lower() not in ["a", "for", "an", "and", "by", "of"]: acronym.append(word[0].upper()) # If the word is not an ignored word, add the first letter to the acronym
+    return "".join(acronym) # Return the acronym
