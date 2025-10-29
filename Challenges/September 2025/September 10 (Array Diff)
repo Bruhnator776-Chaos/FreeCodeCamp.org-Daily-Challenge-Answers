@@ -1,0 +1,14 @@
+"""
+Given two arrays with strings values, return a new array containing all the values that appear in only one of the arrays.
+
+- The returned array should be sorted in alphabetical order.
+"""
+
+# CODE #
+def array_diff(arr1, arr2):
+    special = [] # Create an array to hold the special items of each list
+    for item in arr1: # for each item in the first array
+        if item not in arr2: special.append(item) # If the item is not in the second array, add it to the special items list
+    for item in arr2: # for each item in the second array
+        if item not in arr1: special.append(item) # If the item is not in the first array, add it to the special items list
+    return sorted(special) # Return the special items list in sorted order
