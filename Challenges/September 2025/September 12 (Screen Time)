@@ -1,0 +1,14 @@
+"""
+Given an input array of seven integers, representing a week's time, where each integer is the amount of hours spent on your phone that day, determine if it is too much screen time based on these constraints:
+- If any single day has 10 hours or more, it's too much.
+- If the average of any three days in a row is greater than or equal to 8 hours, it’s too much.
+- If the average of the seven days is greater than or equal to 6 hours, it's too much.
+"""
+
+# CODE #
+def too_much_screen_time(hours):
+    if True in map(lambda x: x>=10, hours): return True # If any If any single day has 10 or more hours, return True
+    if sum(hours)/len(hours) >= 6: return True # If the average of all 7 days is 6 or more hours, return True
+    for i in range(len(hours)-2): # For each day with two consecutive days following it...
+        if sum(hours[i:i+3])/3 >= 8: return True # If the current day and the next two days have a total average of 8 or more, return True
+    return False # If none of the conditions are met, the screen time is viable, therefore returning False
