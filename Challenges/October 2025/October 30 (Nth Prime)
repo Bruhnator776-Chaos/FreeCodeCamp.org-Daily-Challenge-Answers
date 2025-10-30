@@ -1,0 +1,21 @@
+"""
+A prime number is a positive integer greater than 1 that is divisible only by 1 and itself.
+The first five prime numbers are 2, 3, 5, 7, and 11.
+
+Given a positive integer n, return the nth prime number.
+"""
+
+# CODE #
+def nth_prime(n):
+    primes, i = [], 0 # Create an list to hold every prime number, and a varaible to hold the current number being checked "is prime"
+    while len(primes) <= n: # While there are less numbers in the prime list than needed to return the nth prime
+        i+=1 # Add one to the current number being checked "is prime"
+        if i != 2 and i%2==0: continue # If the number is not 2, but is divisible by 2, skip it, as it can't be a prime number (Cutting Down on Processing Time)
+        prime = True # Assume the number is prime, unless proven otherwise
+        for x in range(i): # For each number from 0 up until i, including 0, but not i
+            if x == 0 or x == 1: continue # If the number is 0 or 1, skip it, as it wil break the program, and don't aren't needed anyway
+            if i/x == i//x: # If the number is not prime
+                prime = False # Set the prime-ness to False
+                break # Break out of the loop (Cutting Down on Processing Time)
+        if prime == True: primes.append(i) # If the number is prime, add it to the primes list
+    return primes[-1] # Return the last number in the primes list
