@@ -1,0 +1,22 @@
+"""
+Given a string representing a variable name, convert it to "spooky case" using the following constraints:
+- Replace all underscores (_), and hyphens (-) with a tilde (~).
+- Capitalize the first letter of the string, and every other letter after that, ignore the tilde character when counting.
+"""
+
+# CODE #
+def spookify(boo):
+    for character in boo: # For each character in the string...
+        if character in "_-": boo = boo[:boo.index(character)]+"~"+boo[boo.index(character)+1:] # If the character needs to be replaced by a tilde, replace the character with a tilde
+
+    i, idx = 0,-1 # Define 2 variables for counting
+    for character in boo: # For each character in the string...
+        idx+=1 # Add one to the index
+        if character == "~": continue # If the character is a tilde, skip to the next loop
+        if i == 0: # If i is 0,
+            boo = boo[:idx]+character.upper()+boo[idx+1:] # Capatalize the current character in the string
+            i = 1 # Set i to 1
+        elif i == 1: # If i is 1,
+            boo = boo[:idx]+character.lower()+boo[idx+1:] # Lowercase the current character in the string
+            i = 0 # Set i to 0
+    return boo # Return the string
