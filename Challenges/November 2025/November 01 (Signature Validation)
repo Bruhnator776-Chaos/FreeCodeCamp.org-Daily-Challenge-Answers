@@ -1,0 +1,20 @@
+"""
+Given a message string, a secret key string, and a signature number, determine if the signature is valid using this encoding method:
+- Letters in the message and secret key have these values:
+  - a to z have values 1 to 26 respectively.
+  - A to Z have values 27 to 52 respectively.
+- All other characters have no value.
+- Compute the signature by taking the sum of the message plus the sum of the secret key.
+
+Check if the computed signature matches the provided signature.
+"""
+
+# CODE #
+def verify(message, key, signature):
+    alpha, total = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 0 # Define both a string that holds the alphabet, both lowercase and uppercase, and a variable that will hold the final number to compare to the signature
+    for character in message: # For each character in the message...
+        if character in alpha: total+=alpha.index(character)+1 # If the character is in the alphabet, add it's assigned value to the total.
+    for character in key: # For each character in the key...
+        if character in alpha: total+=alpha.index(character)+1 # If the character is in the alphabet, add it's assigned value to the total.
+    if total == signature: return True # If the total is the same as the signature, return True
+    else: return False # Otherwise, return False
