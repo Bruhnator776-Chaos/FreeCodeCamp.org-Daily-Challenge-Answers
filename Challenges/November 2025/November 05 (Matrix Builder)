@@ -1,0 +1,6 @@
+"""
+Given two integers (a number of rows and a number of columns), return a matrix (an array of arrays) filled with zeros (0) of the given size.
+"""
+
+# CODE #
+def build_matrix(rows, cols): return [[0 for i in range(cols)] for i in range(rows)] # Create a list that holds a list for each row, which holds a 0 for each column, then return it.
