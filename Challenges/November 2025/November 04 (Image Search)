@@ -1,0 +1,16 @@
+"""
+On November 4th, 2001, Google launched its image search, allowing people to find images using search terms.
+In this challenge, you will imitate the image search.
+
+Given an array of image names and a search term, return an array of image names containing the search term.
+
+- Ignore the case when matching the search terms.
+- Return the images in the same order they appear in the input array.
+"""
+
+# CODE #
+def image_search(images, term):
+    found_images = [] # Create an empty list to hold the immages matching the search criteria
+    for image in images: # For each image...
+        if image.lower().count(term.lower()) >= 1: found_images.append(image) # If the image contains the search term, add the image to found_images
+    return found_images # Return the list of found images
