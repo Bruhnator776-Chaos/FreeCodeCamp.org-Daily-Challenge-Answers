@@ -1,0 +1,12 @@
+"""
+Given a string representing a filename, return the extension of the file.
+
+- The extension is the part of the filename that comes after the last period (.).
+- If the filename does not contain a period or ends with a period, return "none".
+- The extension should be returned as-is, preserving case.
+"""
+
+# CODE #
+def get_extension(filename):
+    if filename.count(".") == 0 or filename.split(".")[-1] == "": return "none" # If there is no period in the filename or if there is nothing after the last period in the filename, return "none"
+    else: return filename.split(".")[-1] # Otherwise, return all of the characters after the last period in the filename
