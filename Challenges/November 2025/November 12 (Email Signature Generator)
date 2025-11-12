@@ -1,0 +1,15 @@
+"""
+Given strings for a person's name, title, and company, return an email signature as a single string using the following rules:
+- The name should appear first, preceded by a prefix that depends on the first letter of the name. For names starting with (case-insensitive):
+  - A-I: Use >> as the prefix.
+  - J-R: Use -- as the prefix.
+  - S-Z: Use :: as the prefix.
+- A comma and space (, ) should follow the name.
+- The title and company should follow the comma and space, separated by " at " (with spaces around it).
+"""
+
+# CODE #
+def generate_signature(name, title, company):
+    if "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(name[0].upper()) <= 8: return f">>{name}, {title} at {company}" # If the first letter of the name is A-I, return a string representing the person prefixed with ">>"
+    elif "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(name[0].upper()) <= 18: return f"--{name}, {title} at {company}" # If the first letter of the name is J-R, return a string representing the person prefixed with "--"
+    else: return f"::{name}, {title} at {company}" # If the first letter of the name is anything else, return a string representing the person prefixed with "::"
