@@ -1,0 +1,15 @@
+"""
+Given a string, return an array with the number of vowels and number of consonants in the string.
+
+- Vowels consist of a, e, i, o, u in any case.
+- Consonants consist of all other letters in any case.
+- Ignore any non-letter characters.
+"""
+
+# CODE #
+def count(s):
+    vowels, consonants = 0,0 # Create empty variables to hold the counts of vowels and consonants
+    for character in s: # For each character in the string
+        if character.lower() in "aeiou": vowels+=1 # If the character is a vowel, add one to the vowel count
+        elif character.isalpha(): consonants+=1 # If the character is not a vowel, but is in the alphabet, add one to the consonant count
+    return [vowels, consonants] # Return a list holding the count for both vowels and consonants
