@@ -11,10 +11,10 @@ Return the number of total infected computers after the given amount of days hav
 
 # CODE #
 def infected(days):
-    infected = 1
-    for i in range(days):
-        infected*=2
-        if (i+1)%3==0: 
-            if round(infected*0.20) != infected*0.20: infected-=(int(infected*0.20))+1
-            else: infected-=infected*0.20
-    return infected
+    infected = 1 # Set the number of infected computers to 1, representing day 0
+    for i in range(days): # For each day past day 0...
+        infected*=2 # Double the number of infected computers
+        if (i+1)%3==0:  # If it's a 3rd day,
+            if round(infected*0.20) != infected*0.20: infected-=(int(infected*0.20))+1 # If 20% of the infected computers has a decimal value, round up, then reduce the number of infected by that number
+            else: infected-=infected*0.20 # Otherwise, reduce the infected by 20%
+    return infected # Return the number of infected computers
