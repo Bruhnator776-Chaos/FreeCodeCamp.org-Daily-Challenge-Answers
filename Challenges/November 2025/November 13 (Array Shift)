@@ -1,0 +1,12 @@
+"""
+Given an array and an integer representing how many positions to shift the array, return the shifted array.
+
+- A positive integer shifts the array to the left.
+- A negative integer shifts the array to the right.
+- The shift wraps around the array.
+"""
+
+# CODE #
+def shift_array(arr, n):
+    n%=len(arr) # Set n to the simplest form of shift that will result in the same answer as shifting it by n
+    return arr[n:] + arr[:n] # Return the shifted array
