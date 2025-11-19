@@ -1,0 +1,19 @@
+"""
+Given a string representing a Markdown heading, return the equivalent HTML heading.
+
+A valid Markdown heading must:
+- Start with zero or more spaces, followed by
+- 1 to 6 hash characters (#) in a row, then
+- At least one space. And finally,
+- The heading text.
+
+The number of hash symbols determines the heading level.
+
+If the given string doesn't have the exact format above, return "Invalid format".
+"""
+
+# CODE #
+def convert(heading):
+    hashes, heading=heading.strip().split(" ")[0]," ".join(heading.strip().split(" ")[1:]).strip() # Split the theoretical heading into the part supposed to contain the hashes, and the heading
+    if hashes not in "######": return "Invalid format" # If the hashes are invalid, return "Invalid format"
+    return f'<h{len(hashes)}>{heading}</h{len(hashes)}>' # Return the HTML code for the heading
