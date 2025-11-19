@@ -1,0 +1,18 @@
+"""
+Given two strings representing fingerprints, determine if they are a match using the following rules:
+- Each fingerprint will consist only of lowercase letters (a-z).
+- Two fingerprints are considered a match if:
+  - They are the same length.
+  - The number of differing characters does not exceed 10% of the fingerprint length.
+"""
+
+# CODE #
+def is_match(fingerprint_a, fingerprint_b):
+    fails, i = 0,0 # Create emtpy variables for the number of fails and the current index of the character
+    if len(fingerprint_a)==len(fingerprint_b): # If the lengths of both fingerprints match,
+        for character in fingerprint_a: # For each character in fingerprint_a...
+            if character != fingerprint_b[i]: fails+=1 # If the character is not the same as the indexed character in fingerprint_b, add a fail to the fails count
+            i+=1 # Add one to the index
+        if len(fingerprint_a)*0.10<fails: return False # If the fails count is over 10% of the length of the fingerprints, return False
+        else: return True # Otherwise, return True
+    else: return False # Otherwise, return False
