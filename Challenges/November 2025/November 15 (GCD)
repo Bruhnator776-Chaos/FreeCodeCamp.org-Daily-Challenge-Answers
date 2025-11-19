@@ -1,0 +1,17 @@
+"""
+Given two positive integers, return their greatest common divisor (GCD).
+
+- The GCD of two integers is the largest number that divides evenly into both numbers without leaving a remainder.
+"""
+
+# CODE #
+def gcd(*nums):
+    x_denoms, y_denoms, common_denoms= [], [], [] # Define empty lists to hold the denominators for x, y, and the common denominators between them
+    for num in nums: # For each of the 2 inputted arguments...
+        for posi_fact in range(num): # For each possible denominator for the number...
+            if num//(posi_fact+1) == num/(posi_fact+1): # If the possible factor is indeed a factor,
+                if nums.index(num)==0: x_denoms.append(posi_fact+1) # If the current number is the first of the two arguments, add the factor to the X_denominators list
+                elif nums.index(num)==1: y_denoms.append(posi_fact+1) # If the current number is the second of the two arguments, add the factor to the Y_denominators list
+    for denominator in x_denoms: # For each denominator in the X_denominators...
+        if denominator in y_denoms: common_denoms.append(denominator) # If the denominator is also in the Y_denominators list, add it to the common_denominators list
+    return common_denoms[-1] # Return the final number of the common denominators
