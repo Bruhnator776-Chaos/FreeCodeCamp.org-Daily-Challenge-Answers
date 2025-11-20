@@ -1,0 +1,22 @@
+"""
+Given a sentence string, return the longest word in the sentence.
+
+- Words are separated by a single space.
+- Only letters (a-z, case-insensitive) count toward the word's length.
+- If there are multiple words with the same length, return the first one that appears.
+- Return the word as it appears in the given string, with punctuation removed.
+"""
+
+# CODE #
+def longest_word(sentence):
+    sentence, i = sentence.split(" "), 0 # Create a list of words and a counter variable
+    for word in sentence: # For each word in the sentence...
+        i2 = 0 # Set a counter variable to 0
+        for character in word: # For each character in the word...
+            if not character.isalpha(): word = word[:i2] + word[i2+1:] # If the character is not alphabetical, remove it from the word
+            else: i2+=1 # Otherwise, add one to the 2nd couter variable
+        sentence[i], i = (word, i+1) # Replace the old word with the new formatted word
+    longest = sentence[0] # Set the longest word to the first word of the sentence
+    for word in sentence[1:]: # For each word past the first...
+        if len(longest) < len(word): longest=word # If the current word is longer than the current longest word, replace the longest word with the current word
+    return longest # Return the longest word
