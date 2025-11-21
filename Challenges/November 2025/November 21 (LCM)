@@ -1,0 +1,18 @@
+"""
+Given two integers, return the least common multiple (LCM) of the two numbers.
+
+The LCM of two numbers is the smallest positive integer that is a multiple of both numbers.
+"""
+
+# CODE #
+def lcm(a, b):
+    a = [a*i for i in range(b+1)][1:] # Create a list that holds the multiples of "a" up through a*b
+    for num in a: # For each multiple...
+        if num//b == num/b: return num
+"""
+Comment for Line 7:
+
+If the number is divisible by "b," then it therefore must be a multiple of both "a" and "b."
+The nums in "a" are in ascending order.
+If we return the first multiple of "b" we come across, it will always be the least common multiple.
+"""
