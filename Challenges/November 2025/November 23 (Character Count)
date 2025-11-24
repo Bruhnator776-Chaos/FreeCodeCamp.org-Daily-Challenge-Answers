@@ -1,0 +1,18 @@
+"""
+Given a sentence string, return an array with a count of each character in alphabetical order.
+
+- Treat upper and lowercase letters as the same letter when counting.
+- Ignore numbers, spaces, punctuation, etc.
+- Return the count and letter in the format "letter count".
+- All returned letters should be lowercase.
+- Do not return a count of letters that are not in the given string.
+"""
+
+# CODE #
+def count_characters(sentence):
+    letters = {} # Create a dictionary to hold the letters and counts
+    for character in sentence: # For each character in the sentence...
+        if character.isalpha(): # If the character is a letter,
+            if character.lower() in letters.keys(): letters.update({character.lower():letters[character.lower()]+1}) # If the character is a dictionary key, add one to that count
+            else: letters.update({character.lower():1}) # Otherwise, create a new dictionary item with a count of 1
+    return sorted([f"{let} {num}" for let, num in letters.items()]) # Return the data in a sorted list of formatted values
