@@ -1,0 +1,17 @@
+"""
+Given an array of recipe ingredients and a number to scale the recipe, return an array with the quantities scaled accordingly.
+
+- Each item in the given array will be a string in the format: "quantity unit ingredient".
+- Scale the quantity by the given number. Do not include any trailing zeros and do not convert any units.
+- Return the scaled items in the same order they are given.
+"""
+
+# CODE #
+def scale_recipe(ingredients, scale):
+    i = 0 # Set a counter variable
+    for ingredient in ingredients: # For each ingredient...
+        num = str(float(ingredient.split(" ")[0])*scale) # Calculate the new count of ingredient
+        if num.count(".") != 0 and num[-1] == "0": num = num.split(".")[0] # If the ingredient count is a decimal with a 0 after the decimal, set the number to just the whole number without a decimal
+        ingredients[i] = num + " " + " ".join(ingredient.split(" ")[1:]) # Rejoin the ingredient with the new scaled quantity
+        i+=1 # Increment counter variable
+    return ingredients # Return the ingredient list
