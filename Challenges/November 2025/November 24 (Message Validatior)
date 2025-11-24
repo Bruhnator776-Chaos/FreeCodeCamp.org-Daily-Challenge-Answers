@@ -1,0 +1,16 @@
+"""
+Given a message string and a validation string, determine if the message is valid.
+
+- A message is valid if each word in the message starts with the corresponding letter in the validation string, in order.
+- Letters are case-insensitive.
+- Words in the message are separated by single spaces.
+"""
+
+# CODE #
+def is_valid_message(message, validation):
+    message, i = [word[0].lower() for word in message.split(" ")], 0 # Change the message string to a list of each first letter, and define a counter variable
+    if len(message) != len(validation): return False # If the length of message string is not equal to the length of the validation string, return False
+    for first_letter in message: # For each first letter in the message...
+        if validation[i].lower() != first_letter: return False # If the first_letter is not equal to the current itterated letter in the validation string, return False
+        i+=1 # Increment the counter variable
+    return True # If none of the above return False, return True
