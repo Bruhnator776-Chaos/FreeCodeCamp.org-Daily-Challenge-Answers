@@ -1,0 +1,15 @@
+"""
+Given an integer (n), return an array of integers from 1 to n (inclusive), replacing numbers that are multiple of:
+- 3 with "Fizz".
+- 5 with "Buzz".
+- 3 and 5 with "FizzBuzz".
+"""
+
+# CODE #
+def fizz_buzz(n):
+    lst = [i+1 for i in range(n)] # Create a list of numbers from 1 to n (inclusive)
+    for num in lst: # For each number in the list...
+        if num//3==num/3 and num//5==num/5: lst[lst.index(num)] = "FizzBuzz" # If the current itterated number is divisible by both 3 and 5, replace it with FizzBuzz
+        elif num//3==num/3: lst[lst.index(num)] = "Fizz" # If the current itterated number is divisible by 3, replace it with Fizz
+        elif num//5==num/5: lst[lst.index(num)] = "Buzz" # If the current itterated number is divisible by 5, replace it with Buzz
+    return lst # Return the list
