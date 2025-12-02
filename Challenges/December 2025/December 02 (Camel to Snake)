@@ -1,0 +1,24 @@
+"""
+Given a string in camel case, return the snake case version of the string using the following rules:
+- The input string will contain only letters (A-Z and a-z) and will always start with a lowercase letter.
+- Every uppercase letter in the camel case string starts a new word.
+- Convert all letters to lowercase.
+- Separate words with an underscore (_).
+"""
+
+# CODE #
+def to_snake(camel):
+    splits, i = True, 0 # Set a variable to hold each indice of each split, and a counter variable
+    for character in camel: # For each character in the camel string...
+        if character.isupper(): # If the current itterated character is an uppercase letter,
+            if type(splits) is not list: splits=[i] # If the "splits" variable is not a list, set it to a list with the index of the first split
+            else: splits.append(i-splits[-1]) # Otherwise, add the found split to the "splits" list
+        i+=1 # Add one to the counter variable
+    camel = [camel[:splits[0]], camel[splits[0]:]] # Split the camel string by the first split
+    splits = splits[1:] # Remove the first split from the list
+    while len(list(filter(lambda x: x.isupper(), [c for c in "".join(camel)]))) != 1: # While there is a uppercase letter in the camel list...
+        last = camel[-1][:splits[0]], camel[-1][splits[0]:] # Split the last string in the camel list by the uppercase letter
+        camel[-1] = last[0].lower() # Change the final camel string to the first of "last"
+        camel.append(last[1]) # Add the second value in "last" to the end of the camel list
+        splits = splits[1:] # Remove the first split from the list
+    return "_".join(camel).lower() # Return the combined camel list in lowercase
