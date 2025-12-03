@@ -1,0 +1,19 @@
+"""
+Given a string representing an ordered list item in Markdown, return the equivalent HTML string.
+
+A valid ordered list item in Markdown must:
+- Start with zero or more spaces, followed by
+- A number (1 or greater) and a period (.), followed by
+- At least one space, and then
+- The list item text.
+
+If the string doesn't have the exact format above, return "Invalid format".
+Otherwise, wrap the list item text in li tags and return the string.
+"""
+
+# CODE #
+def convert_list_item(markdown):
+    if not markdown.strip()[0].isnumeric(): return "Invalid format" # If the first non-space character is not a number, mark the text as invalid
+    if markdown.strip()[1]!=".": return "Invalid format" # If the second non-space character is not a period, mark the text as invalid
+    if markdown.strip()[2]!=" ": return "Invalid format" # If the third character after removing leading spaces is not a space, mark the text as invalid
+    return "<li>" + markdown.strip()[3:].strip() + "</li>" # Return the markdown item as an HTML list item
