@@ -1,0 +1,12 @@
+"""
+Given a date in the format "Month day, year", return the date in the format "YYYY-MM-DD".
+
+- The given month will be the full English month name.
+- In the return value, pad the month and day with leading zeros if necessary to ensure two digits.
+"""
+
+# CODE #
+def format_date(date_string):
+    checks = {"January": "01", "February": "02", "March": "03", "April": "04", "May": "05", "June": "06", "July": "07", "August": "08", "September": "09", "October": "10", "November": "11", "December": "12"} # Create a list to translate the month in word to month in number
+    if len(date_string.split(" ")[1][:-1]) == 1: return date_string.split(" ")[2] + "-" + checks.get(date_string.split(" ")[0],"ERROR") + "-0" + date_string.split(" ")[1][:-1] # If the day in the date_string is only 1 digit long, return the values with a leading 0 for the day value
+    else: return date_string.split(" ")[2] + "-" + checks.get(date_string.split(" ")[0],"ERROR") + "-" + date_string.split(" ")[1][:-1] # Otherwise, return the values without a leading 0 for the day value
