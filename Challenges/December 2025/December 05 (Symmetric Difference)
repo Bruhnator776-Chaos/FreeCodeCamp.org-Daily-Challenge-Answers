@@ -1,0 +1,25 @@
+"""
+Given two arrays, return a new array containing the symmetric difference of them.
+
+- The symmetric difference between two sets is the set of values that appear in either set, but not both.
+- Return the values in the order they first appear in the input arrays.
+"""
+
+# CODE #
+def difference(arr1, arr2):
+    for item in arr1: # For each item in arr1...
+        if item in arr2: # If the item is also in arr2,
+            arr1.pop(arr1.index(item)) # Remove the item from arr1
+            arr2.pop(arr2.index(item)) # Remove the item from arr2
+    for item in arr2: # For each item in arr2...
+        if item in arr1: # If the item is also in arr1,
+            arr1.pop(arr1.index(item)) # Remove the item from arr1
+            arr2.pop(arr2.index(item)) # Remove the item from arr2
+    return arr1+arr2 # Return the non-used numbers in the arrays
+
+"""
+Note:
+I would use the set difference() method, however it doesn't return the items in the correct order. The set difference() method is shown below.
+
+def difference(arr1, arr2): return list(set(list(set(arr1) - set(arr2)) + list(set(arr2) - set(arr1))))
+"""
