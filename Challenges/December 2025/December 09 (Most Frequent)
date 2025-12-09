@@ -1,0 +1,13 @@
+"""
+Given an array of elements, return the element that appears most frequently.
+
+- There will always be a single most frequent element.
+"""
+
+# CODE #
+def most_frequent(arr):
+    mfe = None # Set a variable to hold the most frequent element
+    for value in set(arr): # For each value in a set of arr...
+        if mfe == None: mfe = value # If there is no most frequent element, set the current value as the most frequent element
+        elif arr.count(value) > arr.count(mfe): mfe = value # If the current value is found more in the arr than the current most frequent element, set the most frequent element to the current value
+    return mfe # Return the most frequent element
