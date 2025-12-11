@@ -1,0 +1,35 @@
+"""
+Given an integer, return its equivalent value in Roman numerals.
+
+Roman numerals use these symbols:
+          Symbol	Value
+          I       1
+          V       5
+          X      	10
+          L      	50
+          C      	100
+          D      	500
+          M      	1000
+
+Roman numerals are written from largest to smallest, left to right using the following rules:
+- Addition is used when a symbol is followed by one of equal or smaller value.
+- Subtraction is used when a smaller symbol appears before a larger one, to represent 4 or 9 in any place value.
+- No symbol may be repeated more than three times in a row.
+  - Subtraction is used when you would otherwise need to write a symbol more than three times in a row, therefore the largest number you can write is 3999.
+"""
+
+# CODE #
+def to_roman(number):
+    number, temp, i, X, numerals, final = str(number)[::-1], [], 0, [1,10,100,1000], { "1" : "I", "5" : "V", "10" : "X", "50" : "L", "100" : "C", "500" : "D", "1000" : "M" }, "" # Create variables to hold the reverse of the number, the temporary counts of each numeral, a count of itterations, a list of each number made of 1's and 0's from 1 through 1000, a dictionary comparing numbers to roman numerals, and an empty string.
+    for digit in number: # For each digit in the number...
+        temp.append(f"{X[i]}'s:{digit}") # Add the place and digit to the counts of each numeral
+        i+=1 # Add to the counter variable
+    for value in temp: # For each value in the counts of each numberal...
+        if value[-1] == "0": continue # If the digit is 0, skip it
+        elif value[-1] == "4": final += numerals[list(numerals.keys())[list(numerals.keys()).index(value.split("'")[0])+1]] + numerals[value.split("'")[0]] # If the digit is 4, add one of it's roman numerals, and one of the next skip ups roman numeral, in such a way to create a 4
+        elif value[-1] == "9": final += numerals[list(numerals.keys())[list(numerals.keys()).index(value.split("'")[0])+2]] + numerals[value.split("'")[0]] # If the digit is 9, add one of it's roman numerals, and one of the 2nd next skip ups roman numeral, in such a way to create a 9
+        elif int(value[-1]) // 5 > 0: # If the digit is greater than 5
+            value = [value[:-1] + str(int(value[-1])-5), str(int(value.split("'")[0])*5)] # Parse the value into a value for the number the 5ths, and for the extra
+            final += "".join([numerals[value[0].split("'")[0]] for i in range(int(value[0].split(":")[1]))]) + numerals[value[1]] # Add the value turned into roman numerals and de-parsed
+        else: final += "".join([numerals[value.split("'")[0]] for i in range(int(value.split(":")[1]))]) # Otherwise, simply add the given digits numeral for as many times as required
+    return final[::-1] # Return the final amount reversed, as we build the numeral backward
