@@ -1,0 +1,14 @@
+"""
+Given a string and a target number, determine whether the string contains exactly the target number of consonants.
+
+- Consonants are all alphabetic characters except "a", "e", "i", "o", and "u" in any case.
+- Ignore digits, punctuation, spaces, and other non-letter characters when counting.
+"""
+
+# CODE #
+
+def has_consonant_count(text, target):
+    vowels = "aeiou" # Create a string with every vowel
+    text = list(filter(lambda x: x.isalpha() and x not in vowels, [character for character in text.lower()])) # Filter out every non-alphabetical character and every vowel
+    if len(text) == target: return True # If the length of the remaining characters is equal to the target number, return True
+    else: return False # Otherwise, return False
