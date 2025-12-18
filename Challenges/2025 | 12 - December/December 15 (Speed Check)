@@ -1,0 +1,16 @@
+"""
+Given the speed you are traveling in miles per hour (MPH), and a speed limit in kilometers per hour (KPH), determine whether you are speeding and if you will get a warning or a ticket.
+
+- 1 mile equals 1.60934 kilometers.
+- If you are travelling less than or equal to the speed limit, return "Not Speeding".
+- If you are travelling 5 KPH or less over the speed limit, return "Warning".
+- If you are travelling more than 5 KPH over the speed limit, return "Ticket".
+"""
+
+# CODE #
+
+def speed_check(speed, speed_limit):
+    speed *= 1.60934 # Convert speed from MPH to KPH, as the speed_limit is already in KPH
+    if speed <= speed_limit: return "Not Speeding"
+    elif speed <= speed_limit+5: return "Warning"
+    else: return "Ticket"
