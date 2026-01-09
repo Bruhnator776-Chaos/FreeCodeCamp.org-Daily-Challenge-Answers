@@ -1,0 +1,16 @@
+"""
+Given an array of integers and a target number, find all pairs of elements in the array whose values add up to the target and return the sum of their indices.
+"""
+
+# CODE #
+
+def pairwise(arr, target):
+    found = [] # Create an empty list to hold the numbers that add up to the target
+    for integer in arr: # For each integer in arr...
+        for int2 in arr: # For each integer in arr...
+            if integer == int2: continue # If the two integers are the same, skip this repitition
+            elif integer in found or int2 in found: continue # If either of the integers are already in the found list, skip this repitition
+            elif integer + int2 == target: # If the two integers add up to equal the target,
+                found.append(integer) # Add the first integer to the found list
+                found.append(int2) # Add the second integer to the found list
+    return sum(list(map(lambda x:arr.index(x), found))) # Return the sum of the indices of the numbers from the found list based on their position in the array argument
