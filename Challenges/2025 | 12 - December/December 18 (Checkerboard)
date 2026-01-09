@@ -1,0 +1,21 @@
+"""
+Given an array with two numbers, the first being the number of rows and the second being the number of columns, return a matrix (an array of arrays) filled with "X" and "O" characters of the given size.
+
+- The characters should alternate like a checkerboard.
+- The top-left cell must always be "X".
+"""
+
+# CODE #
+
+def create_board(dimensions):
+    grid, spot = [], "X" # Set an empty list for the grid, and set the first position to X
+    for i in range(dimensions[0]): # For each row...
+        if grid != []: # If the grid is not empty,
+            if grid[-1][0] == "X": spot = "O" # If the last row's first column is an X, set the current position to O
+            else: spot = "X" # Otherwise, set the current position to X
+        grid.append([]) # Add an empty list to the grid to hold the row
+        for i in range(dimensions[1]): # For each column position in the row...
+            grid[-1].append(spot) # Add the current tracked XorO to the last row in the grid so far
+            if spot == "X": spot = "O" # If the current position is X, set the current tracked position to O
+            else: spot = "X" # Otherwise, set the current tracked position to X
+    return grid # Return the finished grid
