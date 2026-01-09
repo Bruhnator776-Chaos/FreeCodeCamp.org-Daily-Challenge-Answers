@@ -1,0 +1,17 @@
+"""
+Given an array of values, remove all occurrences of the most frequently occurring element and return the resulting array.
+
+- If multiple values are tied for most frequent, remove all of them.
+- Do not change any of the other elements or their order.
+"""
+
+# CODE #
+
+def purge_most_frequent(arr):
+    most_frequent = [arr[0]] # Create a list containing the first item in the array as its only item. This list will contain the most frequent items from the array for removal 4-5 lines later
+    for integer in arr[1:]: # For each integer in the array, omitting the first, since it's already in the most_frequent list...
+        if arr.count(integer) > arr.count(most_frequent[0]): most_frequent = [integer] # If the count of the currently itterated integer from the array is larger than the count of the current most_frequent integer from the array, then set the most_frequent list to only contain the currently itterated integer
+        elif arr.count(integer) == arr.count(most_frequent[0]): most_frequent.append(integer) # If the count fo the currently itterated integer from the array is the same as the count of the current most_frequent integer from the array, add the currently itterated integer to the end of the most_frequent list
+    for integer in most_frequent: # For each integer in the most_frequent list...
+        for i in range(arr.count(integer)): arr.pop(arr.index(integer)) # For each repitition of the currently iterated integer, remove the a repitition of the integer from the array
+    return arr # Return the array
