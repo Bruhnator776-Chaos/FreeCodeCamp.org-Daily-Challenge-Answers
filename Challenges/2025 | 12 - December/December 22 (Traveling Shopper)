@@ -1,0 +1,29 @@
+"""
+Given an amount of money you have, and an array of items you want to buy, determine how many of them you can afford.
+
+- The given amount will be in the format ["Amount", "Currency Code"].
+- Each array item you want to purchase will be in the same format.
+
+Use the following exchange rates to convert values:
+
+    Currency	1 Unit Equals
+      USD      	  1.00 USD
+      EUR   	  1.10 USD
+      GBP	      1.25 USD
+      JPY	      0.0070 USD
+      CAD   	  0.75 USD
+
+- If you can afford all the items in the list, return "Buy them all!".
+- Otherwise, return "Buy the first X items.", where X is the number of items you can afford when purchased in the order given.
+"""
+
+# CODE #
+
+def buy_items(funds, items):
+    adjustments = { "USD" : 1, "EUR" : 1.1, "GBP" : 1.25, "JPY" : 0.0070, "CAD" : 0.75 } # Create a dictionary holding each currency's value in relation to USD
+    funds = float(funds[0])*adjustments.get(funds[1]) # Collect the amount of funds in USD
+    for item in items: items[items.index(item)] = float(item[0])*adjustments.get(item[1]) # For each item in the items given, replace the item with its value in USD
+    for value in items: # For each value in the items list...
+        if funds - value < 0: return f"Buy the first {items.index(value)} items." # If the funds fail to cover the current value, return a string involving the index of the current value in the list of items
+        else: funds -= value # Otherwise, subtract the value from the funds, effectively buying the item
+    return "Buy them all!" # Assuming that all the above code ran smoothly, this line will only run if the line 1-2 lines up does not run. This allows a return string that will only return if the funds fully cover the cost of every item in the original items argument
