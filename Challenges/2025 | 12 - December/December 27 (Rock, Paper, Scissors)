@@ -1,0 +1,29 @@
+"""
+Given two strings, the first representing Player 1 and the second representing Player 2, determine the winner of a match of Rock, Paper, Scissors.
+
+- The input strings will always be "Rock", "Paper", or "Scissors".
+- "Rock" beats "Scissors".
+- "Paper" beats "Rock".
+- "Scissors" beats "Paper".
+
+Return:
+- "Player 1 wins" if Player 1 wins.
+- "Player 2 wins" if Player 2 wins.
+- "Tie" if both players choose the same option.
+"""
+
+# CODE #
+
+def rock_paper_scissors(p1, p2):
+    if p1 == "Rock": # If player 1 played Rock,
+        if p2 == "Rock": return "Tie" # If player 2 played Rock, Tie
+        elif p2 == "Paper": return "Player 2 wins" # If player 2 played Paper, P2 Win
+        else: return "Player 1 wins" # If player 2 played Scissors, P1 Win
+    elif p1 == "Paper": # If player 1 played Paper,
+        if p2 == "Rock": return "Player 1 wins" # If player 2 played Rock, P1 Win
+        elif p2 == "Paper": return "Tie" # If player 2 played Paper, Tie
+        else: return "Player 2 wins" # If player 2 played Scissors, P2 Win
+    else: # If player 1 played Scissors,
+        if p2 == "Rock": return "Player 2 wins" # If player 2 played Rock, P2 Win
+        elif p2 == "Paper": return "Player 1 wins" # If player 2 played Paper, P1 Win
+        else: return "Tie" # If player 2 played Scissors, Tie
