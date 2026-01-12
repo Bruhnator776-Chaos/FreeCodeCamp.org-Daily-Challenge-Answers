@@ -1,0 +1,12 @@
+"""
+Given a multi-line string that uses newline characters (\n) to represent a line break, return a new string where each line is mirrored horizontally and attached to the end of the original line.
+
+- Mirror a line by reversing all of its characters, including spaces.
+"""
+
+# CODE #
+
+def generate_snowflake(crystals):
+    crystals, snowflake = crystals.split("\n"), [] # Split the crystals by the line breaks, and create an empty list to hold the full snowflake
+    for crystal in crystals: snowflake.append(crystal + "".join(crystal[::-1])) # For each crystal segment in the crystals, combine it with a mirrored version of itself, then append the construct to the snowflake list
+    return "\n".join(snowflake) # Return the snowflake fully constructed
