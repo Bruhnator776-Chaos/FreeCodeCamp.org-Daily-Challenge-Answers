@@ -1,0 +1,25 @@
+"""
+Given a string that may include some italic text in Markdown, return the equivalent HTML string.
+
+- Italic text in Markdown is any text that starts and ends with a single asterisk (*) or a single underscore (_).
+- There cannot be any spaces between the text and the asterisk or underscore, but there can be spaces in the text itself.
+- Convert all italic occurrences to HTML "i" tags and return the string.
+"""
+
+# CODE #
+
+def parse_italics(markdown):
+    markdown, section, fin_string = markdown.split(" "), [], []  # Split the markdown string by the spaces, and create empty strings to hold sections and the final string
+    for word in markdown: # For each word in the markdown string...
+        if word in ["*", "_"]: # If the "word" is a asterick or underscore,
+            fin_string.append(word) # Add the "word" to the fin_string list
+        elif (word[0] == "*" and word[-1] == "*") or (word[0] == "_" and word[-1] == "_"): fin_string.append("<i>" + word[1:-1] + "</i>") # If the above statement didn't run, and the first and last character of the word is an asterick/underscore, add the word modified for HTML <i> tags to the fin_string list
+        elif word[-1] in ["*", "_"] and section != []: # If the above statement didn't run, the last character is a asterick/underscore, and the section variable isn't empty,
+            fin_string.append("<i>" + " ".join(section)[1:] + f" {word[:-1]}" + "</i>") # Add the full section to the end of the fin_string list
+            section = [] # Empty the fin_string list
+        elif word[0] in ["*", "_"] or section != []: section.append(word) # If the above statement didn't run, and the first character is an asterick/underscore or the section variable isn't empty, add the word to the section variable
+        else: fin_string.append(word) # Otherwise, add the word to the fin_string list
+    if section != []: # If the section isn't empty,
+        section.extend(fin_string) # Extend the section list by the fin_string list
+        return " ".join(section) # Return the full section list as a string with seperating spaces
+    return " ".join(fin_string) # Return the full fin_string list as a string with seperating spaces
