@@ -1,0 +1,31 @@
+"""
+Given a string representing a variable name, return the variable name converted to SCREAMING_SNAKE_CASE.
+
+The given variable names will be written in one of the following formats:
+- camelCase
+- PascalCase
+- snake_case
+- kebab-case
+
+In the above formats, words are separated by an underscore (_), a hyphen (-), or a new word starts with a capital letter.
+
+To convert to SCREAMING_SNAKE_CASE:
+- Make all letters uppercase
+- Separate words with an underscore (_)
+"""
+
+# CODE #
+
+def to_screaming_snake_case(varnam):
+    if varnam.count("-") > 0 or varnam.count("_") > 0: # If the variable name is snake_case or kebab-case,
+        if varnam.count("-") > 0: varnam2 = varnam.split("-") # If the variable name is kebab-case, split the variable name by each dash
+        elif varnam.count("_") > 0: varnam2 = varnam.split("_") # If the variable name is snake_case, split the variable name by each underscore (Yes, one could just return the uppercase version of this string. It _would_ save on processing power.)
+    elif varnam[0].isupper() or not varnam.islower(): # If the variable name is PascalCase or camelCase,
+        varnam, varnam2 = varnam[0].lower() + varnam[1:], [] # Make sure the variable name is in camelCase, and create an empty list to hold each word in the variable name
+        for character in varnam: # For each character in the variable name...
+            if character.isupper(): # If the current itterated character is uppercase,
+                varnam2.append(varnam[:varnam.index(character)]) # Add all of the characters before the currently itterated character (a singular word) to the empty variable word list
+                varnam = varnam[varnam.index(character):] # Remove the first word from the variable name, leaving everything from the current itterated character onward
+        varnam2.append(varnam) # Add the final word from the variable name to the variable word list
+    else: return varnam.upper() # Otherwise, assume the variable name given is one word and return the uppercase version of that word
+    return "_".join(list(map(lambda word:word.upper(), varnam2))) # For each word in the variable name, make it uppercase, then place an underscore in between word and return the final value
