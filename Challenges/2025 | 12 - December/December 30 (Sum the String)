@@ -1,0 +1,22 @@
+"""
+Given a string containing digits and other characters, return the sum of all numbers in the string.
+
+- Treat consecutive digits as a single number.
+- Ignore any non-digit characters.
+"""
+
+# CODE #
+
+def string_sum(s):
+    if s.isnumeric(): return int(s) # If there are no letters in the string, return the number
+    total, s = 0, s+"a" # Create a variable to hold the total. The s is a band-aid solution to an error in the code. If the argument given ends with a digit, it doesn't count the last number in the string, for example, a1b20c300 would result in 21 instead of 321, because it would ignore 300. To fix that, a single letter is added to the end of the string.
+    while True: # While True...
+        try: # Attempt to...
+            current_num = "" # Set the current_num to an empty string
+            while not s[0].isnumeric(): s = s[1:] # Remove every non-numerical digit at the beginning of the string
+            while s[0].isnumeric(): # While the first character of the string is a number...
+                current_num += s[0] # Add the first character of the string to the current_num
+                s = s[1:] # Remove the first character of the string
+            total += int(current_num) # Add the current_num to the total
+        except: break # If an error occurs, break the while-loop
+    return total # Return the final total
