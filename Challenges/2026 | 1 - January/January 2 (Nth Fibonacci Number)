@@ -1,0 +1,10 @@
+"""
+Given an integer n, return the nth number in the fibonacci sequence.
+
+- The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. - The first 10 numbers in the sequence are 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.
+"""
+
+def nth_fibonacci(n):
+    sequence = [0, 1] # Start the Fibonacci sequence
+    for i in range(n-2): sequence.append(sequence[-2] + sequence[-1]) # For n-2 times, add a number created from the last two numbers in the current sequence segment
+    return sequence[-1] # Return the last number in the sequence segment
