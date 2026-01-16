@@ -1,0 +1,15 @@
+"""
+Given an integer, determine if it is a circular prime.
+
+A circular prime is an integer where all rotations of its digits are themselves prime.
+"""
+
+# CODE #
+
+def is_circular_prime(n):
+    for i in range(len(str(n))): # For each digit in the number...
+        num = int(str(n)[i:]+str(n)[:i]) # Set num to start with the current itterated digit of the number
+        for i in range(num): # For each value from 0-num, excluding num
+            if i == 0 or i == 1: continue # If the number is 0 or 1, skip this itteration. This solves division by 0 errors, and the fact that dividing by 1 IS a prime, but the below line will count it as not-prime
+            if num//i == num/i: return False # If the number is not-prime, return False
+    return True # If the above line did not pass, return True
