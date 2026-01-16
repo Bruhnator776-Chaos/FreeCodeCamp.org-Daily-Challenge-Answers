@@ -1,0 +1,15 @@
+"""
+Given an array of numbers, determine if the numbers are sorted in ascending order, descending order, or neither.
+
+If the given array is:
+- In ascending order (lowest to highest), return "Ascending".
+- In descending order (highest to lowest), return "Descending".
+- Not sorted in ascending or descending order, return "Not sorted".
+"""
+
+# CODE #
+
+def is_sorted(arr):
+    if sorted(arr) == arr: return "Ascending" # If the array sorted in ascending order is equal to the original array, return "Ascending"
+    elif sorted(arr)[::-1] == arr: return "Descending" # If the array sorted in descending order is equal to the original array, return "Descending"
+    else: return "Not sorted" # Otherwise, return "Not sorted"
