@@ -1,0 +1,9 @@
+"""
+Given a positive integer, return "Odd" if it's an odd number, and "Even" if it's even.
+"""
+
+# CODE #
+
+def odd_or_even(n):
+    if n%2 == 0: return "Even" # If n/2 has no remainder, it's even
+    else: return "Odd" # Otherwise, it's odd
