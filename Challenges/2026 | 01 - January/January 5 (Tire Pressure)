@@ -1,0 +1,21 @@
+"""
+Given an array with four numbers representing the tire pressures in psi of the four tires in your vehicle, and another array of two numbers representing the minimum and maximum pressure for your tires in bar, return an array of four strings describing each tire's status.
+
+- 1 bar equals 14.5038 psi.
+
+Return an array with the following values for each tire:
+- "Low" if the tire pressure is below the minimum allowed.
+- "Good" if it's between the minimum and maximum allowed.
+- "High" if it's above the maximum allowed.
+"""
+
+# CODE #
+
+def tire_status(pressures_psi, range_bar):
+    range_psi = sorted(list(map(lambda x:14.5038*x, range_bar))) # Re-calculate the range to be for psi instead of bar
+    def check_pressure(pressure):
+        """ Check a pressure against the range_psi variable, returning a string representing the relation of the pressure to the range """
+        if pressure < range_psi[0]: return "Low"
+        elif pressure > range_psi[1]: return "High"
+        else: return "Good"
+    return list(map(check_pressure, pressures_psi)) # Return the pressures after running each through the check_pressure() function
