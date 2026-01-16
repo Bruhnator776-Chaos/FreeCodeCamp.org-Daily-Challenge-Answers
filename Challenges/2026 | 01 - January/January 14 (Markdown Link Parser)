@@ -1,0 +1,9 @@
+"""
+Given the string of a link in Markdown, return the equivalent HTML string.
+
+A Markdown image has the following format: "[link_text](link_url)". Return the string of the HTML a tag with the href set to the link_url and the link_text as the tag content.
+"""
+
+# CODE #
+
+def parse_link(markdown): return f"<a href=\"{markdown.split('](')[1][:-1]}\">{markdown.split('](')[0][1:]}</a>" # Splice the string into the two values and place them in an f-string
