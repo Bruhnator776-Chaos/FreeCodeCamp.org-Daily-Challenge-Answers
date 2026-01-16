@@ -1,0 +1,14 @@
+"""
+Given a string, return a new string where all vowels are converted to uppercase and all other alphabetical characters are converted to lowercase.
+
+- Vowels are "a", "e", "i", "o", and "u" in any case.
+- Non-alphabetical characters should remain unchanged.
+"""
+
+# CODE #
+
+def vowel_case(s):
+    s = s.lower() # Convert the entirety of the string to lowercase
+    for character in s: # For each character in s...
+        if character in ["a", "e", "i", "o", "u"]: s = s[:s.index(character)] + character.upper() + s[s.index(character)+1:] # If the character is a vowel, re-write the string with the current iterated character as an uppercase letter
+    return s # Return s
