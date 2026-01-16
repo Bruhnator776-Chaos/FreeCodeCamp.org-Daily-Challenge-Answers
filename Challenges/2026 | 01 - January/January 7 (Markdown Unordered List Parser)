@@ -1,0 +1,25 @@
+"""
+Given the string of a valid unordered list in Markdown, return the equivalent HTML string.
+
+An unordered list consists of one or more list items. A valid list item appears on its own line and:
+- Starts with a dash ("-"), followed by
+- At least one space, and then
+- The list item text.
+
+The list is given as a single string with new lines separated by the newline character ("\n"). Do not include the newline characters in the item text.
+
+Wrap each list item in HTML li tags, and the whole list of items in ul tags.
+"""
+
+# CODE #
+
+def parse_unordered_list(markdown): return "<ul>" + "".join(list(map(lambda x: "<li>" + x[1:].lstrip() + "</li>", markdown.split("\n")))) + "</ul>"
+
+"""
+The above code goes through a series of 5 steps to return the desired value;
+  1) Split the markdown string by the newline characters
+  2) From each item, remove the dash and spaces leading up to the item, then add the <li> and </li> tags to the beginning and end of the item
+  3) Join all of the items with <li> tags together
+  4) Add the <ul> and </ul> tags to the beginning and end of the string, finishing the HTML unordered list
+  5) Return the code segment
+"""
