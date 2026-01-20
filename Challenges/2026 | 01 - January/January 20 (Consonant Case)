@@ -1,0 +1,15 @@
+"""
+Given a string representing a variable name, convert it to consonant case using the following rules:
+- All consonants should be converted to uppercase.
+- All vowels (a, e, i, o, u in any case) should be converted to lowercase.
+- All hyphens (-) should be converted to underscores (_).
+"""
+
+# CODE #
+
+def to_consonant_case(s):
+    s = s.lower() # Convert all alphabetical characters to lowercase for uniformity
+    for character in s: # For each character in the string...
+        if character == "-": s = s[:s.index(character)] + "_" + s[s.index(character)+1:] # If the character is a hyphen, replace it with an underscore
+        elif character not in ["a", "e", "i", "o", "u"] and character.isalpha(): s = s[:s.index(character)] + character.upper() + s[s.index(character)+1:] # If the character is a non-vowel alphabetical character, replace it with the same character converted to uppercase
+    return s # Return the final string
