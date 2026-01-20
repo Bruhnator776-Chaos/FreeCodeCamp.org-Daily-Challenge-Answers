@@ -1,0 +1,12 @@
+"""
+Given two positive integers representing the lengths for the two legs (the two short sides) of a right triangle, determine whether the hypotenuse is an integer.
+
+The length of the hypotenuse is calculated by adding the squares of the two leg lengths together and then taking the square root of that total (a**2 + b**2 = c**2).
+"""
+
+# CODE #
+
+def is_integer_hypotenuse(a, b):
+    from math import sqrt # Import the square_root function from the math module
+    if round(sqrt((a**2)+(b**2))) == sqrt((a**2)+(b**2)): return True # If the c value is an integer, return True
+    else: return False # Otherwise, return False
