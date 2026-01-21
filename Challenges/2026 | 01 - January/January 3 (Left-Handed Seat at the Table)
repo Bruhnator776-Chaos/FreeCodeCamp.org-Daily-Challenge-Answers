@@ -1,0 +1,24 @@
+"""
+Given a 4x2 matrix (array of arrays) representing the seating arrangement for a meal, determine how many seats a left-handed person can sit at.
+
+- A left-handed person cannot sit where a right-handed person would be in the seat to the immediate left of them.
+
+In the given matrix:
+- An "R" is a seat occupied by a right-handed person.
+- An "L" is a seat occupied by a left-handed person.
+- A "U" is an unoccupied seat.
+- Only unoccupied seats are available to sit at.
+- The seats in the top row are facing "down", and the seats in the bottom row are facing "up" (like a table), so left and right are relative to the seat's orientation.
+- Corner seats only have one seat next to them.
+"""
+
+# CODE #
+
+def find_left_handed_seats(table): return ("".join(table[0]) + "".join(table[1])).count("U") - ("".join(table[0][::-1]) + " " + "".join(table[1])).count("RU")
+
+"""
+Here's a basic breakdown of how the above code works:
+  1) Take a count of all the unnocupied seats at the table
+  2) Take a count of each spot at the table in which a Left-Handed person couldn't sit
+  3) Subtract the value from step 2 from step 1
+"""
