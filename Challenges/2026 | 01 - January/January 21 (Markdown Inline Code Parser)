@@ -1,0 +1,17 @@
+"""
+Given a string of Markdown that includes one or more inline code blocks, return the equivalent HTML string.
+
+Inline code blocks in Markdown use a single backtick (`) at the start and end of the code block text.
+
+Return the given string with all code blocks converted to HTML code tags.
+"""
+
+# CODE #
+
+def parse_inline_code(markdown):
+    code, i = ["<code>", "</code>"], 0 # Create the framework for replacing the backticks with HTML tags
+    for character in markdown: # For each character in the markdown string...
+        if character == "`": # If the character is a backtick,
+            markdown = markdown[:markdown.index("`")] + code[i%2] + markdown[markdown.index("`")+1:] # Replace the backtick with the corresponding HTML tag piece
+            i+=1 # Add one to the backtick count for tracking which side of the HTML backtick must be placed
+    return markdown # Return the fixed up markdown string
