@@ -1,0 +1,37 @@
+"""
+Given an array of exam scores (numbers), return the average score in form of a letter grade according to the following chart:
+    Average Score	Letter Grade
+    97-100	      "A+"
+    93-96	        "A"
+    90-92	        "A−"
+    87-89	        "B+"
+    83-86	        "B"
+    80-82	        "B-"
+    77-79	        "C+"
+    73–76	        "C"
+    70-72	        "C-"
+    67-69	        "D+"
+    63-66	        "D"
+    60–62	        "D-"
+    below 60	    "F"
+
+Calculate the average by adding all scores in the array and dividing by the total number of scores.
+"""
+
+# CODE #
+
+def get_average_grade(scores):
+    avg = sum(scores)/len(scores) # Find the average
+    if avg >= 97: return "A+" # Convert the avg to a returned letter grade
+    elif avg >= 93: return "A" # Convert the avg to a returned letter grade
+    elif avg >= 90: return "A-" # Convert the avg to a returned letter grade
+    elif avg >= 87: return "B+" # Convert the avg to a returned letter grade
+    elif avg >= 83: return "B" # Convert the avg to a returned letter grade
+    elif avg >= 80: return "B-" # Convert the avg to a returned letter grade
+    elif avg >= 77: return "C+" # Convert the avg to a returned letter grade
+    elif avg >= 73: return "C" # Convert the avg to a returned letter grade
+    elif avg >= 70: return "C-" # Convert the avg to a returned letter grade
+    elif avg >= 67: return "D+" # Convert the avg to a returned letter grade
+    elif avg >= 63: return "D" # Convert the avg to a returned letter grade
+    elif avg >= 60: return "D-" # Convert the avg to a returned letter grade
+    return "F" # Given that no above return lines passed, the avg is a failing grade
