@@ -1,0 +1,18 @@
+"""
+Given a string, determine whether it is a valid CSS hex color.
+
+A valid CSS hex color must:
+- Start with a #, and
+- be followed by either 3 or 6 hexadecimal characters.
+
+Hexadecimal characters are numbers 0 through 9 and letters a through f (case-insensitive).
+"""
+
+# CODE #
+
+def is_valid_hex(s):
+    if s[0] != "#": return False # If the "hexcode" doesn't start with a "#": return False
+    if len(s[1:]) not in (3, 6): return False # If the hexcode value isn't 3 or 6 characters long: return False
+    for digit in s[1:]: # For each character past the "#"...
+        if digit.lower() not in "abcdef1234567890": return False # If the hexcode digit isn't valid, return False
+    return True # Return True, assuming that False wasn't returned among the above lines
