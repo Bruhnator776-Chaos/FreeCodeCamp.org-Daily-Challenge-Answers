@@ -1,0 +1,11 @@
+"""
+Given a string representing the width and height of an image, and a number to scale the image, return the scaled width and height.
+
+- The input string is in the format "WxH".
+- The scale is a number to multiply the width and height by.
+- Return the scaled dimensions in the same "WxH" format.
+"""
+
+def scale_image(size, scale):
+    width, height = map(lambda x:int(x), size.split("x")) # Collect both the width and height from the given dimensions
+    return f"{round(width*scale)}x{round(height*scale)}" # Return the scaled image dimensions
