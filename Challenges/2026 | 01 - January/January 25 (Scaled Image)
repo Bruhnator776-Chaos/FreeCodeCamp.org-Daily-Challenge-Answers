@@ -6,6 +6,8 @@ Given a string representing the width and height of an image, and a number to sc
 - Return the scaled dimensions in the same "WxH" format.
 """
 
+# CODE #
+
 def scale_image(size, scale):
     width, height = map(lambda x:int(x), size.split("x")) # Collect both the width and height from the given dimensions
     return f"{round(width*scale)}x{round(height*scale)}" # Return the scaled image dimensions
