@@ -8,4 +8,6 @@ Given a number, return the bingo letter associated with it (capitalized). Bingo 
     "O"	    61-75
 """
 
+# CODE #
+
 def get_bingo_letter(n): return "BINGO"[(n-1)//15] # Take the number, subtract one to account for index number, then flat-divide by 15. This gives us the index to get the corresponding letter in the string "BINGO"
