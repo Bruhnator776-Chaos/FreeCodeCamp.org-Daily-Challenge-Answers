@@ -1,0 +1,14 @@
+"""
+Given a string containing only letters and numbers, return a new string where a hyphen (-) is inserted every time the string switches from a letter to a number, or a number to a letter.
+"""
+
+# CODE #
+
+def separate_letters_and_numbers(s):
+    i = 0 # Set a index variable
+    for character in s[:-1]: # For each character the string-1...
+        if (s[i].isalpha() and s[i+1].isnumeric()) or (s[i].isnumeric() and s[i+1].isalpha()): # If the current itterated letter and the next letter are alphabettical and numerical, one of each,
+            s = s[:i+1] + "-" + s[i+1:] # Add a hyphen between the two characters
+            i+=1 # Add one to the index variable
+        i+=1 # Add one to the index variable
+    return s # Return the final string
