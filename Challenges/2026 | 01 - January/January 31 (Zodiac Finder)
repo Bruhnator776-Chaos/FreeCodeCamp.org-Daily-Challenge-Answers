@@ -1,0 +1,38 @@
+"""
+Given a date string in the format "YYYY-MM-DD", return the zodiac sign for that date using the following chart:
+    Date Range	                Zodiac Sign
+    March 21 - April 19	        "Aries"
+    April 20 - May 20	        "Taurus"
+    May 21 - June 20	        "Gemini"
+    June 21 - July 22	        "Cancer"
+    July 23 - August 22	        "Leo"
+    August 23 - September 22	"Virgo"
+    September 23 - October 22	"Libra"
+    October 23 - November 21	"Scorpio"
+    November 22 - December 21	"Sagittarius"
+    December 22 - January 19	"Capricorn"
+    January 20 - February 18	"Aquarius"
+    February 19 - March 20	    "Pisces"
+
+- Zodiac signs are based only on the month and day, you can ignore the year.
+"""
+
+# CODE #
+
+def get_sign(date_str):
+    num_of_days = lambda month, day: ({ "1": 31, "2": 60, "3": 91, "4": 121, "5": 152, "6": 182, "7": 213, "8": 244, "9": 274, "10": 305, "11": 335, "12": 366 }[str(int(month))]-31) + int(day) # Given a month and day in number form, return the number of days since day 0 of the year
+    days = num_of_days(date_str.split("-")[1], date_str.split("-")[2]) # Calculate the number of days given the date_str
+
+    # All of the below if-statements simply state that if the days from date_str is within a given range, return the Zodiac Sign associated with it
+    if days <= num_of_days(1, 19) or days >= num_of_days(12, 22): return "Capricorn"
+    if days <= num_of_days(2, 18): return "Aquarius"
+    if days <= num_of_days(3, 20): return "Pisces"
+    if days <= num_of_days(4, 19): return "Aries"
+    if days <= num_of_days(5, 20): return "Taurus"
+    if days <= num_of_days(6, 20): return "Gemini"
+    if days <= num_of_days(7, 22): return "Cancer"
+    if days <= num_of_days(8, 22): return "Leo"
+    if days <= num_of_days(9, 22): return "Virgo"
+    if days <= num_of_days(10, 22): return "Libra"
+    if days <= num_of_days(11, 21): return "Scorpio"
+    if days <= num_of_days(12, 21): return "Sagittarius"
