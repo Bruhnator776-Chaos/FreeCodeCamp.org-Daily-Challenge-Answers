@@ -1,0 +1,11 @@
+"""
+Given an array of integers, where each value represents the number of targets hit in a single round of a biathlon, return the total penalty distance the athlete must ski.
+
+- Each round consists of 5 targets.
+- Each missed target results in a 150 meter penalty loop.
+
+"""
+
+# CODE #
+
+def calculate_penalty_distance(rounds): return sum(list(map(lambda x:(5-x)*150, rounds))) # Go through the rounds list, subtracting the hit targets from 5, resulting in the missed targets. Take that number, and multiply it by 150 to get the penalty for that round. Sum all of those numbers to get the total penalty for the game.
