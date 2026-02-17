@@ -1,0 +1,14 @@
+"""
+Given an array of integers representing the coins in your pocket, with each integer being the value of a coin in cents, return the total amount in the format "$D.CC".
+
+- 100 cents equals 1 dollar.
+- In the return value, include a leading zero for amounts less than one dollar and always exactly two digits for the cents.
+"""
+
+# CODE #
+
+def count_change(change):
+    doll, cents = str(sum(change))[:-2], str(sum(change))[-2:] # Calculate both the number of dollars and cents, storing them in the appropriate variables
+    if len(cents) == 1: cents = "0" + cents # If the cents value has no 10th value, we put a 0 before the number, therefore converting "X" to "0X"
+    if doll == '': return f"$0.{cents}" # If there is no dollar amount, return the cents in the correct format
+    else: return f"${doll}.{cents}" # Otherwise, return the dollars and cents in the correct format
