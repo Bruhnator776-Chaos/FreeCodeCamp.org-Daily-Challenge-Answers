@@ -1,0 +1,7 @@
+"""
+Given a string, return a new string that consists of the given string with a reversed copy of itself appended to the end of it.
+"""
+
+# CODE #
+
+def mirror(s): return s + s[::-1] # Taking both the given string, and the reverse of the same string combine them into one
