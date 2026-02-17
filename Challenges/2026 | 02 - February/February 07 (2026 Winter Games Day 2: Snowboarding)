@@ -1,0 +1,13 @@
+"""
+Given a snowboarder's starting stance and a rotation in degrees, determine their landing stance.
+
+- A snowboarder's stance is either "Regular" or "Goofy".
+- Trick rotations are multiples of 90 degrees. Positive indicates clockwise rotation, and negative indicate counter-clockwise rotation.
+- The landing stance flips every 180 degrees of rotation.
+"""
+
+# CODE #
+
+def get_landing_stance(start_stance, rotation):
+    if ((abs(rotation)//180)%2!=0 and start_stance=="Regular") or ((abs(rotation)//180)%2==0 and start_stance=="Goofy"): return "Goofy" # If there is a change from Regular to Goofy, or starts Goofy and does not change, return Goofy
+    else: return "Regular" # Otherwise, return Regular
