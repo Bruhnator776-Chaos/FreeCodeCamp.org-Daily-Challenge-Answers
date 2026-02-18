@@ -1,0 +1,22 @@
+"""
+Given distance points, style points, a wind compensation value, and K-point bonus value, calculate your score for the ski jump and determine if you won a medal or not.
+
+Your score is calculated by summing the above four values.
+
+The current total scores of the other jumpers are:
+- [165.5, 172.0, 158.0, 180.0, 169.5, 175.0, 162.0, 170.0]
+
+- If your score is the best, return "Gold"
+- If it's second best, return "Silver"
+- If it's third best, return "Bronze"
+- Otherwise, return "No Medal"
+"""
+
+# CODE #
+
+def ski_jump_medal(*points):
+    scores = sorted([165.5, 172, 158, 180, 169.5, 175, 162, 170]) # Take the other scores and put them in a sorted list, giving us the top 3 scores before the tested score
+    if sum(points) > scores[-1]: return "Gold" # If our score (found by adding together every number given in the argument) is greater than the top score beforehand, we won Gold
+    elif sum(points) > scores[-2]: return "Silver" # If our score is greater than the 2nd score, we won Silver
+    elif sum(points) > scores[-3]: return "Bronze" # If our score is greater than the 3rd score, we won Bronze
+    else: return "No Medal" # Otherwise, we didn't win a medal
