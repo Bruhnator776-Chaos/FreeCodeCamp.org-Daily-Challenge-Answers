@@ -1,0 +1,19 @@
+"""
+Given an array of finish times for a cross-country ski race, convert them into times behind the winner.
+
+- Given times are strings in "H:MM:SS" format.
+- Given times will be in order from fastest to slowest.
+- The winners time (fastest time) should correspond to "0".
+- Each other time should show the time behind the winner, in the format "+M:SS".
+"""
+
+# CODE #
+
+def get_relative_results(results):
+    results = sorted([int(result.split(":")[0])*60*60 + int(result.split(":")[1])*60 + int(result.split(":")[2]) for result in results]) # Convert every result into the number of seconds, then sort it, with the shortest time first, and longest time last
+    
+    for result in results[1:]: # For each result not including the first result...
+        if len(str((result - results[0])%60)) != 2: results[results.index(result)] = f"+{(result - results[0])//60}:0{(result - results[0])%60}" # If the seconds value of the current result with the shortest result subtracted from it requires a leading 0, replace the result in the results list with a correctly formatted string representing the time relative to the winner's time, including a leading 0 for the seconds
+        else: results[results.index(result)] = f"+{(result - results[0])//60}:{(result - results[0])%60}" # Otherwise, replace the result in the results list with a correctly formatted string representing the time relative to the winner's time
+    
+    return ["0"] + results[1:] # Return the results list starting with the 2nd entry, adding a 0 as the first entry
