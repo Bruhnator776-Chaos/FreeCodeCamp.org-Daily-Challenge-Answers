@@ -13,7 +13,7 @@ Find the total number of points for each team and return "The semi-final games w
 # CODE #
 
 def get_semifinal_matchups(teams):
-    teams = [f"{int(team.split(' ')[1].split('-')[0])*3 + int(team.split(' ')[1].split('-')[1])*2 + int(team.split(' ')[1].split('-')[2])}:{team.split(':')[0]}" for team in teams]
-    for team in teams:
-        if len(team.split(":")[0]) == 1: teams[teams.index(team)] = f"0{team.split(':')[0]}:{team.split(':')[1]}"
-    return f"The semi-final games will be {sorted(teams)[-1].split(':')[1]} vs {sorted(teams)[-4].split(':')[1]} and {sorted(teams)[-2].split(':')[1]} vs {sorted(teams)[-3].split(':')[1]}."
+    teams = [f"{int(team.split(' ')[1].split('-')[0])*3 + int(team.split(' ')[1].split('-')[1])*2 + int(team.split(' ')[1].split('-')[2])}:{team.split(':')[0]}" for team in teams] # Format the teams scores to the totals.
+    for team in teams: # For each team in the teams list...
+        if len(team.split(":")[0]) == 1: teams[teams.index(team)] = f"0{team.split(':')[0]}:{team.split(':')[1]}" # If the team's point value is a single digit, modify it to be two digits in the format of "0X"
+    return f"The semi-final games will be {sorted(teams)[-1].split(':')[1]} vs {sorted(teams)[-4].split(':')[1]} and {sorted(teams)[-2].split(':')[1]} vs {sorted(teams)[-3].split(':')[1]}." # Return the given string with the correct values inputted
