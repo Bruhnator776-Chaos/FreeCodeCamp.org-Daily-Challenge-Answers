@@ -1,0 +1,39 @@
+"""
+Given a 5x5 matrix representing the "house" at the end of a curling round, determine which team scores and how many points they score.
+
+The layout:
+- The center cell (index [2, 2]) is the "button".
+- The 8 cells directly surrounding the button represent ring 1.
+- And the 16 cells on the outer edge of the house represent ring 2.
+
+In the given matrix:
+- "." represents an empty space.
+- "R" represents a space with a red stone.
+- "Y" represents a space with a yellow stone.
+
+Scoring rules:
+- Only one team can score per round.
+- The team with the stone closest to the button scores.
+- The scoring team earns 1 point for each of their stones that is closer to the button than the opponent's closest stone.
+- The lower the ring number, the closer to the center the stone is.
+- If both teams' closest stone is the same distance from the center, no team scores.
+
+Return:
+- A string in the format "team: number_of_points".
+- or "No points awarded" if neither team scored any points.
+"""
+
+# CODE #
+
+def score_curling(house):
+    button, ring_1, ring_2 = house[2][2], [house[1][1], house[1][2], house[1][3], house[2][1], house[2][3], house[3][1], house[3][2], house[3][3]], house[0] + [house[1][0], house[1][4], house[2][0], house[2][4], house[3][0], house[3][4]] + house[4] # Seperate the house into the button, a list representing ring_1, and a list representing ring_2
+    if button != ".": # If the button has a value,
+        if button in ring_1 and not ["Y", "R"][["R", "Y"].index(button)] in ring_1: # If the value in the button is in ring_1 and the alternate value is not in ring_1,
+            if button in ring_2 and not ["Y", "R"][["R", "Y"].index(button)] in ring_2: return f"{button}: {1+ring_1.count(button)+ring_2.count(button)}" # If the value in the button is in ring_2 and the alternate value is not in ring_2, return the team and the number of points in the format given
+            return f"{button}: {1+ring_1.count(button)}" # Otherwise, return the team and the number of points in the format given
+        return f"{button}: 1" # Otherwise, return the team with a value of one, as the button will be the only score
+    if ("R" in ring_1 and not "Y" in ring_1) or ("Y" in ring_1 and not "R" in ring_1): # If either R or Y is in ring_1 and the alternate value is not in ring_1,
+        if list(filter(lambda x:x!='.', ring_1))[0] in ring_2 and not ["Y", "R"][["R", "Y"].index(list(filter(lambda x:x!='.', ring_1))[0])] in ring_2: return f"{list(filter(lambda x:x!='.', ring_1))[0]}: {ring_1.count(list(filter(lambda x:x!='.', ring_1))[0])+ring_2.count(list(filter(lambda x:x!='.', ring_1))[0])}" # If the 1 value in ring_1 is present in ring_2 and the alternate value is not present in ring_2, return the team and the number of points in the given format
+        return f"{list(filter(lambda x:x!='.', ring_1))[0]}: {ring_1.count(list(filter(lambda x:x!='.', ring_1))[0])}" # Otherwise, return the team and the number of points in the format given
+    if ("R" in ring_2 and not "Y" in ring_2) or ("Y" in ring_2 and not "R" in ring_2): return f"{list(filter(lambda x:x!='.', ring_2))[0]}: {ring_2.count(list(filter(lambda x:x!='.', ring_2))[0])}" # If either R or Y is in ring_2 and the alternate value is not in ring_2, return the team and the number of points in the format given
+    return "No points awarded" # Otherwise, return "No points awared, as no team will have scored points"
