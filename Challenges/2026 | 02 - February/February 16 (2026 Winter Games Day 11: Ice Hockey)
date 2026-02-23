@@ -1,0 +1,19 @@
+"""
+Given an array of 6 ice hockey teams and their records after the round robin games, determine the match-ups for the semi-final round.
+
+Each array item will have a team and their record in the format "TEAM: W-OTW-OTL-L". Where:
+- "W" is the number of wins in regulation, worth 3 points each
+- "OTW" is the number of overtime wins, worth 2 points each
+- "OTL" is the number of overtime losses, worth 1 point each
+- "L" is the number of losses, worth 0 points each
+
+Find the total number of points for each team and return "The semi-final games will be (1st) vs (4th) and (2nd) vs (3rd)."
+"""
+
+# CODE #
+
+def get_semifinal_matchups(teams):
+    teams = [f"{int(team.split(' ')[1].split('-')[0])*3 + int(team.split(' ')[1].split('-')[1])*2 + int(team.split(' ')[1].split('-')[2])}:{team.split(':')[0]}" for team in teams]
+    for team in teams:
+        if len(team.split(":")[0]) == 1: teams[teams.index(team)] = f"0{team.split(':')[0]}:{team.split(':')[1]}"
+    return f"The semi-final games will be {sorted(teams)[-1].split(':')[1]} vs {sorted(teams)[-4].split(':')[1]} and {sorted(teams)[-2].split(':')[1]} vs {sorted(teams)[-3].split(':')[1]}."
