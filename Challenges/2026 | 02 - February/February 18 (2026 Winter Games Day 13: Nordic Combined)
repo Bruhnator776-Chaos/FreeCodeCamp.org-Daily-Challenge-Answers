@@ -1,0 +1,15 @@
+"""
+Given an array of jump scores for athletes, calculate their start delay times for the cross-country portion of the Nordic Combined.
+
+The athlete with the highest jump score starts first (0 second delay).
+All other athletes start later based on how far behind their jump score is compared to the best jump.
+
+To calculate the delay for each athlete, subtract the athlete's jump score from the best overall jump score and multiply the result by 1.5.
+Round the delay up to the nearest integer.
+"""
+
+# CODE #
+
+def calculate_start_delays(jump_scores):
+    from math import ceil # Import a math function that rounds a float _UP_ to the nearest integer
+    return [ceil(1.5*(sorted(jump_scores)[-1]-score)) for score in jump_scores] # Return a list formed by taking the scores from the jump_scores, and for each one, subtract it from the best jump_score, mutiplying that value by 1.5, then running the ceil function on it.
