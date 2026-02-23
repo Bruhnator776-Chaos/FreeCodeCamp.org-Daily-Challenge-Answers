@@ -1,0 +1,25 @@
+"""
+Given the snow depth and slope of a mountain, determine if there's an avalanche risk.
+
+The snow depth values are:
+- "Shallow"
+- "Moderate"
+- "Deep"
+
+Slope values are:
+- "Gentle"
+- "Steep"
+- "Very Steep"
+
+Return "Safe" or "Risky" based on this table:
+                    "Shallow"	"Moderate"	"Deep"
+    "Gentle"	    "Safe"	    "Safe"	    "Safe"
+    "Steep"	        "Safe"	    "Risky"	    "Risky"
+    "Very Steep"    "Safe"	    "Risky"	    "Risky"
+"""
+
+# CODE #
+
+def avalanche_risk(snow_depth, slope):
+    if snow_depth == "Shallow" or slope == "Gentle": return "Safe" # If the snow_depth is shallow or the slope is gentle, return "Safe"
+    else: return "Risky" # Otherwise, return "Risky"
