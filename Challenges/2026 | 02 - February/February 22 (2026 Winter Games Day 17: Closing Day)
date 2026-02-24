@@ -1,0 +1,33 @@
+"""
+Given a 2D array of medal winners, return a medal count for each country as a CSV string.
+
+- In the given array, each sub-array represents a single event:
+  - [gold_winner, silver_winner, bronze_winner]
+- The returned CSV string should have the following format, with the first line being headers:
+  - Country,Gold,Silver,Bronze,Total
+    country_name,gold_count,silver_count,bronze_count,total_medals
+- Separate new lines with the new line character ("\n").
+- Do not include spaces around commas or at the end of lines.
+- Sort the returned CSV by gold medal count, highest first. If two countries have the same gold medal count, sort the tied ones alphabetically.
+"""
+
+# CODE #
+
+def count_medals(winners):
+    # Create a dictionary with the countries as keys, and a list of the medals they recieved as the values
+    values = {}
+    for podium in winners:
+        i = 0
+        for country in podium:
+            values.update({ country: values.get(country, []) + [["gold", "silver", "bronze"][i]] })
+            i+=1
+
+    # Combine the dictionary key's and values into a list of strings, based on the keys. Then using that list, create a dictionary based on the number of gold medals, with the corresponding countries as a list of values
+    num_of_gold, final_string = { }, []
+    for CSV_piece in [f"{medals.count('gold')},{medals.count('silver')},{medals.count('bronze')},{medals.count('gold')+medals.count('silver')+medals.count('bronze')}:{country}" for country, medals in values.items()]: num_of_gold.update({ CSV_piece.split(",")[0] : num_of_gold.get(CSV_piece.split(",")[0], []) + [f"\n{CSV_piece.split(':')[1]},{CSV_piece.split(':')[0]}"] })
+
+    # Sort the dictionary into a list by first the number of gold medals, then alphabetically
+    for gold_count in sorted(num_of_gold.keys(), reverse=True): [final_string.append(CSV_piece) for CSV_piece in sorted(num_of_gold[gold_count])]
+    
+    # Return the final CSV string with the heading included
+    return "Country,Gold,Silver,Bronze,Total"+"".join(final_string)
