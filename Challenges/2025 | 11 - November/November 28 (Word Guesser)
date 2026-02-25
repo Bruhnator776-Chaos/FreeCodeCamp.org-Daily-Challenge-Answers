@@ -1,0 +1,32 @@
+"""
+Given two strings of the same length, a secret word and a guess, compare the guess to the secret word using the following rules:
+- The secret word and guess will only consist of uppercase letters ("A" to "Z");
+- For each letter in the guess, replace it with a number according to how it matches the secret word:
+  - "2" if the letter is in the secret word and in the correct position.
+  - "1" if the letter is in the secret word but in the wrong position.
+  - "0" if the letter is not in the secret word.
+- Each letter in the secret word can be used at most once.
+- Exact matches ("2") are assigned first, then partial matches ("1") are assigned from left to right for remaining letters.
+- If a letter occurs multiple times in the guess, it can only match as many times as it appears in the secret word.
+"""
+
+# CODE #
+
+def compare(word, guess):
+    word_guesses = { letter: word.count(letter) for letter in word } # Create a dictionary with an item for every letter in the word, with a count associated with that letter
+
+    # Replace every correct letter in the guess with a 2
+    for i in range(len(guess)): # For each index in the guess...
+        if guess[i] == word[i]: # If the letter associated with the index in both the guess and the word are the same,
+            word_guesses.update({ guess[i]: word_guesses[guess[i]]-1 }) # Subtract one from the word_guesses count
+            guess = guess[:i] + "2" + (guess[i+1:] if i != len(guess)-1 else "") # Replace the associated letter in the guess with a 2
+    
+    # Replace the remaining letters in the guess
+    for i in range(len(guess)): # For each index in the guess...
+        if guess[i].isnumeric(): continue # If this index of the guess was already marked (as a 2), skip it
+        elif word_guesses.get(guess[i], "0") == 0 or guess[i] not in word: guess = guess[:i] + "0" + (guess[i+1:] if i != len(guess)-1 else "") # If the letter associated with the index in the guess is not in the word, or if there are no more guesses available for that letter, replace the current letter in the guess with a 0
+        elif guess[i] in word: # If the current letter is in the word,
+            word_guesses.update({ guess[i]: word_guesses[guess[i]]-1 }) # Subtract one from the word_guesses count
+            guess = guess[:i] + "1" + (guess[i+1:] if i != len(guess)-1 else "") # Replace the current letter with a 1
+    
+    return guess # Return the final replaced values
