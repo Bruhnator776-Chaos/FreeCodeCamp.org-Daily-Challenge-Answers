@@ -1,0 +1,9 @@
+"""
+Given an array of numbers, return a new array containing the value needed to get from each number to the next number.
+
+- For the last number, use 0 since there is no next number.
+"""
+
+# CODE #
+
+def find_differences(arr): return [arr[(-1*(i+1))]-arr[(-1*(i+2))] for i in range(len(arr[:-1]))][::-1] + [0] # Calculates the difference between each number in the array and organizes it into a list
