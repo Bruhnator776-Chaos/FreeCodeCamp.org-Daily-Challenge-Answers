@@ -1,0 +1,13 @@
+"""
+Given an array that contains nested arrays, return a new array with all values flattened into a single, one-dimensional array.
+Retain the original order of the items in the arrays.
+"""
+
+# CODE #
+
+def flatten(arr):
+    flattened_arr = [] # Create a list to hold the flattened array
+    for item in arr: # For each item in the array...
+        if type(item) == list: flattened_arr += flatten(item) # If the current item is a list, call the flatten function on the item, adding it to the end of the flattened_arr
+        else: flattened_arr += [item] # Otherwise, just append the item to the end of the flattened_arr
+    return flattened_arr # Return the flattened_arr
