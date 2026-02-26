@@ -1,0 +1,30 @@
+"""
+Given a string, return a message with the count of how many letters and numbers it contains.
+
+- Letters are A-Z and a-z.
+- Numbers are 0-9.
+- Ignore all other characters.
+
+Return "The string has X letters and Y numbers.", where "X" is the count of letters and "Y" is the count of numbers.
+
+If either count is 1, use the singular form for that item.
+"""
+
+# CODE #
+
+def count_letters_and_numbers(s): return f"The string has {len(list(filter(lambda x:x.isalpha(), s)))} letter{'s' if len(list(filter(lambda x:x.isalpha(), s))) !=1 else ''} and {len(list(filter(lambda x:x.isnumeric(), s)))} number{'s' if len(list(filter(lambda x:x.isnumeric(), s))) !=1 else ''}."
+
+# If we expand the above code, we get the following.
+"""
+def count_letters_and_numbers(s):
+    numbers, letters = 0 # Set the base cout of numbers and letters to 0
+    for character in s: # For each character in the string...
+        if character.isnumeric: numbers += 1 # If the character is a number, add one to the number count
+        if character.isalpha: letters += 1 # If the character is a letter, add one to the letter count
+    if numbers == 1: numbers = "1 number" # If there's only 1 number in the string, set numbers to singular
+    else: numbers = f"{numbers} numbers" # Otherwise, set numbers to plural
+    if letters == 1: letters = "1 letter" # If there's only 1 letter in the string, set letters to singular
+    else: letters = f"{numbers} letters" # Otherwise, set letters to plural
+    return f"The string has {letters} and {numbers}." # Return the final string
+"""
+# By utilizing single-line if-statements, filter, and lambda, we can place all of this code into one line. Of course, this decreases the readability of the code, however, it theoretically improves processing times
