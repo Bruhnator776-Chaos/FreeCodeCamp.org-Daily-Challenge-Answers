@@ -1,0 +1,20 @@
+"""
+Given a matrix (array of arrays) of numbers and an integer, shift all values in the matrix by the given amount.
+
+- A positive shift moves values to the right.
+- A negative shift moves values to the left.
+
+Values should wrap:
+- Treat the matrix as one continuous sequence of values.
+- When a value moves past the end of a row, it continues at the beginning of the next row.
+- When a value moves past the last position in the matrix, it wraps to the first position.
+- The same applies in reverse when shifting left.
+"""
+
+# CODE #
+
+def shift_matrix(matrix, shift):
+    matrix_values, shift = [], shift%(len(matrix)*len(matrix[0])) # Define an empty list to hold all the values in the matrix, and adjust the shift argument to shift within the values of the list
+    for row in matrix: matrix_values.extend(row) # For each row in the matrix, add the values in that row to the end of the matrix_values list
+    matrix_values = (matrix_values[shift*-1:] + matrix_values[:shift*-1]) # Adjust the matrix_values by the shift
+    return [matrix_values[i*len(matrix[0]):(i+1)*len(matrix[0])] for i in range((len(matrix_values)//len(matrix[0])))] # Combine the matrix_values back into the shape of the original matrix, then return that value
