@@ -1,0 +1,16 @@
+"""
+Given a string of sentences with missing periods, add a period (".") in the following places:
+- Before each space that comes immediately before an uppercase letter
+- And at the end of the string
+
+Return the resulting string.
+"""
+
+# CODE #
+
+def add_punctuation(sentences):
+    i = 0 # Set an index counter equal to 0
+    for character in sentences: # For each character in the sentence...
+        if character.isupper() and sentences[i-1] == " ": sentences, i = (sentences[:i-1] + "." + sentences[i-1:]), i+1 # If the character is an uppercase letter with a space preceding it, add a period behind the aformentioned space and increase the index counter by 1
+        i+=1 # Increase the index counter by 1
+    return sentences+"." # Return the final sentence with a period at the end.
