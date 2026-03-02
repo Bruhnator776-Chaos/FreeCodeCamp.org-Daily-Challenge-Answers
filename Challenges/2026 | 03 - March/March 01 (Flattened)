@@ -1,0 +1,9 @@
+"""
+Given an array, determine if it is flat.
+
+- An array is flat if none of its elements are arrays.
+"""
+
+# CODE #
+
+def is_flat(arr): return False if len(list(filter(lambda item: type(item) in (list, tuple, set, dict), arr))) >= 1 else True # Filter through the items of the array, letting them through if they are a list, typle, set, or dictionary. If there are 1 or more items let through, return False. Otherwise, return True
