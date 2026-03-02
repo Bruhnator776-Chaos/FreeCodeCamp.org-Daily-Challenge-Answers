@@ -1,0 +1,12 @@
+"""
+Given a string, return the sum of its letters.
+
+- Letters are A-Z in uppercase or lowercase
+- Letter values are: "A" = 1, "B" = 2, ..., "Z" = 26
+- Uppercase and lowercase letters have the same value.
+- Ignore all non-letter characters.
+"""
+
+# CODE #
+
+def sum_letters(s): return sum([ord(c)-64 for c in "".join(list(filter(lambda x: x.isalpha(), s))).upper()]) # First, sort through the string and only process the alphabetical characters. Take those characters and string them together as a string of uppercase characters. For each character in this string, collect the ascii value associated with it, then subtract 64. Take all of those numbers and sum them together, returning that value.
