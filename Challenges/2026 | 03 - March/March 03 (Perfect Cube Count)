@@ -1,0 +1,22 @@
+"""
+Given two integers, determine how many perfect cubes exist in the range between and including the two numbers.
+
+- The lower number is not garanteed to be the first argument.
+- A number (num) is a perfect cube if there exists an integer (n) where n * n * n = num.
+"""
+
+# CODE #
+
+def count_perfect_cubes(a, b):
+    from math import cbrt as cube_root # Import the cube_root function from math, since raising a number to the exponent of 1/3 in Python seems to be rather finicky in its result. (64**(1/3) == ~3.9)?
+    if a < 0 or b < 0: # If either a or b is a negative number,
+        perf_cubes = [] # Create a list to hold all of the perfect cubes
+        for value in (abs(a), abs(b)): perf_cubes += list(filter(lambda i: cube_root(i) == round(cube_root(i)), [i+1 for i in range(value)])) # Collect the number of perfect cubes from 1-abs(value) inclusive
+        return len(perf_cubes)+1 # Return the length of the perfect_cubes list with 1 extra added to account for 0, as 0^3 == 0
+            
+    if a > b: a, b = b, a # If the _a_ value is bigger than the _b_ value, reverse them, therefore making the _a_ value the smaller number, and the _b_ value the larger number
+    return len(list(filter(lambda i: cube_root(i) == round(cube_root(i)), [i+a for i in range(b-a)]))) # Return the len of the list of cube-rootable numbers from _a_ to _b_ inclusive
+
+    
+
+print(count_perfect_cubes(-64, 64))
