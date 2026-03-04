@@ -1,0 +1,18 @@
+"""
+Given an array of playing cards, return a new array with the numeric value of each card.
+
+Card Values:
+- An Ace ("A") has a value of 1.
+- Numbered cards ("2" - "10") have their face value: 2-10, respectively.
+- Face cards: Jack ("J"), Queen ("Q"), and King ("K") are each worth 10.
+
+Suits:
+- Each card has a suit: Spades ("S"), Clubs ("C"), Diamonds ("D"), or Hearts ("H").
+
+Card Format:
+- Each card is represented as a string: "valueSuit".
+"""
+
+# CODE #
+
+def card_values(cards): return list(map(lambda card: { "A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10, "K": 10 }[card], [card[:-1] for card in cards])) # First, remove the suits from the card, as their not needed. Then, for each card value, find the appropriate mapping in a dictionary. Return that final list of values.
