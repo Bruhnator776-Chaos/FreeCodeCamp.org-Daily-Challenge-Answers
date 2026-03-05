@@ -1,0 +1,20 @@
+"""
+Given a string, return the substring between the two identical characters that have the smallest number of characters between them (smallest gap).
+
+- There will always be at least one pair of matching characters.
+- The returned substring should exclude the matching characters.
+- If two or more gaps are the same length, return the characters from the first one.
+"""
+
+# CODE #
+
+def smallest_gap(s):
+    substrings = [] # Form a list to hold the substrings
+    for i in range(len(s)): # For each index in the _s_ argument...
+        char, s = s[0], s[1:] # Seperate the first character of the string from the remainder of the string
+        if s.count(char) >= 1: substrings.append(s[:s.index(char)]) # If the character is found in the string again, add the substring starting from index 0 of the current string until the first occurence of the character in the string to the substrings list
+    
+    counts = {} # Create an empty dictionary to hold lists of substrings associated with their lengths
+    for sub in substrings: counts.update({ str(len(sub)) : counts.get(str(len(sub)), []) + [sub] }) # For each substring in the substring list, add it to the associated count list in the dictionary
+
+    return counts[str(sorted([int(key) for key in counts.keys()])[0])][0] # Take the list associated with the lowest count in the dictionary and return the first value in that list
