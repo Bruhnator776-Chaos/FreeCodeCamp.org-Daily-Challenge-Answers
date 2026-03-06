@@ -1,0 +1,37 @@
+"""
+Given an array of strings representing your trail map, return a string of the moves needed to get to your goal.
+
+The given strings will contain the values:
+- "C": Your current location
+- "G": Your goal
+- "T": Traversable parts of the trail
+- "-": Untraversable parts of the map
+
+Return a string with the moves needed to follow the trail from your location to your goal where:
+- "R" is a move right
+- "D" is a move down
+- "L" is a move left
+- "U" is a move up
+
+There will always be a single continuous trail, without any branching, from your current location to your goal.
+
+Each trail location will have a maximum of two traversable locations touching it.
+"""
+
+# CODE #
+
+def navigate_trail(trail):
+    pos, moves, trail = (trail.index(str(list(filter(lambda x:x.count("C")>0, trail)))[2:-2]),str(list(filter(lambda x:x.count("C")>0, trail)))[2:-2].index("C")), [], [[char for char in line] for line in trail] # Collect the position of the start of the trail as a tuple, create an empty list to hold all the moves, and re-write the trail as a matrix
+    
+    while len(list(filter(lambda x:x in ("C,T,G"), [char for char in "".join(["".join([char for char in line]) for line in trail])]))) != 0: # While there are non-dash characters in the trail
+        checks = [] # Define an empty list
+        for adjust in ((0,1),(0,-1),(1,0),(-1,0)): # For each adjustment in a list of adjustments
+            if ((adjust[0] + pos[0] != -1) and (adjust[0] + pos[0] < len(trail))) and ((adjust[1] + pos[1] != -1) and (adjust[1] + pos[1] < len(trail[0]))): checks.append((adjust[0]+pos[0], adjust[1]+pos[1])) # If the adjustment combined with the position does not land outside of the map, add the exact position of the check relative to the position to the checks list
+        for check in checks: # For each check in the check list
+            if trail[check[0]][check[1]] in ("T", "G"): # If the check position on the trail is either a trail piece or the goal,
+                moves.append((check[0]-pos[0],check[1]-pos[1])) # Add the base check value to the moves
+                trail[pos[0]][pos[1]], pos = "-", check # Redifine the current position as "-", then move the position to the next position on the map
+                if trail[pos[0]][pos[1]] == "G": trail[pos[0]][pos[1]] = "-" # If the current position is the goal, re-write the current position as "-"
+                break # Break out of the loop, as there's no need to check any further directions
+
+    return "".join(list(map(lambda x:{ (0,1):"R", (0,-1):"L", (1,0):"D", (-1,0):"U" }[x], moves))) # Taking the list of moves, re-define them as letters, then combine them into a single string, then returning that final value
