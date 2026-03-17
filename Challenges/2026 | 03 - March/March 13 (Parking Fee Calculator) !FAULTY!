@@ -1,0 +1,36 @@
+"""
+Given two strings representing the time you parked your car and the time you picked it up, calculate the parking fee.
+
+- The given strings will be in the format "HH:MM" using a 24-hour clock.
+- The first string will be the time you parked your car, and the second will be the time you picked it up.
+- If the pickup time is earlier than the entry time, it means the parking spanned past midnight into the next day.
+
+Fee rules:
+- Each hour parked costs $3.
+- Partial hours are rounded up to the next full hour.
+- If the parking spans overnight (past midnight), an additional $10 overnight fee is applied.
+- There is a minimum fee of $5 (only used if the total would be less than $5).
+
+Return the total cost in the format "$cost".
+"""
+
+# CODE #
+
+def calculate_parking_fee(park_time, pickup_time):
+    fee = 10 if int("".join(park_time.split(":"))) > int("".join(pickup_time.split(":"))) else 0 # If the car parked overnight, add a $10 fee
+    park_time = int(park_time.split(":")[0])+1 if int(park_time.split(":")[1]) >= 30 else int(park_time.split(":")[0]) # Convert the park_time to a number of hours, rounding up if there are 30+ extra minutes
+    pickup_time = (int(pickup_time.split(":")[0]))+1 if int(pickup_time.split(":")[1]) >= 30 else int(pickup_time.split(":")[0]) # Convert the pickup_time to a number of hours, rounding up if there are 30+ extra minutes
+    payment = (3*((pickup_time+24)-park_time))+fee if fee == 10 else (3*(pickup_time-park_time))+fee # Calculate the payment required
+    if payment < 5: return "$5" # If the payment is less than 5, return $5
+    else: return f"${payment}" # Otherwise, return the payment number with a $ in front of it
+
+print(calculate_parking_fee("09:00", "11:00")) # Should return $6
+print(calculate_parking_fee("10:00", "10:30")) # Should return $5
+print(calculate_parking_fee("08:10", "10:45")) # Should return $9
+print(calculate_parking_fee("14:40", "23:10")) # Should return $27 !FAILING
+print(calculate_parking_fee("18:15", "01:30"))#  # Should return $34
+print(calculate_parking_fee("11:11", "11:10")) # # Should return $82
+
+"""
+Overall, I'm unsure why my code is failing. I believe it's due to the "Partial hours are rounded up to the next full hour" fee rule, however, I can't seem to discover a solution to it.
+"""
