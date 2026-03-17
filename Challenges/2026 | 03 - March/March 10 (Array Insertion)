@@ -1,0 +1,7 @@
+"""
+Given an array, a value to insert into the array, and an index to insert the value at, return a new array with the value inserted at the specified index.
+"""
+
+# CODE #
+
+def insert_into_array(arr, value, index): return arr[:index] + [value] + arr[index:] # While one could use "arr.insert(index, value)," I decided in the interest of one-lining the code to perform list manipulation to insert the value into the specified index
