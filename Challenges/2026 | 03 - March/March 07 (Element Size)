@@ -1,0 +1,13 @@
+"""
+Given a window size, the width of an element in viewport width "vw" units, and the height of an element in viewport height "vh" units, determine the size of the element in pixels.
+
+- The given window size and returned element size are strings in the format "width x height".
+- "vw" units are the percent of window width.
+- "vh" units are the percent of window height.
+"""
+
+# CODE #
+
+def get_element_size(window_size, evw, evh):
+    evw, evh, window_size = int(evw[:-2])/100, int(evh[:-2])/100, list(map(lambda x:int(x), window_size.split(" x "))) # Reformat the window size into the width and length in a list, then format the elements width and height as percentages in decimal form
+    return f"{round(window_size[0]*evw)} x {round(window_size[1]*evh)}" # Return an f-string multiplying the window_size width and height by the corresponding element values
