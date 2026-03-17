@@ -1,0 +1,7 @@
+"""
+Given an array of numbers, return the sum of all the numbers.
+"""
+
+# CODE #
+
+def sum_array(numbers): return sum(numbers) # This is a built-in function that returns the sum of all numbers in an array
