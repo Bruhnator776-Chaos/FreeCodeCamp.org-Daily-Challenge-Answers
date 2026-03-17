@@ -1,0 +1,10 @@
+"""
+Given a string of words, return a new string where each word is replaced by its length.
+
+- Words in the given string will be separated by a single space
+- Keep the spaces in the returned string.
+"""
+
+# CODE #
+
+def convert_words(s): return " ".join(list(map(lambda x: str(len(x)), s.split(" ")))) # Split the string by the spaces, seperating it into the words. For each word, collect the length, and form a list using these lengths. Join these lengths into a string seperated by spaces.
