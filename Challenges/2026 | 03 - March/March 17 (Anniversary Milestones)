@@ -1,0 +1,27 @@
+"""
+Given an integer representing the number of years a couple has been married, return their most recent anniversary milestone according to this chart:
+    Years Married	Milestone
+    1	            "Paper"
+    5	            "Wood"
+    10	            "Tin"
+    25	            "Silver"
+    40	            "Ruby"
+    50	            "Gold"
+    60	            "Diamond"
+    70	            "Platinum"
+
+- If they haven't reached the first milestone, return "Newlyweds".
+"""
+
+# CODE #
+
+def get_milestone(years):
+    if years < 1: return "Newlyweds" # If the couple has been married for less than 1 year, return "Newlyweds"
+    if years < 5: return "Paper" # If the couple has been married for less than 5 years, return "Paper"
+    if years < 10: return "Wood" # If the couple has been married for less than 10 years, return "Wood"
+    if years < 25: return "Tin" # If the couple has been married for less than 25 years, return "Tin"
+    if years < 40: return "Silver" # If the couple has been married for less than 40 years, return "Silver"
+    if years < 50: return "Ruby" # If the couple has been married for less than 50 years, return "Ruby"
+    if years < 60: return "Gold" # If the couple has been married for less than 60 years, return "Gold"
+    if years < 70: return "Diamond" # If the couple has been married for less than 70 years, return "Diamond"
+    return "Platinum" # If none of the above apply, return "Platinum"
