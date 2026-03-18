@@ -1,0 +1,7 @@
+"""
+Given two integers, determine if you can evenly divide the first one by the second one.
+"""
+
+# CODE #
+
+def is_evenly_divisible(a, b): return True if a/b==a//b else False # Divide _a_ by _b_. If that number is the same as itself truncated, it means that _a_ is divisible by _b_
