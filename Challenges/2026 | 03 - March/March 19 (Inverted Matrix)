@@ -1,0 +1,9 @@
+"""
+Given a matrix (an array of arrays) filled with two distinct values, return a new matrix where all occurrences of one value are swapped with the other.
+"""
+
+# CODE #
+
+def invert_matrix(matrix):
+    values = list({value for line in matrix for value in line}) # Collect the values included within the matrix by flattening the matrix completely, turning it into a set (which is unordered and prevents duplicates), then turning it back into a list
+    return [[values[(values.index(matrix[line_i][column_i])+1)%2] for column_i in range(len(matrix[line_i]))] for line_i in range(len(matrix))] # Swap every value and return the final matrix
