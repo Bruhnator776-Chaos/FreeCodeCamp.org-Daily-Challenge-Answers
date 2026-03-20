@@ -1,0 +1,24 @@
+"""
+Today is the equinox, when the sun is directly above the equator and perfectly overhead at noon.
+Given a time, determine the shadow cast by a 4-foot vertical pole.
+
+- The time will be a string in "HH:MM" 24-hour format (for example, "15:00" is 3pm).
+- You will only be given a time in 30 minute increments.
+
+Rules:
+- The sun rises at 6am directly "east", and sets at 6pm directly "west".
+- A shadow always points opposite the sun.
+- The shadow's length (in feet) is the number of hours away from noon, cubed.
+- There is no shadow before sunrise (before 6am), after sunset (6pm or later), or at noon.
+
+Return:
+- If a shadow exists, return "(length)ft (direction)".
+- Otherwise, return "No shadow".
+"""
+
+# CODE #
+
+def get_shadow(time):
+    time = int(time.split(":")[0]) + (0.5 if time.split(":")[1]=="30" else 0) # Format the time into a float representing the number of hours since 00:00
+    if (time<6 or time>=18) or time == 12: return "No shadow" # If it is before 6am, at/after 6pm, or noon, return "No shadow"
+    return (f"{(12-time)**3}ft west") if time < 12 else (f"{(time-12)**3}ft east") # Depending on whether the time given is before or after noon, return a string representing the length and direction of the shadow
