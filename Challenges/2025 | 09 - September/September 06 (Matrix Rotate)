@@ -1,0 +1,7 @@
+"""
+Given a matrix (an array of arrays), rotate the matrix 90 degrees clockwise and return it.
+"""
+
+# CODE #
+
+def rotate(matrix): return [[matrix[y][x] for y in range(len(matrix))[::-1]] for x in range(len(matrix))] # Rotate the matrix 90 degrees clockwise and return the resulting matrix
