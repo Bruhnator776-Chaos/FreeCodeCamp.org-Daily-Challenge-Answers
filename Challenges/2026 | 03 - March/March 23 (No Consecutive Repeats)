@@ -1,0 +1,9 @@
+"""
+Given a string, determine if it has no repeating characters.
+
+- A string has no repeats if it does not have the same character two or more times in a row.
+"""
+
+# CODE #
+
+def has_no_repeats(s): return True if len(list(filter(lambda x:x in s, [c*2 for c in s]))) == 0 else False # Using a list of every character in the string as a double letter, if that substring is found within the string, create a list using that value, along with others of similar nature. If there are no values in this final list, return True, otherwise, return False
