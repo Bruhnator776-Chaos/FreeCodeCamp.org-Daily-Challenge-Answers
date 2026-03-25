@@ -1,0 +1,14 @@
+"""
+Given two timestamps, the first representing when a user finished an exam, and the second representing the current time, determine whether the user can take an exam again.
+
+- Both timestamps will be given the format: "YYYY-MM-DDTHH:MM:SS". Note that the time is 24-hour clock.
+- A user must wait at least 48 hours before retaking an exam.
+"""
+
+# CODE #
+
+def can_retake(finish_time, current_time):
+    time_to_time = lambda x: int(x.split(":")[0])*60*60 + int(x.split(":")[1])*60 + int(x.split(":")[2])
+    days, time_diff = (int(current_time.split("T")[0].split("-")[2]) - int(finish_time.split("T")[0].split("-")[2])), time_to_time(current_time.split("T")[1]) - time_to_time(finish_time.split("T")[1])
+    if days < 2 or time_diff < 0: return False
+    return True
