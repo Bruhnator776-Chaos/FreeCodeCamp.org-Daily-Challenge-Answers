@@ -1,0 +1,7 @@
+"""
+Given an array of student exam scores and the score needed to pass it, return the number of students that passed the exam.
+"""
+
+# CODE #
+
+passing_count = lambda scores, passing_score: len(list(filter(lambda score: score>=passing_score, scores))) # Create a list of only scores that are equal or greater than the passing_score, then collect the length of that list
