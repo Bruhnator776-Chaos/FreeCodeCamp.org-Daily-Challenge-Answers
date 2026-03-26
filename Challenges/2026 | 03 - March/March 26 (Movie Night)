@@ -1,0 +1,27 @@
+"""
+Given a string for the day of the week, another string for a showtime, and an integer number of tickets, return the total cost of the movie tickets for that showing.
+
+The given day will be one of:
+- "Monday"
+- "Tuesday"
+- "Wednesday"
+- "Thursday"
+- "Friday"
+- "Saturday"
+- "Sunday"
+
+The showtime will be given in the format "H:MMam" or "H:MMpm".
+
+Return the total cost in the format "$D.CC" using these rules:
+- Weekend (Friday - Sunday): $12.00 per ticket.
+- Weekday (Monday - Thursday): $10.00 per ticket.
+- Matinee (before 5:00pm): subtract $2.00 per ticket (except on Tuesdays).
+- Tuesdays: all tickets are $5.00 each.
+"""
+
+# CODE #
+
+def get_movie_night_cost(day, showtime, number_of_tickets):
+    if day == "Tuesday": return f"${5*number_of_tickets}.00" # If the showing is on a Tuesday, each ticket only costs $5
+    price = { "Monday":10, "Wednesday":10, "Thursday":10, "Friday":12, "Saturday":12, "Sunday":12 }[day] - (2 if ((int(showtime.split(":")[0])) + (0 if showtime[-2] == "a" else 12) + (int(showtime.split(":")[1][:-2])/60)) < 17 else 0) # Collect the price of one ticket based on the day, then subtract 2 if it's before 5pm
+    return f"${price*number_of_tickets}.00" # Return the price of all of the tickets
