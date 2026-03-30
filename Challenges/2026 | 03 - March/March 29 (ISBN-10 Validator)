@@ -1,0 +1,23 @@
+"""
+Given a string, determine if it's a valid ISBN-10.
+
+An ISBN-10 consists of hyphens ("-") and 10 other characters.
+
+After removing the hyphens ("-"):
+- The first 9 characters must be digits, and
+- The final character may be a digit or the letter "X", which represents the number 10.
+
+To validate it:
+- Multiply each digit (or value) by its position (1-indexed).
+- Add all the results together.
+- If the total is divisible by 11, it's valid.
+"""
+
+# CODE #
+
+def is_valid_isbn10(s):
+    s = "".join(list(filter(lambda s:(s.isdigit() or s=="X"), s))) # Remove the hyphens
+    if (not s[:-1].isdigit()) or (s[-1] not in "0123456789X"): return False # Check if the individual digits are valid
+
+    s = [{"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"X":10}[c] for c in s] # Reformat the string into a list of numbers
+    return (sum([s[i]*(i+1) for i in range(len(s))])/11 == sum([s[i]*(i+1) for i in range(len(s))])//11) # Sum of the numbers multiplied by position and determine if that number is divisible by 11
