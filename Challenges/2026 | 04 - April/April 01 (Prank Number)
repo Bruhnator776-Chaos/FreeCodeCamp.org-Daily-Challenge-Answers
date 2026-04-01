@@ -1,0 +1,16 @@
+"""
+Given an array of numbers where all but one number follow a pattern, return a new array with the one number that doesn't follow the pattern fixed.
+
+The pattern will be one of:
+- The numbers increase from one to the next by a fixed amount (addition).
+- The numbers decrease from one to the next by a fixed amount (subtraction).
+"""
+
+# CODE #
+
+def fix_prank_number(arr):
+    differences = [arr[i+1]-arr[i] for i in range(len(arr)-1)] # Create a list of the differences between numbers
+    change = list(filter(lambda x: differences.count(x)!=1, differences))[0] # Collect the most common difference, the correct difference
+
+    if differences[0] == change: return [arr[0]] + [arr[0]+(change*(i+1)) for i in range(len(arr)-1)] # If the first number is determined to be correct, from that number, increment upward by the change
+    else: return [arr[-1]+mod for mod in [-change*(i+1) for i in range(len(differences))]][::-1] + [arr[-1]] # If the last number is determined to be correct, from that number, increment downward by the change, reversing the list afterword
