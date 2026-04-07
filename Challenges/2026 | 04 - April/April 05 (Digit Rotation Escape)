@@ -1,0 +1,20 @@
+"""
+Given a positive integer, determine if it, or any of its rotations, is evenly divisible by its digit count.
+
+A rotation means to move the first digit to the end.
+
+- Check rotation 0 (the given number) first.
+- Given numbers won't contain any zeros.
+- Return the first rotation number if one is found, or "none" if not.
+"""
+
+# CODE #
+
+def get_rotation(n):
+    n_origin, i, n = str(n), 0, str(n) # Define a variable that holds the initial value of n as a string, a counter variable, and convert n into a string
+    if int(n)/len(n) == int(n)//len(n): return i # If the integer of n is divisible by the length of n, return i
+    n, i = n[-1]+n[:-1], i+1 # Move the final digit of n to the beginning of n, and increment the counter variable
+    while n != n_origin: # While n is not equal to the initial value of n...
+        if int(n)/len(n) == int(n)//len(n): return i+1 # If the integer of n is divisible by the length of n, return i+1 (bit of a band-aid solution, i+1...)
+        n, i = n[-1]+n[:-1], i+1 # Move the final digit of n to the beginning of n, and increment the counter variable
+    return "none" # Assuming that a viable number was never found, return "none"
