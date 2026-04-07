@@ -1,0 +1,14 @@
+"""
+Given a string representing a math equation, determine whether it is correct.
+
+- The left side may contain up to three positive integers and the operators +, -, *, and /.
+- The equation will be given in the format "number operator number = number" (with two or three numbers on the left).
+- The right side will always be a single integer.
+
+Follow standard order of operations:
+- multiplication and division are evaluated before addition and subtraction, from left-to-right.
+"""
+
+# CODE #
+
+def is_valid_equation(equation): return eval(equation.split("=")[0]) == eval(equation.split("=")[1]) # The eval function takes an equation as a string and evaluates it according to pythons logic. Since a single "=" does not work in this application, one could choose to replace it with a "==", but I just split the equation and placed my own "==" in, seperating the string into 2 eval functions. This method also allows longer equations to inputted, such as "4/3*2+6-2=2*5+4-3/6"
