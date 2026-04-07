@@ -1,0 +1,18 @@
+"""
+Given a string, return a new string where each letter is capitalized if its index is a Fibonacci number, and lowercased otherwise.
+
+The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. The first 2 numbers in the sequence are [0, 1].
+
+- The first character is at index 0.
+- If the index of non-letter characters is a Fibonacci number, leave it unchanged.
+"""
+
+# CODE #
+
+def capitalize_fibonacci(s):
+    fibonacci, i = [0,1], 0 # Define the first two numbers of the fibonacci sequence, and a counter variable
+    while fibonacci[-1] < len(s): fibonacci.append(fibonacci[-2]+fibonacci[-1]) # While the final number of the fibonacci sequence is less than the length of the string, add another number to the end of the fibonacci sequence (therefore ensuring that there are enough numbers in the sequence to account for every index of the string)
+    for char in s: # For each character in the string
+        if i in fibonacci: s, i = s[:i] + char.upper() + s[i+1:], i+1 # If the current index is within the fibonacci sequence, change the character at that index to lowercase and add to the counter variable
+        else: s, i = s[:i] + char.lower() + s[i+1:], i+1 # Otherwise, change the current index to lowercase and add to the counter variable
+    return s # Return the final string
