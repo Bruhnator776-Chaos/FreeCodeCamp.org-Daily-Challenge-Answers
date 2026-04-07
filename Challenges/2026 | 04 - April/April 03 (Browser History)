@@ -1,0 +1,29 @@
+"""
+Given an array of browser commands, return an array with two values: the history as an array of URLs, and the index of the current page.
+
+Valid commands are:
+- "URL": Where URL is a web address. Navigates to the given URL, adds it to the history at the next position, and discards any forward history.
+- "Back": moves to the previous page in history, or stays on the current page if there isn't one.
+- "Forward": moves to the next page in history, or stays on the current page if there isn't one.
+"""
+
+# CODE #
+
+def get_browser_history(commands):
+    index, history, forward_history = 0, [], [] # Define variables for the index, history, and forward_history
+    for command in commands: # For each command in the commands array...
+        if command not in ("Forward", "Back"): # If the command is not forward or back,
+            history += [command] # Add the command to the history
+            index = len(history)-1 # Set the index to the final position in the history
+            forward_history = [] # Reset the forward history
+        if command == "Forward" and forward_history != []: # If the command is forward, and there is a forward history,
+            history += [forward_history.pop(-1)] # Move the last item from the forward_history to the end of the history
+            index += 1 # Add one to the index
+        if command == "Back" and index != 0: # If the command was back and the index isn't 0,
+            forward_history += [history.pop(-1)] # Move the last item from the history to the end of the forward_history
+            index -= 1 # Subtract one from the index
+    return [history+forward_history, index] # Return the final history and index
+
+"""
+I ended up having trouble deciphering what exactly I was doing, so the code has been expanded without all of the usual compacting.
+"""
