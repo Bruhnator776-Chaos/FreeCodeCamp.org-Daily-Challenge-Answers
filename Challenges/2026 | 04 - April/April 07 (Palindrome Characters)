@@ -1,0 +1,13 @@
+"""
+Given a string, determine if it's a palindrome and return the middle character (if it's odd length) or middle two characters (if it's even).
+
+- A palindrome is a string that is the same forward and backward.
+- If it's not a palindrome, return "none".
+"""
+
+# CODE #
+
+def palindrome_locator(s):
+    if len(s)%2==0 and s[:len(s)//2] == s[len(s)//2:][::-1]: return s[len(s)//2]*2 # If the string is both a palindrome and even in length, return the center two letters
+    elif len(s)%2==1 and s[:len(s)//2] == s[(len(s)//2)+1:][::-1]: return s[len(s)//2] # If the string is both a palindrome and odd in length, return the center letter
+    return "none" # Otherwise, return "none"
