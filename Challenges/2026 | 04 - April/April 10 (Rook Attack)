@@ -1,0 +1,12 @@
+"""
+Given two strings for the location of two rooks on a chess board, determine if they can attack each other.
+
+A standard chessboard is 8x8, with columns labeled A through H (left to right) and rows labeled 1 through 8 (bottom to top).
+
+Rooks can move as many squares as they want in a horizontal or vertical direction.
+So if they are on the same row or column, they can attack each other.
+"""
+
+# CODE #
+
+def rook_attack(rook1, rook2): return True if rook1[0]==rook2[0] or rook1[1]==rook2[1] else False # If the rooks share a column or row, they can attack each other, otherwise, they cannot.
