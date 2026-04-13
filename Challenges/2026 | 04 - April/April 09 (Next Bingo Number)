@@ -1,0 +1,17 @@
+"""
+Given a bingo number, return the next bingo number sequentially.
+
+A bingo number is a single letter followed by a number in its range according to this chart:
+    Letter  Number Range
+    "B"	    1-15
+    "I"	    16-30
+    "N"	    31-45
+    "G"	    46-60
+    "O"	    61-75
+"""
+
+# CODE #
+
+def get_next_bingo_number(n):
+    n = (int(n[1:])+1)%75 # Format n into just a number between 1-75 inclusive
+    return f"B{n}" if n<=15 else (f"I{n}" if n<=30 else (f"N{n}" if n<=45 else (f"G{n}" if n<=60 else f"O{n}"))) # Return the number after the corresponding letter
