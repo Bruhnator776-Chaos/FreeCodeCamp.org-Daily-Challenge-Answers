@@ -1,0 +1,38 @@
+"""
+Given a string for the location of a rook on a chess board, and another for the location of a bishop, determine if one piece can attack another.
+
+A standard chessboard is 8x8, with columns labeled A through H (left to right) and rows labeled 1 through 8 (bottom to top).
+
+- Rooks can move as many squares as they want in a horizontal or vertical direction.
+- Bishops can move as many squares as they want in any diagonal direction.
+- One piece can attack another if it can move to the location of that piece.
+
+Return:
+- "rook" if the rook can attack the bishop.
+- "bishop" if the bishop can attack the rook.
+- "neither" if neither piece can attack one another.
+"""
+
+# CODE #
+
+def rook_bishop_attack(rook, bishop):
+    rook_moves, temp, bishop_moves = sorted(list(set([let+rook[1] for let in "ABCDEFG"] + [rook[0]+num for num in "12345678"]))), [{ "A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8 }[bishop[0]], int(bishop[1])], [] # Collect every move the rook can make, collect a temporary position from the bishop, and define an empty list to hold the bishop_moves
+    
+    # Bishop BL to TR diagonal
+    while not (temp[0] == 1 or temp[1] == 1): temp = [temp[0]-1, temp[1]-1] # While the temp value isn't against the left or bottom walls of the board, move towards the bottom-left corner
+    while not (temp[0]==9 or temp[1]==9): # While the temp value is not past the top or right walls of the board...
+        bishop_moves.append({ 1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H" }[temp[0]]+str(temp[1])) # Add the current position on the board to the bishop_moves list
+        temp = [temp[0]+1, temp[1]+1] # Move toward the top-right corner of the board
+
+    # Bishop TL to BR diagonal
+    temp = [{ "A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8 }[bishop[0]], int(bishop[1])] # Recollect the temporary position from the bishop
+    while not (temp[0] == 1 or temp[1] == 8): temp = [temp[0]-1, temp[1]+1] # While the temp value is not past the top or left walls of the board, move towards the top-left corner
+    while not (temp[0]==9 or temp[1]==0): # While the temp value is not past the bottom or right walls of the board...
+        bishop_moves.append({ 1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H" }[temp[0]]+str(temp[1])) # Add the current position on the board to the bishop_moves list
+        temp = [temp[0]+1, temp[1]-1] # Move toward the bottom-right corner of the board
+    
+    bishop_moves = sorted(list(set(bishop_moves))) # Remove the duplicated value at the bishop's position (Just for funsies! Doesn't actually break the code otherwise)
+    
+    if bishop in rook_moves: return "rook" # If the bishop is available to be attacked by the rook, return "rook"
+    elif rook in bishop_moves: return "bishop" # Elif the rook is available to be attacked by the bishop, return "bishop"
+    else: return "neither" # Otherwise, if neither can attack, return "neither"
