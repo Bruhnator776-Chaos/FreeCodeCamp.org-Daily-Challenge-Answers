@@ -1,0 +1,11 @@
+"""
+Given a full name as a string, return their initials.
+
+- Names to initialize are separated by a space.
+- Initials should be made uppercase.
+- Initials should be separated by dots.
+"""
+
+# CODE #
+
+def get_initials(name): return ".".join(list(map(lambda x:x[0], name.split(" ")))).upper() + "." # Collect the first letter of each name, then join them, seperated with "."'s, with an extra "." at the end
