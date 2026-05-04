@@ -1,0 +1,38 @@
+"""
+Given a string with numbers and other characters, perform math on the numbers based on the count of non-digit characters between the numbers.
+
+- If the count of characters separating two numbers is even, use addition.
+- If it's odd, use subtraction.
+- Consecutive digits form a single number.
+- Operations are applied left to right.
+- Ignore leading and trailing characters that aren't digits.
+"""
+
+# CODE #
+
+def do_math(s):
+    # Remove leading and trailing non-digit characters
+    if not s[0].isdigit(): s = s[s.index(list(filter(lambda x:x.isdigit(), [c for c in s]))[0]):]
+    s = s[::-1]
+    if not s[0].isdigit(): s = s[s.index(list(filter(lambda x:x.isdigit(), [c for c in s]))[0]):]
+    s, total = s[::-1], ""
+
+    # Collect the first integer
+    for character in s:
+        if character.isdigit(): total+=character
+        else: break
+    total, s = int(total), s[len(total):]
+
+    while len(s)>0: # While there are still characters in the string
+        operation = "" # Set the operation to blank
+        for character in s: # For each character in s
+            if not character.isdigit(): operation+=character # If the character is a non-digit, add it to the operation
+            else: break # Otherwise, break out of the for-loop
+        s, operation, sec_num = s[len(operation):], ("-" if len(operation)%2==1 else "+"), "" # Cut out the leading non-digits from s, set the operation to the corresponding value, and set sec_num (2nd number) to blank
+        for character in s: # For each character in s
+            if character.isdigit(): sec_num+=character # If the character is a digit, add it to sec_num
+            else: break # Otherwise, break out of the for-loop
+        s, total = s[len(sec_num):], eval(f"{total}{operation}{int(sec_num)}") # Remove the leading digits from s, then re-evaluate the total variable
+    return total # Return the final total variable
+
+""" Overall, this code is a mess """
