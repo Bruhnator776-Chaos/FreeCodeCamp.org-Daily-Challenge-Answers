@@ -1,0 +1,10 @@
+"""
+Given a string of words, return only the words with an odd number of letters.
+
+- Words in the given string will be separated by a single space.
+- Return the words separated by a single space.
+"""
+
+# CODE #
+
+def get_odd_words(s): return " ".join(list(filter(lambda x:len(x)%2==1, s.split(" ")))) # Collect and return the odd words and string them together seperated by spaces
