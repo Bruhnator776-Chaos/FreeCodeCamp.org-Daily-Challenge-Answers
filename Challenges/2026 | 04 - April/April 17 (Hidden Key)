@@ -1,0 +1,34 @@
+"""
+Welcome to the 250th daily challenge!
+
+Given an encoded string, decode it using an encryption key and return it.
+
+To find the key:
+- Look at all daily challenges up to today whose challenge number is a multiple of 25 (including this one).
+- Take the first letter from each of those challenge titles and combine them into a string.
+  - If the title starts with a non-letter, find its first letter.
+
+To decode the message, go over each letter in the encoded message and:
+1) Look at the corresponding letter in the key (repeat the key if the message is longer than the key).
+2) Convert the key letter to its corresponding number: "A" = 1, "B" = 2, ..., "Z" = 26.
+3) Shift the encoded letter backward in the alphabet by that number.
+4) If the shift goes before "A", wrap around to "Z".
+
+- Only letters are shifted, spaces are returned as-is.
+- All given and returned letters are uppercase.
+"""
+
+# CODE #
+
+def decode(message):
+    key = [c for c in ("VLHCGMDLNH"*len(message))] # Define enough values in the key to cover the full length of the message
+    for space in list(filter(lambda x:x!=False, [(i if message[i]==" " else False) for i in range(len(message))])): key.insert(space, " ") # Add the spaces found in the message into the key
+    decoded, key = "", "".join(key)[:len(message)] # Create a blank string to hold the decoded message, and join the items within the key together into one string, then cut it down to the same length as the message
+    for i in range(len(key)): # For each index of the key
+        if key[i] == " ": # If the current index is a space,
+            decoded += " " # Add a space to the string
+            continue # Skip all following commands in the current itteration of the loop
+        key_num, mess_num = (ord(key[i])-ord("A"))+1, (ord(message[i])-ord("A")) # Collect the number corresponding with both the current letter of the key and message
+        if mess_num-key_num < 0: decoded += chr(mess_num-key_num+26+ord('A')) # If the mess_num subtracted by the key_num is less than 0, add the corresponding character to the key_num subtracted from mess_num with 26 added after, adding the ord of A to counteract the previous line.
+        else: decoded += chr(mess_num-key_num+ord('A')) # Otherwise, add the correct changed number
+    return decoded # Return the final decoded string
