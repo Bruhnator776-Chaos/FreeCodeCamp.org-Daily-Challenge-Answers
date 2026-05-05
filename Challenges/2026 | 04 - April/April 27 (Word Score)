@@ -1,0 +1,14 @@
+"""
+Given a word, return its score using a standard letter-value table:
+    Letter	Value
+    A	1
+    B	2
+    ...	...
+    Z	26
+
+- Upper and lowercase letters have the same value.
+"""
+
+# CODE #
+
+def get_word_score(word): return sum([ord(letter)-96 for letter in "".join(list(filter(lambda x:x.isalpha(), [c for c in word]))).lower()]) # Sort out only the letters from the word, making them lowercase. Then collect the ord of each letter, and subtract 96, making it so that each letter now represents the given value. Sum together that list and return the final result
