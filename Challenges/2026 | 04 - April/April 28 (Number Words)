@@ -1,0 +1,16 @@
+"""
+Given an integer from 0 to 99, return its English word representation.
+
+- Numbers 0-19 have unique names.
+- Multiples of 10 from 20-90 have their own names.
+- Numbers 21-99 that are not multiples of 10 are written as two words joined by a hyphen.
+"""
+
+# CODE #
+
+def get_number_words(n):
+    ones, uniques, tens = { 0:'zero', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five', 6:'six', 7:'seven', 8:'eight', 9:'nine' }, { 10:'ten', 11:'eleven', 12:'twelve', 13:'thirteen', 14:'fourteen', 15:'fifteen', 16:'sixteen', 17:'seventeen', 18:'eighteen', 19:'nineteen' }, { 20:'twenty', 30:'thirty', 40:'forty', 50:'fifty', 60:'sixty', 70:'seventy', 80:'eighty', 90:'ninety' } # Create dictionaries for reference of ones, uniques, and tens
+    if len(str(n))==1: return ones[n] # If the number is a single digit, find and return the number in the ones
+    if n in uniques.keys(): return uniques[n] # If the number is unique, find and return the number in the uniques
+    if n in tens.keys(): return tens[n] # If the number is a ten, find and return the number in the tens
+    return tens[int(str(n)[0]+"0")] + "-" + ones[int(str(n)[1])] # Return the tens and ones seperated by a hyphen
