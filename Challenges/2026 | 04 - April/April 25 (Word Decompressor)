@@ -1,0 +1,13 @@
+"""
+Given a compressed string, return the decompressed version using the following rules:
+- The given string is made up of words and numbers separated by spaces.
+- Leave the words unchanged.
+- Replace numbers with the word at that position, where the first word is at position 1.
+"""
+
+# CODE #
+
+def decompress(s):
+    indexes, s = {str(s.split(" ").index(word)+1):word for word in list(filter(lambda x:x.isalpha(), s.split(" ")))}, s.split(" ") # Created a dictionary of indexes paired with the corresponding words, then split s into individual words
+    for word in list(filter(lambda x:x.isdigit(), s)): s[s.index(word)] = indexes[word] # Replace the indexes from the string into the corresponding words via the index dictionary
+    return " ".join(s) # Rejoin the string and return it
