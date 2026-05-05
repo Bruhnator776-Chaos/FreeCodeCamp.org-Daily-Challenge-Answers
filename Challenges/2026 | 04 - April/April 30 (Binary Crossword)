@@ -1,0 +1,29 @@
+"""
+Given a character, determine if its 8-bit binary representation can be found in the following grid, horizontally or vertically in either direction:
+
+    0 1 0 0 0 0 0 1
+    0 1 1 0 1 1 1 1
+    0 1 0 0 0 1 0 0
+    0 1 1 0 0 1 0 1
+    0 1 0 1 0 0 1 0
+    0 1 0 1 0 1 0 0
+    0 1 1 0 1 0 0 0
+    1 0 1 0 1 1 1 0
+"""
+
+# CODE #
+
+# Define a function to convert from a character to binary
+def to_binary(character):
+    binary, integer = [], ord(character) # Set an empty list to store each digit in the binary string and set integer to the character
+    while integer > 0: binary, integer = binary+[integer%2], integer//2 # Until there are no more values to expand into binary digits, divide argument by power of 2 and add value to binary string, then change the integer value to represent the change
+    return "".join([str(digit) for digit in binary])[::-1] # Format the binary string in list to be the correct order in string format
+
+def is_in_crossword(char):
+    rotate = lambda matrix: [[matrix[y][x] for y in range(len(matrix))[::-1]] for x in range(len(matrix))] # Rotate the matrix 90 degrees clockwise and return the resulting matrix
+    grid = [[0,1,0,0,0,0,0,1], [0,1,1,0,1,1,1,1], [0,1,0,0,0,1,0,0], [0,1,1,0,0,1,0,1], [0,1,0,1,0,0,1,0], [0,1,0,1,0,1,0,0], [0,1,1,0,1,0,0,0], [1,0,1,0,1,1,1,0]] # Create the binary grid, represented as a matrix
+    for i in range(4): # Repeat 4 times:
+        for row in grid: # For each row in the grid,
+            if to_binary(char) in "".join([str(i) for i in row]): return True # If the binary of the given number is in the row, return True
+        grid = rotate(grid) # Rotate the grid
+    return False # If the binary was never found, return False
