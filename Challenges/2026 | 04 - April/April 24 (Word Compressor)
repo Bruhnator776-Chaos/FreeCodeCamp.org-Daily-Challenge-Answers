@@ -1,0 +1,16 @@
+"""
+Given a string, return a compressed version of the string using the following rules:
+- The first occurrence of a word remains unchanged.
+- Subsequent occurrences are replaced with the position of the first occurrence, where the first word is at position 1.
+- Words are separated by a single space.
+"""
+
+# CODE #
+
+def compress(s):
+    words, s = {word:False for word in s.split(" ")}, s.split(" ") # Create a dictionary that will hold the indexes for each word, then split s into an array of individual words
+    for word in s: # For each word in s,
+        if words[word] == False: words[word] = s.index(word)+1 # If the word has no defined index, Update the words index
+        s[s.index(word)] = words[word] # Change the word in s to the index
+    for word, index in words.items(): s[index-1] = word # Replace the first occurances of each index with the corresponding word
+    return " ".join([str(i) for i in s]) # Return the final words, rejoined with seperating spaces
