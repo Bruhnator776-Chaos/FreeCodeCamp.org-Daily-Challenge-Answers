@@ -1,0 +1,13 @@
+"""
+Given a URL that contains a query string, parse the query string into an object (or dictionary) of key-value pairs.
+
+- The query string begins after the "?",
+- each parameter is separated by "&",
+- each key/value pair is separated by "="
+
+All values should be returned as strings.
+"""
+
+# CODE #
+
+def parse_url_query(url): return {parameter.split("=")[0]:parameter.split("=")[1] for parameter in url.split("?")[1].split("&")} # Collect the query string and loop through each parameter, adding it to a dictionary
