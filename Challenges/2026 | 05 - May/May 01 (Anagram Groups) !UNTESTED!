@@ -1,0 +1,19 @@
+"""
+Given an array of words, return a 2d array of the words grouped into anagrams.
+
+- Words are anagrams if they contain the same letters in any order.
+- Each word belongs to exactly one group.
+- Return order doesn't matter.
+"""
+
+# CODE #
+
+def group_anagrams(words):
+    word_groupings = {word:[] for word in set(["".join(sorted(word)) for word in words])} # Create a dictionary in which each word_grouping is a key, with an empty list as the value
+    for word in words: word_groupings.update({"".join(sorted(word)): word_groupings.get("".join(sorted(word)))+[word]}) # Add each word from the words array to the corresponding words lists in the word_groupings dictionary
+    return [word_groupings.get(word_grouping) for word_grouping in word_groupings.keys()] # Return the word_groupings as an array of arrays
+
+"""
+When attempting to submit this answer,
+freeCodeCamp was having difficulty.
+"""
