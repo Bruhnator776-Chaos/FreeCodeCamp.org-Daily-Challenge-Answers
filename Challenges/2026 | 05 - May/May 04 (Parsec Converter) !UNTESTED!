@@ -1,0 +1,17 @@
+"""
+In a distant galaxy, parsecs are used to measure both time and distance.
+Given an integer number of parsecs, return its equivalent in time or distance.
+
+- If the given integer is odd, it represents time. If it's even, it represents distance.
+
+Use these conversion rates:
+    Parsecs	Time/Distance
+    1	    2 hours
+    2	    6 light years
+
+Return the converted value as an integer.
+"""
+
+# CODE #
+
+convert_parsecs = lambda parsecs: parsecs*(3 if parsecs%2==0 else 2) # Given a parsecs value, return the time if odd, and the distance if even
