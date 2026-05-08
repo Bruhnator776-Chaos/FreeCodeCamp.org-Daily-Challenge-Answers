@@ -1,0 +1,9 @@
+"""
+Given a positive integer, determine whether it is a narcissistic number.
+
+- A number is narcissistic if the sum of each of its digits raised to the power of the total number of digits equals the number itself.
+"""
+
+# CODE #
+
+is_narcissistic = lambda n: n == sum([int(c)**len(str(n)) for c in str(n)]) # By splitting the number into the individual digits then raising them to the power of the character length of n, we can add those results to get a new number. We return a check comparing that number with the old number.
