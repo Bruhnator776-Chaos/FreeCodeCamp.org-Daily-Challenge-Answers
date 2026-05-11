@@ -1,0 +1,13 @@
+"""
+Given a matrix (an array of arrays), return the transposed version of it.
+
+To transpose the matrix, swap the rows and columns.
+"""
+
+# CODE #
+
+def transpose(matrix):
+    new = [["" for row in matrix] for column in matrix[0]] # Create an empty matrix to hold the transposed matrix
+    for row in range(len(matrix)): # For each row in the matrix
+        for column in range(len(matrix[0])): new[column][row] = matrix[row][column] # For each column in the matrix, set the correct transposed value in the new_matrix with the value from the original matrix
+    return new # Return the new matrix
