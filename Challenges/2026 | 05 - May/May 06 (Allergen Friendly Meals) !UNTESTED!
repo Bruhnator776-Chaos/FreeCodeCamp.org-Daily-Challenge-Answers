@@ -1,0 +1,18 @@
+"""
+Given an array of meals and an array of allergens to avoid, return the names of all the meals that contain none of the given allergens.
+
+- Each meal is in the format [meal, allergens], where meal is the name of the meal, and allergens is an array of the allergens the meal contains.
+- Allergens to avoid will be an array of strings.
+
+Return safe meal names in the same order given.
+If no meal is safe, return an empty array.
+"""
+
+# CODE #
+
+def get_allergen_friendly_meals(meals, allergies):
+    safe_meals = [meal[0] for meal in meals] # Create a list of each meal name
+    for meal in meals: # For each meal...
+        for allergy in allergies: # For each allergy...
+            if allergy in meal[1] and meal[0] in safe_meals: safe_meals.remove(meal[0]) # If the allergy would by triggered by the meal and the meal is currently considered safe, remove it from the safe_meals list
+    return safe_meals # Return the list of safe_meals
