@@ -1,0 +1,9 @@
+"""
+Given an array of objects, each with a "name" and "age" property, return an array containing the name of the oldest person.
+
+If multiple people share the oldest age, return all of their names in the order they appear in the input.
+"""
+
+# CODE #
+
+get_oldest = lambda people : list(filter(lambda x:x!='', [(person.get('name', '') if person.get('age', 0)==max([person.get('age', 0) for person in people]) else '') for person in people])) # Find oldest age, then collect the name from every dictionary that shares that age, forming a list from these names
