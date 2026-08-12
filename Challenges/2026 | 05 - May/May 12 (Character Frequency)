@@ -1,0 +1,10 @@
+"""
+Given a string, return an object (JavaScript) or dictionary (Python) mapping each character to the number of times it appears.
+"""
+
+# CODE #
+
+def get_frequency(s):
+    frequency = {} # Create a dictionary to fill
+    for letter in s: frequency.update({letter: frequency.get(letter, 0)+1}) # Add the frequency of each letter to the dictionary
+    return frequency # Return the final dictionary
