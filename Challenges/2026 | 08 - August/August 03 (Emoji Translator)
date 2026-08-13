@@ -1,0 +1,20 @@
+"""
+Given a string of emojis, return the phrase using the following table:
+    Emoji	Word
+    👶	    "baby"
+    🐱	    "cat"
+    🐕	    "dog"
+    🐟	    "fish"
+    🥵	    "hot"
+    🧊	    "ice"
+    🪨	    "rock"
+    🦈	    "shark"
+    🍲	    "soup"
+    ⭐	   "star"
+
+Return the words separated by spaces.
+"""
+
+# CODE #
+
+get_emoji_phrase = lambda s: ' '.join([{ '👶': "baby", '🐱': "cat", '🐕': "dog", '🐟': "fish", '🥵': "hot", '🧊': "ice", '🪨': "rock", '🦈': "shark", '🍲': "soup", '⭐': "star" }[emoji] for emoji in s]) # Create a list where each emoji is replaced by its corresponding word, then join those words together with seperating spaces
