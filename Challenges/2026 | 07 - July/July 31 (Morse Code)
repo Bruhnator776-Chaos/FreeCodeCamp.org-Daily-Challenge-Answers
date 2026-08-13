@@ -1,0 +1,10 @@
+"""
+Given a Morse code string, return the decoded message. (On site, a table was given)
+
+- Letters are separated by a single space
+- Words are separated by three spaces
+"""
+
+# CODE #
+
+decode_morse = lambda code: " ".join(["".join([{ ".-":'A', "-...":'B', "-.-.":'C', "-..":'D', ".":'E', "..-.":'F', "--.":'G', "....":'H', "..":'I', ".---":'J', "-.-":'K', ".-..":'L', "--":'M', "-.":'N', "---":'O', ".--.":'P', "--.-":'Q', ".-.":'R', "...":'S', "-":'T', "..-":'U', "...-":'V', ".--":'W', "-..-":'X', "-.--":'Y', "--..":'Z' }[letter] for letter in word.split(" ")]) for word in code.split("   ")])
