@@ -1,0 +1,36 @@
+"""
+Given an array of five dice with values 1-6, return the best possible hand.
+
+Here are the hands ranked lowest to highest:
+    Hand	            Description
+    "no pair"	        No pair or better
+    "pair"	            Two dice with the same value
+    "two pair"	        Two different pairs
+    "three of a kind"	Three dice with the same value
+    "small straight"	Four consecutive values
+    "large straight"	Five consecutive values
+    "full house"	    Three of a kind and a pair
+    "four of a kind"	Four dice with the same value
+    "five of a kind"	All five dice with the same value
+"""
+
+# CODE #
+
+def five_dice(dice):
+    uniques, sortd = list(set(dice)), sorted(dice) # Create two lists based on the dice, one of every unique value, and one with every value in a sorted list
+    
+    if len(uniques)==1: return 'five of a kind' # If there is only one unique value, this means that it has to be five of a kind
+    if len(uniques)==2: # If there are only 2 unique values,
+        if str(dice.count(uniques[0])) in '14': return 'four of a kind' # If one of the values is counted from the dice list only once or four times, this means it has to be four of a kind
+        if str(dice.count(uniques[0])) in '23': return 'full house' # If one of the values is counted from the dice list twice or three times, this means it has to be a full house
+
+    straight = 0 # Create an variable with a value of 0 to help count the straight value
+    for i in range(4): # For each index of a singularly shortened dice list...
+        if sortd[i+1]-sortd[i] == 1: straight+=1 # If the current index of the sorted list is only one less than the next index, add one to straight
+        if sortd[i+1]-sortd[i] != 1: break # If the current index of the sorted list is not consecutive with the previous index, break the loop
+    if str(straight) in '34': return ['small straight', 'large straight'][straight-3] # If the straight is calculated as a length of 3 or 4, return the corresponding straight length
+
+    if 3 in [dice.count(x) for x in dice]: return 'three of a kind' # If a dice has a count of 3, it has to be a three of a kind
+    if '2222' in ''.join(sorted([str(dice.count(x)) for x in dice])): return 'two pair' # If four dice are counted twice each, this means that it must be a two pair
+    if '22' in ''.join(sorted([str(dice.count(x)) for x in dice])): return 'pair' # If two dice are counted twice, this means that they are a pair
+    return 'no pair' # If nothing passes, then this line will run, returning 'no pair'
