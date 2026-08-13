@@ -10,7 +10,7 @@ Given a string of emojis, return the phrase using the following table:
     🪨	    "rock"
     🦈	    "shark"
     🍲	    "soup"
-    ⭐	   "star"
+    ⭐	    "star"
 
 Return the words separated by spaces.
 """
