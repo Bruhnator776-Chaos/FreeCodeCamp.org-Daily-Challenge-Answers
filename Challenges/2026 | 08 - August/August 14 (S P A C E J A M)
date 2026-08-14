@@ -1,0 +1,9 @@
+"""
+Given a string, remove all spaces from the string, insert two spaces between every character, convert all alphabetical letters to uppercase, and return the result.
+
+- Non-alphabetical characters should remain unchanged (except for spaces).
+"""
+
+# CODE #
+
+space_jam = lambda s: "".join([f"  {char}" for char in ''.join(s.upper().split(" "))])[2:] # Convert the string to uppercase, remove the spaces, then add 2 spaces before each character. Return the final string without the first two spaces.
