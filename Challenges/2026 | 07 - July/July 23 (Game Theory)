@@ -1,0 +1,20 @@
+"""
+Given two equal length strings representing two players' strategies for a game, return the scores as an array [player1, player2].
+
+- The given strings will only contain one of two letters: "C" (cooperate) or "D" (defect).
+- Each character represents one round, scored as follows:
+  - If both players cooperate, each scores 3.
+  - If both players defect, each scores 1.
+  - If one player defects and the other cooperates, the defector scores 5 and the cooperator scores 0.
+"""
+
+# CODE #
+
+def play_game(p1, p2):
+    scores = { 'p1': 0, 'p2': 0 } # Create a dictionary to hold the player scores
+    for i in range(len(p1)): # For each round in the game
+        if p1[i]=='C' and p2[i]=='C': scores.update({ 'p1': scores.get('p1')+3, 'p2': scores.get('p2')+3 }) # If both players cooperate, add 3 to each score
+        if p1[i]=='D' and p2[i]=='D': scores.update({ 'p1': scores.get('p1')+1, 'p2': scores.get('p2')+1 }) # If both players defect, add one to each score
+        if p1[i]=='D' and p2[i]=='C': scores.update({ 'p1': scores.get('p1')+5 }) # If player1 defects while player2 cooperates, add 5 to player1's score
+        if p1[i]=='C' and p2[i]=='D': scores.update({ 'p2': scores.get('p2')+5 }) # If player2 defects while player1 cooperates, add 5 to player2's score
+    return [scores.get('p1'), scores.get('p2')] # Return the scores in an ordered list
