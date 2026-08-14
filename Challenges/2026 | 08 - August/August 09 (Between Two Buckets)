@@ -1,0 +1,14 @@
+"""
+Given two buckets of paint, each with an RGB color and a fullness level, return the mixed RGB color as an array of three integers.
+
+- Each bucket is an object (JavaScript) or dictionary (Python) with a color property (an array of three integers [r, g, b]) and a fullness property (0–100).
+- The mixed color is a weighted average of each channel in the two colors based on fullness level, with each channel rounded to the nearest integer.
+"""
+
+# CODE #
+
+def mix_paint(bucket1, bucket2):
+    r = ((bucket1.get('color')[0]*bucket1.get('fullness'))+(bucket2.get('color')[0]*bucket2.get('fullness')))/(2*((bucket1.get('fullness')+bucket2.get('fullness'))/2)) # Calculate the full R value
+    g = ((bucket1.get('color')[1]*bucket1.get('fullness'))+(bucket2.get('color')[1]*bucket2.get('fullness')))/(2*((bucket1.get('fullness')+bucket2.get('fullness'))/2)) # Calculate the full G value
+    b = ((bucket1.get('color')[2]*bucket1.get('fullness'))+(bucket2.get('color')[2]*bucket2.get('fullness')))/(2*((bucket1.get('fullness')+bucket2.get('fullness'))/2)) # Calculate the full B value
+    return [round(r),round(g),round(b)] # Return the rounded RGB values in a list
