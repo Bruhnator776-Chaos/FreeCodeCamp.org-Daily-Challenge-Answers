@@ -1,0 +1,11 @@
+"""
+Given an array of golf scores and a corresponding array of course par values, return the golfer's handicap index using the following method:
+- Calculate the differential for each round by subtracting the par from the score, then return the average of all differentials rounded to one decimal place.
+"""
+
+# CODE #
+
+def calculate_handicap(scores, pars):
+    differs = [scores[i]-pars[i] for i in range(len(pars))] # Calculate the differences between the pars and scores
+    hindx = round(sum(differs)/len(differs),2) # Calculate the handicap index rounded to 2 decimals
+    return round(hindx+0.1,1) if str(round(sum(differs)/len(differs),2))[-1] == '5' else round(hindx,1) # Round down to 1 decimal because the stupid round function tries to round down when the last digit is 5, instead of up like any sane human being :/
