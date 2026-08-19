@@ -1,0 +1,9 @@
+"""
+Given two strings, determine if they are anagrams of each other (contain the same characters in any order).
+
+- Ignore casing and white space.
+"""
+
+# CODE #
+
+are_anagrams = lambda str1, str2: True if sorted(str1.replace(" ", '').lower())==sorted(str2.replace(" ", '').lower()) else False # Compare both strings after removing whitespace, putting into lowercase, and sorting the final strings
