@@ -1,0 +1,11 @@
+"""
+Given a string, return a jumbled version of that string where each word is transformed using the following constraints:
+
+- The first and last letters of the words remain in place
+- All letters between the first and last letter are sorted alphabetically.
+- The input strings will contain no punctuation, and will be entirely lowercase.
+"""
+
+# CODE #
+
+jbelmu = lambda text: ' '.join([word[0]+''.join(sorted(word[1:-1]))+word[-1] if len(word)!=1 else word for word in text.split(" ")]) # This code essentially goes word by word, rearanges those words, then joins them back together in a string of jbelmud words seperated by spaces
