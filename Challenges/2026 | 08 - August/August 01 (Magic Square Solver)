@@ -1,0 +1,14 @@
+"""
+Given a 3x3 grid with one missing number (represented as 0), return the missing number that completes the magic square, or "impossible" if no valid number exists.
+
+A magic square is a grid where every row, column, and diagonal adds up to the same number.
+"""
+
+# CODE #
+
+def solve_magic_square(grid):
+    ZeroLocation = [grid.index(list(filter(lambda x:0 in x, grid))[0]), list(filter(lambda x:0 in x, grid))[0].index(0)] # Collect both the row and column in which the 0 is located
+    totals = sorted(list(set([sum(row) for row in grid]))) # Collect the sums for each row
+    if len(totals)==3: return 'impossible' # If there are 3 distinct totals, return 'impossible'
+    grid[ZeroLocation[0]][ZeroLocation[1]] = totals[1]-totals[0] # Replace the 0 with the appropriate number in the grid
+    return totals[1]-totals[0] if len(list(set([sum([row[i] for row in grid]) for i in range(len(grid[0]))])))==1 else 'impossible' # Calculate the column sums, if there is only 1 distinct total, return the number that replaced 0, otherwise return 'impossible'
