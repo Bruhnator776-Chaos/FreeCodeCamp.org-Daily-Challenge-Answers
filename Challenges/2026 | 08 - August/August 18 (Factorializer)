@@ -1,0 +1,11 @@
+"""
+Given an integer from zero to 20, return the factorial of that number. The factorial of a number is the product of all the numbers between 1 and the given number.
+
+- The factorial of zero is 1.
+"""
+
+# CODE #
+
+factorial = lambda n: eval('*'.join(map(str, range(n+1)[1:]))) if n>0 else (1 if n==0 else 'undefined') # Unless n>0, take a list of every number from through n, then convert them to strings, join them with astericks (*), and evaluate the new multiplication function. If n>0, determine whether n is a negative number or 0. If 0, return 1. If negative, return undefined.
+
+# I didn't want to try and add decimal factorials, because that requires some weird math things involving gamma functions
