@@ -1,0 +1,11 @@
+"""
+Given a string, determine whether the number of vowels in the first half of the string is equal to the number of vowels in the second half.
+
+- The string can contain any characters.
+- The letters a, e, i, o, and u, in either uppercase or lowercase, are considered vowels.
+- If there's an odd number of characters in the string, ignore the center character.
+"""
+
+# CODE #
+
+is_balanced = lambda s: True if len(list(filter(lambda x:x in 'aeiou', s[:len(s)//2].lower()))) == len(list(filter(lambda x:x in 'aeiou', (s[len(s)//2+1:].lower() if len(s)%2==1 else s[len(s)//2:].lower())))) else False # Seperate the string into halves, then filter each half for the vowels. If the number of letters in each filtered half is the same, return True, otherwise return False
