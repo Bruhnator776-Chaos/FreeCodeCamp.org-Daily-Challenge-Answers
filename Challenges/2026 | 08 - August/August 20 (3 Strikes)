@@ -1,0 +1,7 @@
+"""
+Given an integer between 1 and 10,000, return a count of how many numbers from 1 up to that integer whose square contains at least one digit 3.
+"""
+
+# CODE #
+
+squares_with_three = lambda n: len(list(filter(lambda x: '3' in x, [str(i**2) for i in range(n+1)[1:]]))) # Collect every number from 1 through n, square them then turn them into a string. Filter out every number that doesn't have a 3 in it, then return the length of that final list
