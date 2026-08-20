@@ -1,0 +1,11 @@
+"""
+Given two database objects, return the second object with any missing properties from the first filled in.
+
+ - Fields that already exist in the record should not be overwritten.
+"""
+
+# CODE #
+
+def migrate_record(schema, record):
+    [(record.update({ key: value }) if record.get(key, None)==None else None) for key, value in schema.items()] # For each item in the schema, if the item is already in the record, do nothing, otherwise, add the item to the record
+    return record # Return the fully migrated record
