@@ -1,0 +1,16 @@
+"""
+Given an array of daily stock prices and a budget (in dollars), calculate the maximum profit you could make by buying and selling the stock over the given period.
+
+- You may only sell after you buy.
+- You may perform at most one buy and one sell transaction. Once you sell, you cannot buy again.
+- You can only buy whole shares.
+- Return the maximum possible profit as a string, rounded down to the nearest cent and formatted to two decimal places.
+"""
+
+# CODE #
+
+def get_max_profit(prices, budget):
+    diffs = { sorted(prices[prices.index(price):])[-1]-price: prices.index(price) for price in prices } # Create a list of differences based on the index of each price in the list compared to the greatest number after it
+    prices = prices[diffs[max(list(diffs.keys()))]:] # Single out the best possible profit from the diffs list
+    profit = str(abs(float(round((((budget//prices[0])*max(prices))-budget)+(budget%prices[0]),2)))) # Calculate the profit
+    return profit if len(profit.split('.')[1])==2 else profit+'0' # Return the profit with an added 0 if necessary
