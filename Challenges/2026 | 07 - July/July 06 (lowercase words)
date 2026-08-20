@@ -1,0 +1,7 @@
+"""
+Given a string, return only the words that are entirely lowercase, in their original order and with a space between each word.
+"""
+
+# CODE #
+
+get_lowercase_words = lambda s:' '.join(list(filter(lambda w:w.islower(), s.split(' ')))) # Split the sentence by the spaces then filter out the non-lowercase words. Join back together the lowercase words and return that sentence
