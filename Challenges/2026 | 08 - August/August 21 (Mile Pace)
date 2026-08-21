@@ -1,0 +1,12 @@
+"""
+Given a number of miles ran, and a time in "MM:SS" (minutes:seconds) it took to run those miles, return a string for the average time it took to run each mile in the format "MM:SS".
+
+- Add leading zeros when needed.
+"""
+
+# CODE #
+
+def mile_pace(miles, duration):
+    avg = ((int(duration.split(":")[0])*60)+(int(duration.split(":")[1])))/miles # Calculate the average seconds per mile
+    duration = [str(round(avg//60)), str(round(avg%60))] # Seconds per mile to minutes&seconds per mile
+    return f"{duration[0] if len(duration[0])==2 else '0'+duration[0]}:{duration[1] if len(duration[1])==2 else '0'+duration[1]}" # Return the formatted values
