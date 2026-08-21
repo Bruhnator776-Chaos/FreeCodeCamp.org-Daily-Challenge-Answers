@@ -1,0 +1,10 @@
+"""
+Given two numbers, determine if their ratio approoximates the golden ratio.
+
+- Use a golden ratio of 1.618
+- Allow a tolerance of 0.01
+"""
+
+# CODE #
+
+is_golden_ratio = lambda a,b: True if max(a,b)/min(a,b)<=1.628 and max(a,b)/min(a,b)>=1.608 else False # If the ratio of the two numbers (larger over smaller) falls between 1.608 and 1.628, return True. Otherwise, return False
