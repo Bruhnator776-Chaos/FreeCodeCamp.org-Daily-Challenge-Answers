@@ -1,0 +1,13 @@
+"""
+Given a number for the current floor of an elevator and an array of requested floors, return an array of the order the elevator should visit them to minimize number of floors traveled.
+
+- If tied, go up first
+- Floors with a request must be visited when the elevator first passes them
+"""
+
+# CODE #
+
+def elevator_stops(floor, stops):
+    lower, upper = sorted(list(filter(lambda x:x<floor, sorted(stops))),reverse=True), list(filter(lambda x:x>floor, sorted(stops))) # Collect the list of both the upper floors in order and the lower floors in order
+    diffs = [max(stops)-floor, floor-min(stops)] # Calculate the differences of the current floor and the max/min floor
+    return upper+lower if diffs.index(min(diffs))==0 else lower+upper # Return the upper and lower floor lists in order
