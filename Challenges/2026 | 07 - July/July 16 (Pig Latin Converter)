@@ -1,0 +1,19 @@
+"""
+Given a string, convert it to Pig Latin using the following rules:
+
+- If a word begins with a vowel, add "way" to the end.
+- If a word begins with one or more consonants, move them to the end and add "ay".
+- Preserve the case of the first letter.
+"""
+
+# CODE #
+
+def pig_latin(s):
+    translated = '' # Create an empty string to hold the translated string
+    for word in s.split(' '): # For each word in the string
+        if word[0] in 'aeiou': translated+=f" {word}way" # If the first letter is a vowel, add the word to the translated string
+        if word[0] in 'aeiou': continue # If the word is a vowel, skip this loop
+        upper = True if word[0].isupper() else False # Note the case of the first letter
+        while word[0] not in 'aeiou': word = word[1:]+word[0] # While the first letter is not a vowel, move the first letter to the end of the word
+        translated+=f" {word[0].upper()+word[1:].lower() if upper else word.lower()}ay" # Add the translated word to the translated string case-corrected
+    return translated[1:] # Return the translated string
