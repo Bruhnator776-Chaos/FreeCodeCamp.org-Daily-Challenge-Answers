@@ -1,0 +1,13 @@
+"""
+Given an array and a chunk size, return the array split into sub-arrays of that size.
+
+- The last chunk may be smaller if the array doesn't divide evenly.
+"""
+
+# CODE #
+
+import math # Import math
+def chunk_array(arr, size):
+    matrix = [[] for i in range(math.ceil(len(arr)/size))] # Prepare the matrix
+    for i in range(len(arr)): matrix[i//size].append(arr[i]) # Fill the matrix
+    return matrix # Return the matrix
