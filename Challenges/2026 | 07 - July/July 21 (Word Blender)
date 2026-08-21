@@ -1,0 +1,9 @@
+"""
+Given two words, return a new word by combining the first half of the first word with the second half of the second word.
+
+- For odd-length words, the first half is the shorter half.
+"""
+
+# CODE #
+
+blend_words = lambda word1, word2: word1[:len(word1)//2]+word2[len(word2)//2:] # Take the first half of letters from word1 and concatenate with the second half of word2
