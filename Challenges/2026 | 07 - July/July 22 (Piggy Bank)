@@ -1,0 +1,16 @@
+"""
+Given an object representing a piggy bank, return the total value as a string formatted as "$D.CC".
+
+The object may contain any of the following:
+    Coin	    Value
+    pennies	    $0.01
+    nickels	    $0.05
+    dimes	    $0.10
+    quarters	$0.25
+"""
+
+# CODE #
+
+def piggy_bank(coins):
+    final = str(float(round(sum([{ 'pennies': 0.01, 'nickels': 0.05, 'dimes': 0.10, 'quarters': 0.25 }[coin]*num for coin, num in coins.items()]),2))) # Calculate the final value in the piggy bank
+    return '$'+final.split('.')[0]+'.'+(final.split('.')[1] if len(final.split('.')[1])==2 else '0'+final.split('.')[1]) # Return the formatted value
