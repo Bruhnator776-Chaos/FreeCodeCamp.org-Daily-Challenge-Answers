@@ -1,0 +1,13 @@
+"""
+Given a string of tally marks, return the total count represented.
+
+- Each pipe "|" represents one count.
+- Every fifth mark is represented as a forward slash "/", completing a group of five ("||||/").
+- Groups are separated by a space.
+"""
+
+# CODE #
+
+get_tally_count = lambda s: len(''.join(s.split(" ")))
+
+# So... While I could've done something about counting the /'s then the |'s, this works as well.
