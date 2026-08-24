@@ -1,0 +1,15 @@
+"""
+Given a secret message string, and an integer representing the number of letters that were used to shift the message to encode it, return the decoded string.
+
+- A positive number means the message was shifted forward in the alphabet.
+- A negative number means the message was shifted backward in the alphabet.
+- Case matters, decoded characters should retain the case of their encoded counterparts.
+- Non-alphabetical characters should not get decoded.
+"""
+
+# CODE #
+
+def decode(message, shift):
+    message = [char for char in message] # Convert the message into a list (for list indexing purposes)
+    for i in range(len(message)): message[i] = (chr((((ord(message[i])-(ord("A") if message[i].isupper() else ord("a")))-shift)%26)+(ord("A") if message[i].isupper() else ord('a')))) if message[i].isalpha() else message[i] # Translate each value in the message
+    return ''.join(message) # Return the translated message
