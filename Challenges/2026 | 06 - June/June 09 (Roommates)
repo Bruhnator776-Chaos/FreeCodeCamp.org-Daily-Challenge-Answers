@@ -1,0 +1,16 @@
+"""
+Given an array of people and their roommate group, return the room assignments for a hotel stay using the following rules:
+- Each person has a name and a group property.
+- People can only share a room with someone from the same group and are paired in the order they are given.
+- Return an array of strings with names separated by " and " for a shared room, and just the name for a solo room.
+- Names must appear in the order they were paired.
+"""
+
+# CODE #
+
+def get_roommates(people):
+    rooms = [] # Create an empty list rooms
+    for person in people: # For person in people
+        if len(list(filter(lambda x:x['group']==person['group'], list(filter(lambda x:type(x)==dict, rooms)))))!=0: rooms[rooms.index(list(filter(lambda x:x['group']==person['group'], list(filter(lambda x:type(x)==dict, rooms))))[0])] = list(filter(lambda x:x['group']==person['group'], list(filter(lambda x:type(x)==dict, rooms))))[0]['name'] + " and " + person['name'] # If a dictionary object within the rooms list is of the same group as the current interrated person, combine them both into one string, where both of their names are seperated by ' and '
+        else: rooms.append(person) # Otherwise, add the person to the rooms list
+    return list(map(lambda x:x['name'] if type(x)==dict else x, rooms)) # Return the rooms list, changing each dictionary object to just the name before returning
