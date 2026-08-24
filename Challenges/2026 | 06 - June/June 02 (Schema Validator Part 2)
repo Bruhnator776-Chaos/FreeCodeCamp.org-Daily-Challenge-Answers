@@ -1,0 +1,14 @@
+"""
+Given an object (JavaScript) or dictionary (Python), determine if it matches the following schema:
+    {
+        username: string,
+        posts: number,
+        verified: boolean
+    }
+
+- Extra keys are allowed
+"""
+
+# CODE #
+
+is_valid_schema = lambda obj: True if type(obj.get('username', None))==str and type(obj.get('posts', None)) in [int, float, complex] and type(obj.get('verified', None))==bool else False
