@@ -1,0 +1,7 @@
+"""
+Given a string of numbers separated by commas, return an array of the numbers sorted from smallest to largest.
+"""
+
+# CODE #
+
+sort_numbers = lambda s: sorted(eval(s)) # Evaluate the string, giving an array of numbers, then sort that array
