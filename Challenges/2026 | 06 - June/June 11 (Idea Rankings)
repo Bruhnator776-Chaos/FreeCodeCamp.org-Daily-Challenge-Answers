@@ -1,0 +1,10 @@
+"""
+Given a 2D array where each inner array contains (in this order) an idea name, an optimistic estimate, a realistic estimate, and a pessimistic estimate (in days), return an array of the idea names sorted by expected time to completion, shortest first.
+
+Calculate the expected time to completion for each idea using the following formula:
+- expected = ((optimistic + 4 * realistic + pessimistic) / 6) * length of idea name
+"""
+
+# CODE #
+
+analyze_ideas = lambda ideas: [{ ((idea[1]+4*idea[2]+idea[3])/6)*len(idea[0]):idea[0] for idea in ideas }[expected] for expected in sorted(list({ ((idea[1]+4*idea[2]+idea[3])/6)*len(idea[0]):idea[0] for idea in ideas }.keys()))] # Using a dictionary in which the expected values are the keys and the names are the values, create a sorted list of values based on the keys
