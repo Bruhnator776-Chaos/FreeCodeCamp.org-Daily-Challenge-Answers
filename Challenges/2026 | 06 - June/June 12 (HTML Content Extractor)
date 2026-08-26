@@ -1,0 +1,9 @@
+"""
+Given a string of HTML, return the plain text content with all tags removed.
+"""
+
+# CODE #
+
+def extract_content(html):
+    while '>' in html: html = html[:max(list(filter(lambda i:html[i] in '<', [i for i in range(html.index('>'))])))] + html[html.index('>')+1:] # While '>' in the HTML string, remove the first HTML non-plain text section
+    return html # Return the plain text from the HTML string
