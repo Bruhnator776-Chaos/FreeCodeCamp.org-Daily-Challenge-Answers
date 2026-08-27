@@ -1,0 +1,13 @@
+"""
+Given an array of integers and an array of string operators, apply the operations to the numbers sequentially from left-to-right.
+Repeat the operations as needed until all numbers are used. Return the final result.
+
+- Valid operators are +, -, *, /, and %.
+"""
+
+# CODE #
+
+def evaluate(numbers, operators):
+    final = numbers[0] # Set a variable to the first number in the list
+    for i in range(len(numbers[1:])): final = eval(f"{final}{operators[i%len(operators)]}{numbers[i+1]}") # For every number past the first, calculate the next operation and update the final variable
+    return final # Return the final value
