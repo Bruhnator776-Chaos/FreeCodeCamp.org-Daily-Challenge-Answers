@@ -1,0 +1,20 @@
+"""
+Given a named CSS color string, generate a random hexadecimal (hex) color code that is dominant in the given color.
+
+- The function should handle "red", "green", or "blue" as an input argument.
+- If the input is not one of those, the function should return "Invalid color".
+- The function should return a random six-character hex color code where the input color value is greater than any of the others.
+"""
+
+# CODE #
+
+def generate_hex(color):
+    if color not in ['red','green','blue']: return 'Invalid color' # Filter out a false input
+    
+    translator = { 0:'0', 1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'A', 11:'B', 12:'C', 13:'D', 14:'E', 15:'F' } # Create a dictionary to take a value up to 15 and turn it into a single character
+    translate = lambda value: '0'+translator[value] if value < 16 else translator[value-16]+translator[15] # Define a function that takes a number up to 32 and converts it into a 2 character hex value
+
+    rgb = [0,0,0] # Create a list of red, green, and blue values
+    from random import randint # Import the random integer function
+    while rgb[['red', 'green', 'blue'].index(color)] <= sum(rgb)-rgb[['red', 'green', 'blue'].index(color)]: rgb = [randint(0,31),randint(0,31),randint(0,31)] # While the requested color is not larger than the sum of the other colors, randomize the values
+    return ''.join(list(map(translate, rgb))) # Return the final hexcode
