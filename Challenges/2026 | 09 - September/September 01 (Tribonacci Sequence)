@@ -1,0 +1,15 @@
+"""
+The Tribonacci sequence is a series of numbers where each number is the sum of the three preceding ones.
+
+Given an array containing the first three numbers of a Tribonacci sequence, and an integer representing the length of the sequence, return an array containing the sequence of the given length.
+
+- Your function should handle sequences of any length greater than or equal to zero.
+- If the length is zero, return an empty array.
+- Note that the starting numbers are part of the sequence.
+"""
+
+# CODE #
+
+def tribonacci_sequence(sequence, length):
+    while len(sequence)<length: sequence+=[sum(sequence[-3:])] # While the sequence length is less then the required length, add another calculated value to the end of the tribonacci sequence
+    return sequence[:length] # The sequence of the required length
