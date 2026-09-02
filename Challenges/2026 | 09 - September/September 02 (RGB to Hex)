@@ -1,0 +1,11 @@
+"""
+Given a CSS color string, return its hexadecimal equivalent.
+
+- Make any letters lowercase.
+- Return a pound sign followed by six characters.
+- Don't use any shorthand values.
+"""
+
+# CODE #
+
+rgb_to_hex = lambda rgb: '#'+''.join(['0123456789abcdef'[value//16]+'0123456789abcdef'[value%16] for i, value in enumerate(map(int, rgb[4:-1].split(', ')))]) # Extract each number, convert each number into the corresponding 2 character hex value, then format it into a single hexcode
