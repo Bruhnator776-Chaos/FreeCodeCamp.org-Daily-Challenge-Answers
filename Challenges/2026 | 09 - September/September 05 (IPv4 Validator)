@@ -1,0 +1,19 @@
+"""
+Given a string, determine if it is a valid IPv4 Address.
+A valid IPv4 address consists of four integer numbers separated by dots (.).
+
+Each number must satisfy the following conditions:
+- It is between 0 and 255 inclusive.
+- It does not have leading zeros.
+- Only numeric characters are allowed.
+"""
+
+# CODE #
+
+def is_valid_ipv4(ipv4):
+    ipv4 = ipv4.split('.') # Split ipv4 into the 4 integers
+    if len(ipv4)!=4 or not ''.join(ipv4).isdigit(): return False # If the ipv4 string is not 4 numbers long or not a list of integers, return False
+    for num in ipv4: # For each integer
+        if num=='': return False # If there is not integer, return False
+        if len(num)>1 and num[0]=='0' or int(num)<0 or int(num)>255: return False # If the integer has leading zeros or outside of 0-255, return False
+    return True # Return True, given that no above lines of code run
