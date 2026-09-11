@@ -1,0 +1,9 @@
+"""
+Given two arrays with strings values, return a new array containing all the values that appear in only one of the arrays.
+
+- The returned array should be sorted in alphabetical order.
+"""
+
+# CODE #
+
+array_diff = lambda arr1, arr2: sorted(list(set(list(filter(lambda x:x not in arr2, arr1)) + list(filter(lambda x:x not in arr1, arr2))))) # Collect all values that are each individual list yet not in the other, then combine those lists, removing duplicates. Sort and return the result.
