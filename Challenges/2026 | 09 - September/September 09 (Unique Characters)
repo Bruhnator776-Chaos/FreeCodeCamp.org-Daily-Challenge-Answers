@@ -1,0 +1,9 @@
+"""
+Given a string, determine if all the characters in the string are unique.
+
+- Uppercase and lowercase letters should be considered different characters.
+"""
+
+# CODE #
+
+all_unique = lambda s: False if len(list(filter(lambda i:s.count(i)>1, list(s)))) > 1 else True # If there are any characters in the string with a count greater than one, return False, otherwise return True
