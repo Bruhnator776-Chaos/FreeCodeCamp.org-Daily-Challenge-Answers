@@ -1,0 +1,31 @@
+"""
+Given a string representing a Roman numeral, return its integer value.
+
+Roman numerals consist of the following symbols and values:
+    Symbol	Value
+    I	    1
+    V	    5
+    X	    10
+    L	    50
+    C	    100
+    D	    500
+    M	    1000
+
+- Numerals are read left to right.
+- If a smaller numeral appears before a larger one, the value is subtracted.
+- Otherwise, values are added.
+"""
+
+# CODE #
+
+def parse_roman_numeral(numeral):
+    numeral, numeral2 = [{ 'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000 }[n] for n in numeral], [[]] # Translate every numeral into a number and create an empty list of lists
+    for i in range(len(numeral)): # For each index in the numeral list
+        if numeral2[-1]==[]: numeral2[-1].append(numeral[-1*(i+1)]) # If the last item in the list of lists is an empty list, add the last number in the numeral list to that empty list
+        elif numeral2[-1][-1]>=numeral[-1*(i+1)]: numeral2[-1].append(numeral[-1*(i+1)]) # If the final number in the final list within the list of lists is greater than or equal to the given reverse indexed item in the numeral list, add that item to the final list in the list of lists
+        elif numeral2[-1][-1]<numeral[-1*(i+1)]: numeral2.append([numeral[-1*(i+1)]]) # If the final number in the final list within the list of lists is less than the given reverse indexed item in the numeral list, add that item as a new list at the end of the list of lists
+    for i, lst in enumerate(numeral2): # For each index and list associated with that list in the list of lists
+        print(lst)
+        if len(set(lst))==1: numeral2[i] = sum(lst) # If the given list is a container of only one repeated number, replace it with the sum of itself
+        else: numeral2[i] = lst[0] - sum(lst[1:]) # Otherwise, replace the given list with its largest value subtracted by the sum of all the smaller values
+    return sum(numeral2) # Return the sum of what was once the list of lists
